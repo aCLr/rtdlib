@@ -9,7 +9,8 @@ macro_rules! rtd_enum_deserialize {
     // {"@type":"authorizationStateWaitEncryptionKey","is_encrypted":false}
     |deserializer: D| -> Result<$type_name, D::Error> {
       let rtd_trait_value: serde_json::Value = Deserialize::deserialize(deserializer)?;
-      // the `rtd_trait_value` variable type is &serde_json::Value, tdlib trait will return a object, convert this type to object `&Map<String, Value>`
+      // the `rtd_trait_v
+      // alue` variable type is &serde_json::Value, tdlib trait will return a object, convert this type to object `&Map<String, Value>`
       let rtd_trait_map = match rtd_trait_value.as_object() {
         Some(map) => map,
         None => return Err(D::Error::unknown_field(stringify!($type_name), &[stringify!("{} is not the correct type", $type_name)])) // &format!("{} is not the correct type", stringify!($field))[..]
@@ -64,15 +65,17 @@ macro_rules! rtd_enum_deserialize {
 //  };
 //}
 
-pub fn detect_td_type<S: AsRef<str>>(json: S) -> Option<String> {
+pub fn detect_td_type_and_extra<S: AsRef<str>>(json: S) -> (Option<String>, Option<String>) {
   let result: Result<serde_json::Value, serde_json::Error> = serde_json::from_str::<serde_json::Value>(json.as_ref());
-  if let Err(_) = result { return None }
+  if let Err(_) = result { return (None, None) }
   let value = result.unwrap();
-  value.as_object().map_or(None, |v| {
-    v.get("@type").map_or(None, |t| t.as_str().map_or(None, |t| {
-      Some(t.to_string())
-    }))
-  })
+  let mut type_ = None;
+  let mut extra = None;
+  if let Some(map) = value.as_object() {
+    map.get("@type").map(|v|type_.replace(v.to_string()));
+    map.get("@extra").map(|v|extra.replace(v.to_string()));
+  }
+  (type_, extra)
 }
 
 pub fn from_json<'a, T>(json: &'a str) -> RTDResult<T> where T: serde::de::Deserialize<'a>, {

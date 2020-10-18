@@ -15,7 +15,7 @@ pub struct AcceptCall {
   call_id: i64,
   /// Description of the call protocols supported by the application
   protocol: CallProtocol,
-  
+
 }
 
 impl RObject for AcceptCall {
@@ -50,13 +50,13 @@ pub struct RTDAcceptCallBuilder {
 impl RTDAcceptCallBuilder {
   pub fn build(&self) -> AcceptCall { self.inner.clone() }
 
-   
+
   pub fn call_id(&mut self, call_id: i64) -> &mut Self {
     self.inner.call_id = call_id;
     self
   }
 
-   
+
   pub fn protocol<T: AsRef<CallProtocol>>(&mut self, protocol: T) -> &mut Self {
     self.inner.protocol = protocol.as_ref().clone();
     self
@@ -86,7 +86,7 @@ pub struct AcceptTermsOfService {
   td_name: String,
   /// Terms of service identifier
   terms_of_service_id: String,
-  
+
 }
 
 impl RObject for AcceptTermsOfService {
@@ -119,7 +119,7 @@ pub struct RTDAcceptTermsOfServiceBuilder {
 impl RTDAcceptTermsOfServiceBuilder {
   pub fn build(&self) -> AcceptTermsOfService { self.inner.clone() }
 
-   
+
   pub fn terms_of_service_id<T: AsRef<str>>(&mut self, terms_of_service_id: T) -> &mut Self {
     self.inner.terms_of_service_id = terms_of_service_id.as_ref().to_string();
     self
@@ -153,7 +153,7 @@ pub struct AddChatMember {
   user_id: i64,
   /// The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels
   forward_limit: i64,
-  
+
 }
 
 impl RObject for AddChatMember {
@@ -190,19 +190,19 @@ pub struct RTDAddChatMemberBuilder {
 impl RTDAddChatMemberBuilder {
   pub fn build(&self) -> AddChatMember { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
   }
 
-   
+
   pub fn forward_limit(&mut self, forward_limit: i64) -> &mut Self {
     self.inner.forward_limit = forward_limit;
     self
@@ -234,7 +234,7 @@ pub struct AddChatMembers {
   chat_id: i64,
   /// Identifiers of the users to be added to the chat
   user_ids: Vec<i64>,
-  
+
 }
 
 impl RObject for AddChatMembers {
@@ -269,13 +269,13 @@ pub struct RTDAddChatMembersBuilder {
 impl RTDAddChatMembersBuilder {
   pub fn build(&self) -> AddChatMembers { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn user_ids(&mut self, user_ids: Vec<i64>) -> &mut Self {
     self.inner.user_ids = user_ids;
     self
@@ -307,7 +307,7 @@ pub struct AddChatToList {
   chat_id: i64,
   /// The chat list. Use getChatListsToAddChat to get suitable chat lists
   chat_list: ChatList,
-  
+
 }
 
 impl RObject for AddChatToList {
@@ -342,13 +342,13 @@ pub struct RTDAddChatToListBuilder {
 impl RTDAddChatToListBuilder {
   pub fn build(&self) -> AddChatToList { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn chat_list<T: AsRef<ChatList>>(&mut self, chat_list: T) -> &mut Self {
     self.inner.chat_list = chat_list.as_ref().clone();
     self
@@ -380,7 +380,7 @@ pub struct AddContact {
   contact: Contact,
   /// True, if the new contact needs to be allowed to see current user's phone number. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed. Use the field UserFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
   share_phone_number: bool,
-  
+
 }
 
 impl RObject for AddContact {
@@ -415,13 +415,13 @@ pub struct RTDAddContactBuilder {
 impl RTDAddContactBuilder {
   pub fn build(&self) -> AddContact { self.inner.clone() }
 
-   
+
   pub fn contact<T: AsRef<Contact>>(&mut self, contact: T) -> &mut Self {
     self.inner.contact = contact.as_ref().clone();
     self
   }
 
-   
+
   pub fn share_phone_number(&mut self, share_phone_number: bool) -> &mut Self {
     self.inner.share_phone_number = share_phone_number;
     self
@@ -451,7 +451,7 @@ pub struct AddCustomServerLanguagePack {
   td_name: String,
   /// Identifier of a language pack to be added; may be different from a name that is used in an "https://t.me/setlanguage/" link
   language_pack_id: String,
-  
+
 }
 
 impl RObject for AddCustomServerLanguagePack {
@@ -484,7 +484,7 @@ pub struct RTDAddCustomServerLanguagePackBuilder {
 impl RTDAddCustomServerLanguagePackBuilder {
   pub fn build(&self) -> AddCustomServerLanguagePack { self.inner.clone() }
 
-   
+
   pub fn language_pack_id<T: AsRef<str>>(&mut self, language_pack_id: T) -> &mut Self {
     self.inner.language_pack_id = language_pack_id.as_ref().to_string();
     self
@@ -514,7 +514,7 @@ pub struct AddFavoriteSticker {
   td_name: String,
   /// Sticker file to add
   sticker: InputFile,
-  
+
 }
 
 impl RObject for AddFavoriteSticker {
@@ -547,7 +547,7 @@ pub struct RTDAddFavoriteStickerBuilder {
 impl RTDAddFavoriteStickerBuilder {
   pub fn build(&self) -> AddFavoriteSticker { self.inner.clone() }
 
-   
+
   pub fn sticker<T: AsRef<InputFile>>(&mut self, sticker: T) -> &mut Self {
     self.inner.sticker = sticker.as_ref().clone();
     self
@@ -585,7 +585,7 @@ pub struct AddLocalMessage {
   disable_notification: bool,
   /// The content of the message to be added
   input_message_content: InputMessageContent,
-  
+
 }
 
 impl RObject for AddLocalMessage {
@@ -626,31 +626,31 @@ pub struct RTDAddLocalMessageBuilder {
 impl RTDAddLocalMessageBuilder {
   pub fn build(&self) -> AddLocalMessage { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn sender_user_id(&mut self, sender_user_id: i64) -> &mut Self {
     self.inner.sender_user_id = sender_user_id;
     self
   }
 
-   
+
   pub fn reply_to_message_id(&mut self, reply_to_message_id: i64) -> &mut Self {
     self.inner.reply_to_message_id = reply_to_message_id;
     self
   }
 
-   
+
   pub fn disable_notification(&mut self, disable_notification: bool) -> &mut Self {
     self.inner.disable_notification = disable_notification;
     self
   }
 
-   
+
   pub fn input_message_content<T: AsRef<InputMessageContent>>(&mut self, input_message_content: T) -> &mut Self {
     self.inner.input_message_content = input_message_content.as_ref().clone();
     self
@@ -682,7 +682,7 @@ pub struct AddLogMessage {
   verbosity_level: i64,
   /// Text of a message to log
   text: String,
-  
+
 }
 
 impl RObject for AddLogMessage {
@@ -717,13 +717,13 @@ pub struct RTDAddLogMessageBuilder {
 impl RTDAddLogMessageBuilder {
   pub fn build(&self) -> AddLogMessage { self.inner.clone() }
 
-   
+
   pub fn verbosity_level(&mut self, verbosity_level: i64) -> &mut Self {
     self.inner.verbosity_level = verbosity_level;
     self
   }
 
-   
+
   pub fn text<T: AsRef<str>>(&mut self, text: T) -> &mut Self {
     self.inner.text = text.as_ref().to_string();
     self
@@ -753,7 +753,7 @@ pub struct AddNetworkStatistics {
   td_name: String,
   /// The network statistics entry with the data to be added to statistics
   entry: NetworkStatisticsEntry,
-  
+
 }
 
 impl RObject for AddNetworkStatistics {
@@ -786,7 +786,7 @@ pub struct RTDAddNetworkStatisticsBuilder {
 impl RTDAddNetworkStatisticsBuilder {
   pub fn build(&self) -> AddNetworkStatistics { self.inner.clone() }
 
-   
+
   pub fn entry<T: AsRef<NetworkStatisticsEntry>>(&mut self, entry: T) -> &mut Self {
     self.inner.entry = entry.as_ref().clone();
     self
@@ -822,7 +822,7 @@ pub struct AddProxy {
   enable: bool,
   /// Proxy type
   #[serde(rename(serialize = "type", deserialize = "type"))] type_: ProxyType,
-  
+
 }
 
 impl RObject for AddProxy {
@@ -861,25 +861,25 @@ pub struct RTDAddProxyBuilder {
 impl RTDAddProxyBuilder {
   pub fn build(&self) -> AddProxy { self.inner.clone() }
 
-   
+
   pub fn server<T: AsRef<str>>(&mut self, server: T) -> &mut Self {
     self.inner.server = server.as_ref().to_string();
     self
   }
 
-   
+
   pub fn port(&mut self, port: i64) -> &mut Self {
     self.inner.port = port;
     self
   }
 
-   
+
   pub fn enable(&mut self, enable: bool) -> &mut Self {
     self.inner.enable = enable;
     self
   }
 
-   
+
   pub fn type_<T: AsRef<ProxyType>>(&mut self, type_: T) -> &mut Self {
     self.inner.type_ = type_.as_ref().clone();
     self
@@ -911,7 +911,7 @@ pub struct AddRecentSticker {
   is_attached: bool,
   /// Sticker file to add
   sticker: InputFile,
-  
+
 }
 
 impl RObject for AddRecentSticker {
@@ -946,13 +946,13 @@ pub struct RTDAddRecentStickerBuilder {
 impl RTDAddRecentStickerBuilder {
   pub fn build(&self) -> AddRecentSticker { self.inner.clone() }
 
-   
+
   pub fn is_attached(&mut self, is_attached: bool) -> &mut Self {
     self.inner.is_attached = is_attached;
     self
   }
 
-   
+
   pub fn sticker<T: AsRef<InputFile>>(&mut self, sticker: T) -> &mut Self {
     self.inner.sticker = sticker.as_ref().clone();
     self
@@ -982,7 +982,7 @@ pub struct AddRecentlyFoundChat {
   td_name: String,
   /// Identifier of the chat to add
   chat_id: i64,
-  
+
 }
 
 impl RObject for AddRecentlyFoundChat {
@@ -1015,7 +1015,7 @@ pub struct RTDAddRecentlyFoundChatBuilder {
 impl RTDAddRecentlyFoundChatBuilder {
   pub fn build(&self) -> AddRecentlyFoundChat { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
@@ -1045,7 +1045,7 @@ pub struct AddSavedAnimation {
   td_name: String,
   /// The animation file to be added. Only animations known to the server (i.e. successfully sent via a message) can be added to the list
   animation: InputFile,
-  
+
 }
 
 impl RObject for AddSavedAnimation {
@@ -1078,7 +1078,7 @@ pub struct RTDAddSavedAnimationBuilder {
 impl RTDAddSavedAnimationBuilder {
   pub fn build(&self) -> AddSavedAnimation { self.inner.clone() }
 
-   
+
   pub fn animation<T: AsRef<InputFile>>(&mut self, animation: T) -> &mut Self {
     self.inner.animation = animation.as_ref().clone();
     self
@@ -1112,7 +1112,7 @@ pub struct AddStickerToSet {
   name: String,
   /// Sticker to add to the set
   sticker: InputSticker,
-  
+
 }
 
 impl RObject for AddStickerToSet {
@@ -1149,19 +1149,19 @@ pub struct RTDAddStickerToSetBuilder {
 impl RTDAddStickerToSetBuilder {
   pub fn build(&self) -> AddStickerToSet { self.inner.clone() }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
   }
 
-   
+
   pub fn name<T: AsRef<str>>(&mut self, name: T) -> &mut Self {
     self.inner.name = name.as_ref().to_string();
     self
   }
 
-   
+
   pub fn sticker<T: AsRef<InputSticker>>(&mut self, sticker: T) -> &mut Self {
     self.inner.sticker = sticker.as_ref().clone();
     self
@@ -1199,7 +1199,7 @@ pub struct AnswerCallbackQuery {
   url: String,
   /// Time during which the result of the query can be cached, in seconds
   cache_time: i64,
-  
+
 }
 
 impl RObject for AnswerCallbackQuery {
@@ -1240,31 +1240,31 @@ pub struct RTDAnswerCallbackQueryBuilder {
 impl RTDAnswerCallbackQueryBuilder {
   pub fn build(&self) -> AnswerCallbackQuery { self.inner.clone() }
 
-   
+
   pub fn callback_query_id(&mut self, callback_query_id: isize) -> &mut Self {
     self.inner.callback_query_id = callback_query_id;
     self
   }
 
-   
+
   pub fn text<T: AsRef<str>>(&mut self, text: T) -> &mut Self {
     self.inner.text = text.as_ref().to_string();
     self
   }
 
-   
+
   pub fn show_alert(&mut self, show_alert: bool) -> &mut Self {
     self.inner.show_alert = show_alert;
     self
   }
 
-   
+
   pub fn url<T: AsRef<str>>(&mut self, url: T) -> &mut Self {
     self.inner.url = url.as_ref().to_string();
     self
   }
 
-   
+
   pub fn cache_time(&mut self, cache_time: i64) -> &mut Self {
     self.inner.cache_time = cache_time;
     self
@@ -1296,7 +1296,7 @@ pub struct AnswerCustomQuery {
   custom_query_id: isize,
   /// JSON-serialized answer to the query
   data: String,
-  
+
 }
 
 impl RObject for AnswerCustomQuery {
@@ -1331,13 +1331,13 @@ pub struct RTDAnswerCustomQueryBuilder {
 impl RTDAnswerCustomQueryBuilder {
   pub fn build(&self) -> AnswerCustomQuery { self.inner.clone() }
 
-   
+
   pub fn custom_query_id(&mut self, custom_query_id: isize) -> &mut Self {
     self.inner.custom_query_id = custom_query_id;
     self
   }
 
-   
+
   pub fn data<T: AsRef<str>>(&mut self, data: T) -> &mut Self {
     self.inner.data = data.as_ref().to_string();
     self
@@ -1379,7 +1379,7 @@ pub struct AnswerInlineQuery {
   switch_pm_text: String,
   /// The parameter for the bot start message
   switch_pm_parameter: String,
-  
+
 }
 
 impl RObject for AnswerInlineQuery {
@@ -1424,43 +1424,43 @@ pub struct RTDAnswerInlineQueryBuilder {
 impl RTDAnswerInlineQueryBuilder {
   pub fn build(&self) -> AnswerInlineQuery { self.inner.clone() }
 
-   
+
   pub fn inline_query_id(&mut self, inline_query_id: isize) -> &mut Self {
     self.inner.inline_query_id = inline_query_id;
     self
   }
 
-   
+
   pub fn is_personal(&mut self, is_personal: bool) -> &mut Self {
     self.inner.is_personal = is_personal;
     self
   }
 
-   
+
   pub fn results(&mut self, results: Vec<InputInlineQueryResult>) -> &mut Self {
     self.inner.results = results;
     self
   }
 
-   
+
   pub fn cache_time(&mut self, cache_time: i64) -> &mut Self {
     self.inner.cache_time = cache_time;
     self
   }
 
-   
+
   pub fn next_offset<T: AsRef<str>>(&mut self, next_offset: T) -> &mut Self {
     self.inner.next_offset = next_offset.as_ref().to_string();
     self
   }
 
-   
+
   pub fn switch_pm_text<T: AsRef<str>>(&mut self, switch_pm_text: T) -> &mut Self {
     self.inner.switch_pm_text = switch_pm_text.as_ref().to_string();
     self
   }
 
-   
+
   pub fn switch_pm_parameter<T: AsRef<str>>(&mut self, switch_pm_parameter: T) -> &mut Self {
     self.inner.switch_pm_parameter = switch_pm_parameter.as_ref().to_string();
     self
@@ -1492,7 +1492,7 @@ pub struct AnswerPreCheckoutQuery {
   pre_checkout_query_id: isize,
   /// An error message, empty on success
   error_message: String,
-  
+
 }
 
 impl RObject for AnswerPreCheckoutQuery {
@@ -1527,13 +1527,13 @@ pub struct RTDAnswerPreCheckoutQueryBuilder {
 impl RTDAnswerPreCheckoutQueryBuilder {
   pub fn build(&self) -> AnswerPreCheckoutQuery { self.inner.clone() }
 
-   
+
   pub fn pre_checkout_query_id(&mut self, pre_checkout_query_id: isize) -> &mut Self {
     self.inner.pre_checkout_query_id = pre_checkout_query_id;
     self
   }
 
-   
+
   pub fn error_message<T: AsRef<str>>(&mut self, error_message: T) -> &mut Self {
     self.inner.error_message = error_message.as_ref().to_string();
     self
@@ -1567,7 +1567,7 @@ pub struct AnswerShippingQuery {
   shipping_options: Vec<ShippingOption>,
   /// An error message, empty on success
   error_message: String,
-  
+
 }
 
 impl RObject for AnswerShippingQuery {
@@ -1604,19 +1604,19 @@ pub struct RTDAnswerShippingQueryBuilder {
 impl RTDAnswerShippingQueryBuilder {
   pub fn build(&self) -> AnswerShippingQuery { self.inner.clone() }
 
-   
+
   pub fn shipping_query_id(&mut self, shipping_query_id: isize) -> &mut Self {
     self.inner.shipping_query_id = shipping_query_id;
     self
   }
 
-   
+
   pub fn shipping_options(&mut self, shipping_options: Vec<ShippingOption>) -> &mut Self {
     self.inner.shipping_options = shipping_options;
     self
   }
 
-   
+
   pub fn error_message<T: AsRef<str>>(&mut self, error_message: T) -> &mut Self {
     self.inner.error_message = error_message.as_ref().to_string();
     self
@@ -1646,7 +1646,7 @@ pub struct BlockUser {
   td_name: String,
   /// User identifier
   user_id: i64,
-  
+
 }
 
 impl RObject for BlockUser {
@@ -1679,7 +1679,7 @@ pub struct RTDBlockUserBuilder {
 impl RTDBlockUserBuilder {
   pub fn build(&self) -> BlockUser { self.inner.clone() }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
@@ -1707,7 +1707,7 @@ pub struct CanTransferOwnership {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for CanTransferOwnership {
@@ -1764,7 +1764,7 @@ pub struct CancelDownloadFile {
   file_id: i64,
   /// Pass true to stop downloading only if it hasn't been started, i.e. request hasn't been sent to server
   only_if_pending: bool,
-  
+
 }
 
 impl RObject for CancelDownloadFile {
@@ -1799,13 +1799,13 @@ pub struct RTDCancelDownloadFileBuilder {
 impl RTDCancelDownloadFileBuilder {
   pub fn build(&self) -> CancelDownloadFile { self.inner.clone() }
 
-   
+
   pub fn file_id(&mut self, file_id: i64) -> &mut Self {
     self.inner.file_id = file_id;
     self
   }
 
-   
+
   pub fn only_if_pending(&mut self, only_if_pending: bool) -> &mut Self {
     self.inner.only_if_pending = only_if_pending;
     self
@@ -1835,7 +1835,7 @@ pub struct CancelUploadFile {
   td_name: String,
   /// Identifier of the file to stop uploading
   file_id: i64,
-  
+
 }
 
 impl RObject for CancelUploadFile {
@@ -1868,7 +1868,7 @@ pub struct RTDCancelUploadFileBuilder {
 impl RTDCancelUploadFileBuilder {
   pub fn build(&self) -> CancelUploadFile { self.inner.clone() }
 
-   
+
   pub fn file_id(&mut self, file_id: i64) -> &mut Self {
     self.inner.file_id = file_id;
     self
@@ -1898,7 +1898,7 @@ pub struct ChangeImportedContacts {
   td_name: String,
   /// The new list of contacts, contact's vCard are ignored and are not imported
   contacts: Vec<Contact>,
-  
+
 }
 
 impl RObject for ChangeImportedContacts {
@@ -1931,7 +1931,7 @@ pub struct RTDChangeImportedContactsBuilder {
 impl RTDChangeImportedContactsBuilder {
   pub fn build(&self) -> ChangeImportedContacts { self.inner.clone() }
 
-   
+
   pub fn contacts(&mut self, contacts: Vec<Contact>) -> &mut Self {
     self.inner.contacts = contacts;
     self
@@ -1963,7 +1963,7 @@ pub struct ChangePhoneNumber {
   phone_number: String,
   /// Settings for the authentication of the user's phone number
   settings: PhoneNumberAuthenticationSettings,
-  
+
 }
 
 impl RObject for ChangePhoneNumber {
@@ -1998,13 +1998,13 @@ pub struct RTDChangePhoneNumberBuilder {
 impl RTDChangePhoneNumberBuilder {
   pub fn build(&self) -> ChangePhoneNumber { self.inner.clone() }
 
-   
+
   pub fn phone_number<T: AsRef<str>>(&mut self, phone_number: T) -> &mut Self {
     self.inner.phone_number = phone_number.as_ref().to_string();
     self
   }
 
-   
+
   pub fn settings<T: AsRef<PhoneNumberAuthenticationSettings>>(&mut self, settings: T) -> &mut Self {
     self.inner.settings = settings.as_ref().clone();
     self
@@ -2038,7 +2038,7 @@ pub struct ChangeStickerSet {
   is_installed: bool,
   /// The new value of is_archived. A sticker set can't be installed and archived simultaneously
   is_archived: bool,
-  
+
 }
 
 impl RObject for ChangeStickerSet {
@@ -2075,19 +2075,19 @@ pub struct RTDChangeStickerSetBuilder {
 impl RTDChangeStickerSetBuilder {
   pub fn build(&self) -> ChangeStickerSet { self.inner.clone() }
 
-   
+
   pub fn set_id(&mut self, set_id: isize) -> &mut Self {
     self.inner.set_id = set_id;
     self
   }
 
-   
+
   pub fn is_installed(&mut self, is_installed: bool) -> &mut Self {
     self.inner.is_installed = is_installed;
     self
   }
 
-   
+
   pub fn is_archived(&mut self, is_archived: bool) -> &mut Self {
     self.inner.is_archived = is_archived;
     self
@@ -2117,7 +2117,7 @@ pub struct CheckAuthenticationBotToken {
   td_name: String,
   /// The bot token
   token: String,
-  
+
 }
 
 impl RObject for CheckAuthenticationBotToken {
@@ -2150,7 +2150,7 @@ pub struct RTDCheckAuthenticationBotTokenBuilder {
 impl RTDCheckAuthenticationBotTokenBuilder {
   pub fn build(&self) -> CheckAuthenticationBotToken { self.inner.clone() }
 
-   
+
   pub fn token<T: AsRef<str>>(&mut self, token: T) -> &mut Self {
     self.inner.token = token.as_ref().to_string();
     self
@@ -2180,7 +2180,7 @@ pub struct CheckAuthenticationCode {
   td_name: String,
   /// The verification code received via SMS, Telegram message, phone call, or flash call
   code: String,
-  
+
 }
 
 impl RObject for CheckAuthenticationCode {
@@ -2213,7 +2213,7 @@ pub struct RTDCheckAuthenticationCodeBuilder {
 impl RTDCheckAuthenticationCodeBuilder {
   pub fn build(&self) -> CheckAuthenticationCode { self.inner.clone() }
 
-   
+
   pub fn code<T: AsRef<str>>(&mut self, code: T) -> &mut Self {
     self.inner.code = code.as_ref().to_string();
     self
@@ -2243,7 +2243,7 @@ pub struct CheckAuthenticationPassword {
   td_name: String,
   /// The password to check
   password: String,
-  
+
 }
 
 impl RObject for CheckAuthenticationPassword {
@@ -2276,7 +2276,7 @@ pub struct RTDCheckAuthenticationPasswordBuilder {
 impl RTDCheckAuthenticationPasswordBuilder {
   pub fn build(&self) -> CheckAuthenticationPassword { self.inner.clone() }
 
-   
+
   pub fn password<T: AsRef<str>>(&mut self, password: T) -> &mut Self {
     self.inner.password = password.as_ref().to_string();
     self
@@ -2306,7 +2306,7 @@ pub struct CheckChangePhoneNumberCode {
   td_name: String,
   /// Verification code received by SMS, phone call or flash call
   code: String,
-  
+
 }
 
 impl RObject for CheckChangePhoneNumberCode {
@@ -2339,7 +2339,7 @@ pub struct RTDCheckChangePhoneNumberCodeBuilder {
 impl RTDCheckChangePhoneNumberCodeBuilder {
   pub fn build(&self) -> CheckChangePhoneNumberCode { self.inner.clone() }
 
-   
+
   pub fn code<T: AsRef<str>>(&mut self, code: T) -> &mut Self {
     self.inner.code = code.as_ref().to_string();
     self
@@ -2369,7 +2369,7 @@ pub struct CheckChatInviteLink {
   td_name: String,
   /// Invite link to be checked; should begin with "https://t.me/joinchat/", "https://telegram.me/joinchat/", or "https://telegram.dog/joinchat/"
   invite_link: String,
-  
+
 }
 
 impl RObject for CheckChatInviteLink {
@@ -2402,7 +2402,7 @@ pub struct RTDCheckChatInviteLinkBuilder {
 impl RTDCheckChatInviteLinkBuilder {
   pub fn build(&self) -> CheckChatInviteLink { self.inner.clone() }
 
-   
+
   pub fn invite_link<T: AsRef<str>>(&mut self, invite_link: T) -> &mut Self {
     self.inner.invite_link = invite_link.as_ref().to_string();
     self
@@ -2434,7 +2434,7 @@ pub struct CheckChatUsername {
   chat_id: i64,
   /// Username to be checked
   username: String,
-  
+
 }
 
 impl RObject for CheckChatUsername {
@@ -2469,13 +2469,13 @@ pub struct RTDCheckChatUsernameBuilder {
 impl RTDCheckChatUsernameBuilder {
   pub fn build(&self) -> CheckChatUsername { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn username<T: AsRef<str>>(&mut self, username: T) -> &mut Self {
     self.inner.username = username.as_ref().to_string();
     self
@@ -2505,7 +2505,7 @@ pub struct CheckCreatedPublicChatsLimit {
   td_name: String,
   /// Type of the public chats, for which to check the limit
   #[serde(rename(serialize = "type", deserialize = "type"))] type_: PublicChatType,
-  
+
 }
 
 impl RObject for CheckCreatedPublicChatsLimit {
@@ -2538,7 +2538,7 @@ pub struct RTDCheckCreatedPublicChatsLimitBuilder {
 impl RTDCheckCreatedPublicChatsLimitBuilder {
   pub fn build(&self) -> CheckCreatedPublicChatsLimit { self.inner.clone() }
 
-   
+
   pub fn type_<T: AsRef<PublicChatType>>(&mut self, type_: T) -> &mut Self {
     self.inner.type_ = type_.as_ref().clone();
     self
@@ -2568,7 +2568,7 @@ pub struct CheckDatabaseEncryptionKey {
   td_name: String,
   /// Encryption key to check or set up
   encryption_key: String,
-  
+
 }
 
 impl RObject for CheckDatabaseEncryptionKey {
@@ -2601,7 +2601,7 @@ pub struct RTDCheckDatabaseEncryptionKeyBuilder {
 impl RTDCheckDatabaseEncryptionKeyBuilder {
   pub fn build(&self) -> CheckDatabaseEncryptionKey { self.inner.clone() }
 
-   
+
   pub fn encryption_key<T: AsRef<str>>(&mut self, encryption_key: T) -> &mut Self {
     self.inner.encryption_key = encryption_key.as_ref().to_string();
     self
@@ -2631,7 +2631,7 @@ pub struct CheckEmailAddressVerificationCode {
   td_name: String,
   /// Verification code
   code: String,
-  
+
 }
 
 impl RObject for CheckEmailAddressVerificationCode {
@@ -2664,7 +2664,7 @@ pub struct RTDCheckEmailAddressVerificationCodeBuilder {
 impl RTDCheckEmailAddressVerificationCodeBuilder {
   pub fn build(&self) -> CheckEmailAddressVerificationCode { self.inner.clone() }
 
-   
+
   pub fn code<T: AsRef<str>>(&mut self, code: T) -> &mut Self {
     self.inner.code = code.as_ref().to_string();
     self
@@ -2694,7 +2694,7 @@ pub struct CheckPhoneNumberConfirmationCode {
   td_name: String,
   /// The phone number confirmation code
   code: String,
-  
+
 }
 
 impl RObject for CheckPhoneNumberConfirmationCode {
@@ -2727,7 +2727,7 @@ pub struct RTDCheckPhoneNumberConfirmationCodeBuilder {
 impl RTDCheckPhoneNumberConfirmationCodeBuilder {
   pub fn build(&self) -> CheckPhoneNumberConfirmationCode { self.inner.clone() }
 
-   
+
   pub fn code<T: AsRef<str>>(&mut self, code: T) -> &mut Self {
     self.inner.code = code.as_ref().to_string();
     self
@@ -2757,7 +2757,7 @@ pub struct CheckPhoneNumberVerificationCode {
   td_name: String,
   /// Verification code
   code: String,
-  
+
 }
 
 impl RObject for CheckPhoneNumberVerificationCode {
@@ -2790,7 +2790,7 @@ pub struct RTDCheckPhoneNumberVerificationCodeBuilder {
 impl RTDCheckPhoneNumberVerificationCodeBuilder {
   pub fn build(&self) -> CheckPhoneNumberVerificationCode { self.inner.clone() }
 
-   
+
   pub fn code<T: AsRef<str>>(&mut self, code: T) -> &mut Self {
     self.inner.code = code.as_ref().to_string();
     self
@@ -2820,7 +2820,7 @@ pub struct CheckRecoveryEmailAddressCode {
   td_name: String,
   /// Verification code
   code: String,
-  
+
 }
 
 impl RObject for CheckRecoveryEmailAddressCode {
@@ -2853,7 +2853,7 @@ pub struct RTDCheckRecoveryEmailAddressCodeBuilder {
 impl RTDCheckRecoveryEmailAddressCodeBuilder {
   pub fn build(&self) -> CheckRecoveryEmailAddressCode { self.inner.clone() }
 
-   
+
   pub fn code<T: AsRef<str>>(&mut self, code: T) -> &mut Self {
     self.inner.code = code.as_ref().to_string();
     self
@@ -2883,7 +2883,7 @@ pub struct CleanFileName {
   td_name: String,
   /// File name or path to the file
   file_name: String,
-  
+
 }
 
 impl RObject for CleanFileName {
@@ -2916,7 +2916,7 @@ pub struct RTDCleanFileNameBuilder {
 impl RTDCleanFileNameBuilder {
   pub fn build(&self) -> CleanFileName { self.inner.clone() }
 
-   
+
   pub fn file_name<T: AsRef<str>>(&mut self, file_name: T) -> &mut Self {
     self.inner.file_name = file_name.as_ref().to_string();
     self
@@ -2946,7 +2946,7 @@ pub struct ClearAllDraftMessages {
   td_name: String,
   /// If true, local draft messages in secret chats will not be cleared
   exclude_secret_chats: bool,
-  
+
 }
 
 impl RObject for ClearAllDraftMessages {
@@ -2979,7 +2979,7 @@ pub struct RTDClearAllDraftMessagesBuilder {
 impl RTDClearAllDraftMessagesBuilder {
   pub fn build(&self) -> ClearAllDraftMessages { self.inner.clone() }
 
-   
+
   pub fn exclude_secret_chats(&mut self, exclude_secret_chats: bool) -> &mut Self {
     self.inner.exclude_secret_chats = exclude_secret_chats;
     self
@@ -3007,7 +3007,7 @@ pub struct ClearImportedContacts {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for ClearImportedContacts {
@@ -3062,7 +3062,7 @@ pub struct ClearRecentStickers {
   td_name: String,
   /// Pass true to clear the list of stickers recently attached to photo or video files; pass false to clear the list of recently sent stickers
   is_attached: bool,
-  
+
 }
 
 impl RObject for ClearRecentStickers {
@@ -3095,7 +3095,7 @@ pub struct RTDClearRecentStickersBuilder {
 impl RTDClearRecentStickersBuilder {
   pub fn build(&self) -> ClearRecentStickers { self.inner.clone() }
 
-   
+
   pub fn is_attached(&mut self, is_attached: bool) -> &mut Self {
     self.inner.is_attached = is_attached;
     self
@@ -3123,7 +3123,7 @@ pub struct ClearRecentlyFoundChats {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for ClearRecentlyFoundChats {
@@ -3176,7 +3176,7 @@ pub struct Close {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for Close {
@@ -3231,7 +3231,7 @@ pub struct CloseChat {
   td_name: String,
   /// Chat identifier
   chat_id: i64,
-  
+
 }
 
 impl RObject for CloseChat {
@@ -3264,7 +3264,7 @@ pub struct RTDCloseChatBuilder {
 impl RTDCloseChatBuilder {
   pub fn build(&self) -> CloseChat { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
@@ -3294,7 +3294,7 @@ pub struct CloseSecretChat {
   td_name: String,
   /// Secret chat identifier
   secret_chat_id: i64,
-  
+
 }
 
 impl RObject for CloseSecretChat {
@@ -3327,7 +3327,7 @@ pub struct RTDCloseSecretChatBuilder {
 impl RTDCloseSecretChatBuilder {
   pub fn build(&self) -> CloseSecretChat { self.inner.clone() }
 
-   
+
   pub fn secret_chat_id(&mut self, secret_chat_id: i64) -> &mut Self {
     self.inner.secret_chat_id = secret_chat_id;
     self
@@ -3357,7 +3357,7 @@ pub struct ConfirmQrCodeAuthentication {
   td_name: String,
   /// A link from a QR code. The link must be scanned by the in-app camera
   link: String,
-  
+
 }
 
 impl RObject for ConfirmQrCodeAuthentication {
@@ -3390,7 +3390,7 @@ pub struct RTDConfirmQrCodeAuthenticationBuilder {
 impl RTDConfirmQrCodeAuthenticationBuilder {
   pub fn build(&self) -> ConfirmQrCodeAuthentication { self.inner.clone() }
 
-   
+
   pub fn link<T: AsRef<str>>(&mut self, link: T) -> &mut Self {
     self.inner.link = link.as_ref().to_string();
     self
@@ -3422,7 +3422,7 @@ pub struct CreateBasicGroupChat {
   basic_group_id: i64,
   /// If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
   force: bool,
-  
+
 }
 
 impl RObject for CreateBasicGroupChat {
@@ -3457,13 +3457,13 @@ pub struct RTDCreateBasicGroupChatBuilder {
 impl RTDCreateBasicGroupChatBuilder {
   pub fn build(&self) -> CreateBasicGroupChat { self.inner.clone() }
 
-   
+
   pub fn basic_group_id(&mut self, basic_group_id: i64) -> &mut Self {
     self.inner.basic_group_id = basic_group_id;
     self
   }
 
-   
+
   pub fn force(&mut self, force: bool) -> &mut Self {
     self.inner.force = force;
     self
@@ -3497,7 +3497,7 @@ pub struct CreateCall {
   protocol: CallProtocol,
   /// True, if a video call needs to be created
   is_video: bool,
-  
+
 }
 
 impl RObject for CreateCall {
@@ -3534,19 +3534,19 @@ pub struct RTDCreateCallBuilder {
 impl RTDCreateCallBuilder {
   pub fn build(&self) -> CreateCall { self.inner.clone() }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
   }
 
-   
+
   pub fn protocol<T: AsRef<CallProtocol>>(&mut self, protocol: T) -> &mut Self {
     self.inner.protocol = protocol.as_ref().clone();
     self
   }
 
-   
+
   pub fn is_video(&mut self, is_video: bool) -> &mut Self {
     self.inner.is_video = is_video;
     self
@@ -3576,7 +3576,7 @@ pub struct CreateChatFilter {
   td_name: String,
   /// Chat filter
   filter: ChatFilter,
-  
+
 }
 
 impl RObject for CreateChatFilter {
@@ -3609,7 +3609,7 @@ pub struct RTDCreateChatFilterBuilder {
 impl RTDCreateChatFilterBuilder {
   pub fn build(&self) -> CreateChatFilter { self.inner.clone() }
 
-   
+
   pub fn filter<T: AsRef<ChatFilter>>(&mut self, filter: T) -> &mut Self {
     self.inner.filter = filter.as_ref().clone();
     self
@@ -3641,7 +3641,7 @@ pub struct CreateNewBasicGroupChat {
   user_ids: Vec<i64>,
   /// Title of the new basic group; 1-128 characters
   title: String,
-  
+
 }
 
 impl RObject for CreateNewBasicGroupChat {
@@ -3676,13 +3676,13 @@ pub struct RTDCreateNewBasicGroupChatBuilder {
 impl RTDCreateNewBasicGroupChatBuilder {
   pub fn build(&self) -> CreateNewBasicGroupChat { self.inner.clone() }
 
-   
+
   pub fn user_ids(&mut self, user_ids: Vec<i64>) -> &mut Self {
     self.inner.user_ids = user_ids;
     self
   }
 
-   
+
   pub fn title<T: AsRef<str>>(&mut self, title: T) -> &mut Self {
     self.inner.title = title.as_ref().to_string();
     self
@@ -3712,7 +3712,7 @@ pub struct CreateNewSecretChat {
   td_name: String,
   /// Identifier of the target user
   user_id: i64,
-  
+
 }
 
 impl RObject for CreateNewSecretChat {
@@ -3745,7 +3745,7 @@ pub struct RTDCreateNewSecretChatBuilder {
 impl RTDCreateNewSecretChatBuilder {
   pub fn build(&self) -> CreateNewSecretChat { self.inner.clone() }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
@@ -3783,7 +3783,7 @@ pub struct CreateNewStickerSet {
   is_masks: bool,
   /// List of stickers to be added to the set; must be non-empty. All stickers must be of the same type
   stickers: Vec<InputSticker>,
-  
+
 }
 
 impl RObject for CreateNewStickerSet {
@@ -3824,31 +3824,31 @@ pub struct RTDCreateNewStickerSetBuilder {
 impl RTDCreateNewStickerSetBuilder {
   pub fn build(&self) -> CreateNewStickerSet { self.inner.clone() }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
   }
 
-   
+
   pub fn title<T: AsRef<str>>(&mut self, title: T) -> &mut Self {
     self.inner.title = title.as_ref().to_string();
     self
   }
 
-   
+
   pub fn name<T: AsRef<str>>(&mut self, name: T) -> &mut Self {
     self.inner.name = name.as_ref().to_string();
     self
   }
 
-   
+
   pub fn is_masks(&mut self, is_masks: bool) -> &mut Self {
     self.inner.is_masks = is_masks;
     self
   }
 
-   
+
   pub fn stickers(&mut self, stickers: Vec<InputSticker>) -> &mut Self {
     self.inner.stickers = stickers;
     self
@@ -3884,7 +3884,7 @@ pub struct CreateNewSupergroupChat {
   description: String,
   /// Chat location if a location-based supergroup is being created
   location: ChatLocation,
-  
+
 }
 
 impl RObject for CreateNewSupergroupChat {
@@ -3923,25 +3923,25 @@ pub struct RTDCreateNewSupergroupChatBuilder {
 impl RTDCreateNewSupergroupChatBuilder {
   pub fn build(&self) -> CreateNewSupergroupChat { self.inner.clone() }
 
-   
+
   pub fn title<T: AsRef<str>>(&mut self, title: T) -> &mut Self {
     self.inner.title = title.as_ref().to_string();
     self
   }
 
-   
+
   pub fn is_channel(&mut self, is_channel: bool) -> &mut Self {
     self.inner.is_channel = is_channel;
     self
   }
 
-   
+
   pub fn description<T: AsRef<str>>(&mut self, description: T) -> &mut Self {
     self.inner.description = description.as_ref().to_string();
     self
   }
 
-   
+
   pub fn location<T: AsRef<ChatLocation>>(&mut self, location: T) -> &mut Self {
     self.inner.location = location.as_ref().clone();
     self
@@ -3973,7 +3973,7 @@ pub struct CreatePrivateChat {
   user_id: i64,
   /// If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
   force: bool,
-  
+
 }
 
 impl RObject for CreatePrivateChat {
@@ -4008,13 +4008,13 @@ pub struct RTDCreatePrivateChatBuilder {
 impl RTDCreatePrivateChatBuilder {
   pub fn build(&self) -> CreatePrivateChat { self.inner.clone() }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
   }
 
-   
+
   pub fn force(&mut self, force: bool) -> &mut Self {
     self.inner.force = force;
     self
@@ -4044,7 +4044,7 @@ pub struct CreateSecretChat {
   td_name: String,
   /// Secret chat identifier
   secret_chat_id: i64,
-  
+
 }
 
 impl RObject for CreateSecretChat {
@@ -4077,7 +4077,7 @@ pub struct RTDCreateSecretChatBuilder {
 impl RTDCreateSecretChatBuilder {
   pub fn build(&self) -> CreateSecretChat { self.inner.clone() }
 
-   
+
   pub fn secret_chat_id(&mut self, secret_chat_id: i64) -> &mut Self {
     self.inner.secret_chat_id = secret_chat_id;
     self
@@ -4109,7 +4109,7 @@ pub struct CreateSupergroupChat {
   supergroup_id: i64,
   /// If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
   force: bool,
-  
+
 }
 
 impl RObject for CreateSupergroupChat {
@@ -4144,13 +4144,13 @@ pub struct RTDCreateSupergroupChatBuilder {
 impl RTDCreateSupergroupChatBuilder {
   pub fn build(&self) -> CreateSupergroupChat { self.inner.clone() }
 
-   
+
   pub fn supergroup_id(&mut self, supergroup_id: i64) -> &mut Self {
     self.inner.supergroup_id = supergroup_id;
     self
   }
 
-   
+
   pub fn force(&mut self, force: bool) -> &mut Self {
     self.inner.force = force;
     self
@@ -4182,7 +4182,7 @@ pub struct CreateTemporaryPassword {
   password: String,
   /// Time during which the temporary password will be valid, in seconds; should be between 60 and 86400
   valid_for: i64,
-  
+
 }
 
 impl RObject for CreateTemporaryPassword {
@@ -4217,13 +4217,13 @@ pub struct RTDCreateTemporaryPasswordBuilder {
 impl RTDCreateTemporaryPasswordBuilder {
   pub fn build(&self) -> CreateTemporaryPassword { self.inner.clone() }
 
-   
+
   pub fn password<T: AsRef<str>>(&mut self, password: T) -> &mut Self {
     self.inner.password = password.as_ref().to_string();
     self
   }
 
-   
+
   pub fn valid_for(&mut self, valid_for: i64) -> &mut Self {
     self.inner.valid_for = valid_for;
     self
@@ -4253,7 +4253,7 @@ pub struct DeleteAccount {
   td_name: String,
   /// The reason why the account was deleted; optional
   reason: String,
-  
+
 }
 
 impl RObject for DeleteAccount {
@@ -4286,7 +4286,7 @@ pub struct RTDDeleteAccountBuilder {
 impl RTDDeleteAccountBuilder {
   pub fn build(&self) -> DeleteAccount { self.inner.clone() }
 
-   
+
   pub fn reason<T: AsRef<str>>(&mut self, reason: T) -> &mut Self {
     self.inner.reason = reason.as_ref().to_string();
     self
@@ -4316,7 +4316,7 @@ pub struct DeleteChatFilter {
   td_name: String,
   /// Chat filter identifier
   chat_filter_id: i64,
-  
+
 }
 
 impl RObject for DeleteChatFilter {
@@ -4349,7 +4349,7 @@ pub struct RTDDeleteChatFilterBuilder {
 impl RTDDeleteChatFilterBuilder {
   pub fn build(&self) -> DeleteChatFilter { self.inner.clone() }
 
-   
+
   pub fn chat_filter_id(&mut self, chat_filter_id: i64) -> &mut Self {
     self.inner.chat_filter_id = chat_filter_id;
     self
@@ -4383,7 +4383,7 @@ pub struct DeleteChatHistory {
   remove_from_chat_list: bool,
   /// Pass true to try to delete chat history for all users
   revoke: bool,
-  
+
 }
 
 impl RObject for DeleteChatHistory {
@@ -4420,19 +4420,19 @@ pub struct RTDDeleteChatHistoryBuilder {
 impl RTDDeleteChatHistoryBuilder {
   pub fn build(&self) -> DeleteChatHistory { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn remove_from_chat_list(&mut self, remove_from_chat_list: bool) -> &mut Self {
     self.inner.remove_from_chat_list = remove_from_chat_list;
     self
   }
 
-   
+
   pub fn revoke(&mut self, revoke: bool) -> &mut Self {
     self.inner.revoke = revoke;
     self
@@ -4464,7 +4464,7 @@ pub struct DeleteChatMessagesFromUser {
   chat_id: i64,
   /// User identifier
   user_id: i64,
-  
+
 }
 
 impl RObject for DeleteChatMessagesFromUser {
@@ -4499,13 +4499,13 @@ pub struct RTDDeleteChatMessagesFromUserBuilder {
 impl RTDDeleteChatMessagesFromUserBuilder {
   pub fn build(&self) -> DeleteChatMessagesFromUser { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
@@ -4537,7 +4537,7 @@ pub struct DeleteChatReplyMarkup {
   chat_id: i64,
   /// The message identifier of the used keyboard
   message_id: i64,
-  
+
 }
 
 impl RObject for DeleteChatReplyMarkup {
@@ -4572,13 +4572,13 @@ pub struct RTDDeleteChatReplyMarkupBuilder {
 impl RTDDeleteChatReplyMarkupBuilder {
   pub fn build(&self) -> DeleteChatReplyMarkup { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
@@ -4608,7 +4608,7 @@ pub struct DeleteFile {
   td_name: String,
   /// Identifier of the file to delete
   file_id: i64,
-  
+
 }
 
 impl RObject for DeleteFile {
@@ -4641,7 +4641,7 @@ pub struct RTDDeleteFileBuilder {
 impl RTDDeleteFileBuilder {
   pub fn build(&self) -> DeleteFile { self.inner.clone() }
 
-   
+
   pub fn file_id(&mut self, file_id: i64) -> &mut Self {
     self.inner.file_id = file_id;
     self
@@ -4671,7 +4671,7 @@ pub struct DeleteLanguagePack {
   td_name: String,
   /// Identifier of the language pack to delete
   language_pack_id: String,
-  
+
 }
 
 impl RObject for DeleteLanguagePack {
@@ -4704,7 +4704,7 @@ pub struct RTDDeleteLanguagePackBuilder {
 impl RTDDeleteLanguagePackBuilder {
   pub fn build(&self) -> DeleteLanguagePack { self.inner.clone() }
 
-   
+
   pub fn language_pack_id<T: AsRef<str>>(&mut self, language_pack_id: T) -> &mut Self {
     self.inner.language_pack_id = language_pack_id.as_ref().to_string();
     self
@@ -4738,7 +4738,7 @@ pub struct DeleteMessages {
   message_ids: Vec<i64>,
   /// Pass true to try to delete messages for all chat members. Always true for supergroups, channels and secret chats
   revoke: bool,
-  
+
 }
 
 impl RObject for DeleteMessages {
@@ -4775,19 +4775,19 @@ pub struct RTDDeleteMessagesBuilder {
 impl RTDDeleteMessagesBuilder {
   pub fn build(&self) -> DeleteMessages { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_ids(&mut self, message_ids: Vec<i64>) -> &mut Self {
     self.inner.message_ids = message_ids;
     self
   }
 
-   
+
   pub fn revoke(&mut self, revoke: bool) -> &mut Self {
     self.inner.revoke = revoke;
     self
@@ -4817,7 +4817,7 @@ pub struct DeletePassportElement {
   td_name: String,
   /// Element type
   #[serde(rename(serialize = "type", deserialize = "type"))] type_: PassportElementType,
-  
+
 }
 
 impl RObject for DeletePassportElement {
@@ -4850,7 +4850,7 @@ pub struct RTDDeletePassportElementBuilder {
 impl RTDDeletePassportElementBuilder {
   pub fn build(&self) -> DeletePassportElement { self.inner.clone() }
 
-   
+
   pub fn type_<T: AsRef<PassportElementType>>(&mut self, type_: T) -> &mut Self {
     self.inner.type_ = type_.as_ref().clone();
     self
@@ -4880,7 +4880,7 @@ pub struct DeleteProfilePhoto {
   td_name: String,
   /// Identifier of the profile photo to delete
   profile_photo_id: isize,
-  
+
 }
 
 impl RObject for DeleteProfilePhoto {
@@ -4913,7 +4913,7 @@ pub struct RTDDeleteProfilePhotoBuilder {
 impl RTDDeleteProfilePhotoBuilder {
   pub fn build(&self) -> DeleteProfilePhoto { self.inner.clone() }
 
-   
+
   pub fn profile_photo_id(&mut self, profile_photo_id: isize) -> &mut Self {
     self.inner.profile_photo_id = profile_photo_id;
     self
@@ -4941,7 +4941,7 @@ pub struct DeleteSavedCredentials {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for DeleteSavedCredentials {
@@ -4994,7 +4994,7 @@ pub struct DeleteSavedOrderInfo {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for DeleteSavedOrderInfo {
@@ -5049,7 +5049,7 @@ pub struct DeleteSupergroup {
   td_name: String,
   /// Identifier of the supergroup or channel
   supergroup_id: i64,
-  
+
 }
 
 impl RObject for DeleteSupergroup {
@@ -5082,7 +5082,7 @@ pub struct RTDDeleteSupergroupBuilder {
 impl RTDDeleteSupergroupBuilder {
   pub fn build(&self) -> DeleteSupergroup { self.inner.clone() }
 
-   
+
   pub fn supergroup_id(&mut self, supergroup_id: i64) -> &mut Self {
     self.inner.supergroup_id = supergroup_id;
     self
@@ -5110,7 +5110,7 @@ pub struct Destroy {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for Destroy {
@@ -5163,7 +5163,7 @@ pub struct DisableProxy {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for DisableProxy {
@@ -5226,7 +5226,7 @@ pub struct DiscardCall {
   is_video: bool,
   /// Identifier of the connection used during the call
   connection_id: isize,
-  
+
 }
 
 impl RObject for DiscardCall {
@@ -5267,31 +5267,31 @@ pub struct RTDDiscardCallBuilder {
 impl RTDDiscardCallBuilder {
   pub fn build(&self) -> DiscardCall { self.inner.clone() }
 
-   
+
   pub fn call_id(&mut self, call_id: i64) -> &mut Self {
     self.inner.call_id = call_id;
     self
   }
 
-   
+
   pub fn is_disconnected(&mut self, is_disconnected: bool) -> &mut Self {
     self.inner.is_disconnected = is_disconnected;
     self
   }
 
-   
+
   pub fn duration(&mut self, duration: i64) -> &mut Self {
     self.inner.duration = duration;
     self
   }
 
-   
+
   pub fn is_video(&mut self, is_video: bool) -> &mut Self {
     self.inner.is_video = is_video;
     self
   }
 
-   
+
   pub fn connection_id(&mut self, connection_id: isize) -> &mut Self {
     self.inner.connection_id = connection_id;
     self
@@ -5319,7 +5319,7 @@ pub struct DisconnectAllWebsites {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for DisconnectAllWebsites {
@@ -5374,7 +5374,7 @@ pub struct DisconnectWebsite {
   td_name: String,
   /// Website identifier
   website_id: isize,
-  
+
 }
 
 impl RObject for DisconnectWebsite {
@@ -5407,7 +5407,7 @@ pub struct RTDDisconnectWebsiteBuilder {
 impl RTDDisconnectWebsiteBuilder {
   pub fn build(&self) -> DisconnectWebsite { self.inner.clone() }
 
-   
+
   pub fn website_id(&mut self, website_id: isize) -> &mut Self {
     self.inner.website_id = website_id;
     self
@@ -5445,7 +5445,7 @@ pub struct DownloadFile {
   limit: i64,
   /// If false, this request returns file state just after the download has been started. If true, this request returns file state only after the download has succeeded, has failed, has been cancelled or a new downloadFile request with different offset/limit parameters was sent
   synchronous: bool,
-  
+
 }
 
 impl RObject for DownloadFile {
@@ -5486,31 +5486,31 @@ pub struct RTDDownloadFileBuilder {
 impl RTDDownloadFileBuilder {
   pub fn build(&self) -> DownloadFile { self.inner.clone() }
 
-   
+
   pub fn file_id(&mut self, file_id: i64) -> &mut Self {
     self.inner.file_id = file_id;
     self
   }
 
-   
+
   pub fn priority(&mut self, priority: i64) -> &mut Self {
     self.inner.priority = priority;
     self
   }
 
-   
+
   pub fn offset(&mut self, offset: i64) -> &mut Self {
     self.inner.offset = offset;
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
   }
 
-   
+
   pub fn synchronous(&mut self, synchronous: bool) -> &mut Self {
     self.inner.synchronous = synchronous;
     self
@@ -5542,7 +5542,7 @@ pub struct EditChatFilter {
   chat_filter_id: i64,
   /// The edited chat filter
   filter: ChatFilter,
-  
+
 }
 
 impl RObject for EditChatFilter {
@@ -5577,13 +5577,13 @@ pub struct RTDEditChatFilterBuilder {
 impl RTDEditChatFilterBuilder {
   pub fn build(&self) -> EditChatFilter { self.inner.clone() }
 
-   
+
   pub fn chat_filter_id(&mut self, chat_filter_id: i64) -> &mut Self {
     self.inner.chat_filter_id = chat_filter_id;
     self
   }
 
-   
+
   pub fn filter<T: AsRef<ChatFilter>>(&mut self, filter: T) -> &mut Self {
     self.inner.filter = filter.as_ref().clone();
     self
@@ -5613,7 +5613,7 @@ pub struct EditCustomLanguagePackInfo {
   td_name: String,
   /// New information about the custom local language pack
   info: LanguagePackInfo,
-  
+
 }
 
 impl RObject for EditCustomLanguagePackInfo {
@@ -5646,7 +5646,7 @@ pub struct RTDEditCustomLanguagePackInfoBuilder {
 impl RTDEditCustomLanguagePackInfoBuilder {
   pub fn build(&self) -> EditCustomLanguagePackInfo { self.inner.clone() }
 
-   
+
   pub fn info<T: AsRef<LanguagePackInfo>>(&mut self, info: T) -> &mut Self {
     self.inner.info = info.as_ref().clone();
     self
@@ -5680,7 +5680,7 @@ pub struct EditInlineMessageCaption {
   reply_markup: ReplyMarkup,
   /// New message content caption; 0-GetOption("message_caption_length_max") characters
   caption: FormattedText,
-  
+
 }
 
 impl RObject for EditInlineMessageCaption {
@@ -5717,19 +5717,19 @@ pub struct RTDEditInlineMessageCaptionBuilder {
 impl RTDEditInlineMessageCaptionBuilder {
   pub fn build(&self) -> EditInlineMessageCaption { self.inner.clone() }
 
-   
+
   pub fn inline_message_id<T: AsRef<str>>(&mut self, inline_message_id: T) -> &mut Self {
     self.inner.inline_message_id = inline_message_id.as_ref().to_string();
     self
   }
 
-   
+
   pub fn reply_markup<T: AsRef<ReplyMarkup>>(&mut self, reply_markup: T) -> &mut Self {
     self.inner.reply_markup = reply_markup.as_ref().clone();
     self
   }
 
-   
+
   pub fn caption<T: AsRef<FormattedText>>(&mut self, caption: T) -> &mut Self {
     self.inner.caption = caption.as_ref().clone();
     self
@@ -5763,7 +5763,7 @@ pub struct EditInlineMessageLiveLocation {
   reply_markup: ReplyMarkup,
   /// New location content of the message; may be null. Pass null to stop sharing the live location
   location: Option<Location>,
-  
+
 }
 
 impl RObject for EditInlineMessageLiveLocation {
@@ -5800,19 +5800,19 @@ pub struct RTDEditInlineMessageLiveLocationBuilder {
 impl RTDEditInlineMessageLiveLocationBuilder {
   pub fn build(&self) -> EditInlineMessageLiveLocation { self.inner.clone() }
 
-   
+
   pub fn inline_message_id<T: AsRef<str>>(&mut self, inline_message_id: T) -> &mut Self {
     self.inner.inline_message_id = inline_message_id.as_ref().to_string();
     self
   }
 
-   
+
   pub fn reply_markup<T: AsRef<ReplyMarkup>>(&mut self, reply_markup: T) -> &mut Self {
     self.inner.reply_markup = reply_markup.as_ref().clone();
     self
   }
 
-   
+
   pub fn location<T: AsRef<Location>>(&mut self, location: T) -> &mut Self {
     self.inner.location = Some(location.as_ref().clone());
     self
@@ -5846,7 +5846,7 @@ pub struct EditInlineMessageMedia {
   reply_markup: ReplyMarkup,
   /// New content of the message. Must be one of the following types: InputMessageAnimation, InputMessageAudio, InputMessageDocument, InputMessagePhoto or InputMessageVideo
   input_message_content: InputMessageContent,
-  
+
 }
 
 impl RObject for EditInlineMessageMedia {
@@ -5883,19 +5883,19 @@ pub struct RTDEditInlineMessageMediaBuilder {
 impl RTDEditInlineMessageMediaBuilder {
   pub fn build(&self) -> EditInlineMessageMedia { self.inner.clone() }
 
-   
+
   pub fn inline_message_id<T: AsRef<str>>(&mut self, inline_message_id: T) -> &mut Self {
     self.inner.inline_message_id = inline_message_id.as_ref().to_string();
     self
   }
 
-   
+
   pub fn reply_markup<T: AsRef<ReplyMarkup>>(&mut self, reply_markup: T) -> &mut Self {
     self.inner.reply_markup = reply_markup.as_ref().clone();
     self
   }
 
-   
+
   pub fn input_message_content<T: AsRef<InputMessageContent>>(&mut self, input_message_content: T) -> &mut Self {
     self.inner.input_message_content = input_message_content.as_ref().clone();
     self
@@ -5927,7 +5927,7 @@ pub struct EditInlineMessageReplyMarkup {
   inline_message_id: String,
   /// The new message reply markup
   reply_markup: ReplyMarkup,
-  
+
 }
 
 impl RObject for EditInlineMessageReplyMarkup {
@@ -5962,13 +5962,13 @@ pub struct RTDEditInlineMessageReplyMarkupBuilder {
 impl RTDEditInlineMessageReplyMarkupBuilder {
   pub fn build(&self) -> EditInlineMessageReplyMarkup { self.inner.clone() }
 
-   
+
   pub fn inline_message_id<T: AsRef<str>>(&mut self, inline_message_id: T) -> &mut Self {
     self.inner.inline_message_id = inline_message_id.as_ref().to_string();
     self
   }
 
-   
+
   pub fn reply_markup<T: AsRef<ReplyMarkup>>(&mut self, reply_markup: T) -> &mut Self {
     self.inner.reply_markup = reply_markup.as_ref().clone();
     self
@@ -6002,7 +6002,7 @@ pub struct EditInlineMessageText {
   reply_markup: ReplyMarkup,
   /// New text content of the message. Should be of type InputMessageText
   input_message_content: InputMessageContent,
-  
+
 }
 
 impl RObject for EditInlineMessageText {
@@ -6039,19 +6039,19 @@ pub struct RTDEditInlineMessageTextBuilder {
 impl RTDEditInlineMessageTextBuilder {
   pub fn build(&self) -> EditInlineMessageText { self.inner.clone() }
 
-   
+
   pub fn inline_message_id<T: AsRef<str>>(&mut self, inline_message_id: T) -> &mut Self {
     self.inner.inline_message_id = inline_message_id.as_ref().to_string();
     self
   }
 
-   
+
   pub fn reply_markup<T: AsRef<ReplyMarkup>>(&mut self, reply_markup: T) -> &mut Self {
     self.inner.reply_markup = reply_markup.as_ref().clone();
     self
   }
 
-   
+
   pub fn input_message_content<T: AsRef<InputMessageContent>>(&mut self, input_message_content: T) -> &mut Self {
     self.inner.input_message_content = input_message_content.as_ref().clone();
     self
@@ -6087,7 +6087,7 @@ pub struct EditMessageCaption {
   reply_markup: ReplyMarkup,
   /// New message content caption; 0-GetOption("message_caption_length_max") characters
   caption: FormattedText,
-  
+
 }
 
 impl RObject for EditMessageCaption {
@@ -6126,25 +6126,25 @@ pub struct RTDEditMessageCaptionBuilder {
 impl RTDEditMessageCaptionBuilder {
   pub fn build(&self) -> EditMessageCaption { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
   }
 
-   
+
   pub fn reply_markup<T: AsRef<ReplyMarkup>>(&mut self, reply_markup: T) -> &mut Self {
     self.inner.reply_markup = reply_markup.as_ref().clone();
     self
   }
 
-   
+
   pub fn caption<T: AsRef<FormattedText>>(&mut self, caption: T) -> &mut Self {
     self.inner.caption = caption.as_ref().clone();
     self
@@ -6180,7 +6180,7 @@ pub struct EditMessageLiveLocation {
   reply_markup: ReplyMarkup,
   /// New location content of the message; may be null. Pass null to stop sharing the live location
   location: Option<Location>,
-  
+
 }
 
 impl RObject for EditMessageLiveLocation {
@@ -6219,25 +6219,25 @@ pub struct RTDEditMessageLiveLocationBuilder {
 impl RTDEditMessageLiveLocationBuilder {
   pub fn build(&self) -> EditMessageLiveLocation { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
   }
 
-   
+
   pub fn reply_markup<T: AsRef<ReplyMarkup>>(&mut self, reply_markup: T) -> &mut Self {
     self.inner.reply_markup = reply_markup.as_ref().clone();
     self
   }
 
-   
+
   pub fn location<T: AsRef<Location>>(&mut self, location: T) -> &mut Self {
     self.inner.location = Some(location.as_ref().clone());
     self
@@ -6273,7 +6273,7 @@ pub struct EditMessageMedia {
   reply_markup: ReplyMarkup,
   /// New content of the message. Must be one of the following types: InputMessageAnimation, InputMessageAudio, InputMessageDocument, InputMessagePhoto or InputMessageVideo
   input_message_content: InputMessageContent,
-  
+
 }
 
 impl RObject for EditMessageMedia {
@@ -6312,25 +6312,25 @@ pub struct RTDEditMessageMediaBuilder {
 impl RTDEditMessageMediaBuilder {
   pub fn build(&self) -> EditMessageMedia { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
   }
 
-   
+
   pub fn reply_markup<T: AsRef<ReplyMarkup>>(&mut self, reply_markup: T) -> &mut Self {
     self.inner.reply_markup = reply_markup.as_ref().clone();
     self
   }
 
-   
+
   pub fn input_message_content<T: AsRef<InputMessageContent>>(&mut self, input_message_content: T) -> &mut Self {
     self.inner.input_message_content = input_message_content.as_ref().clone();
     self
@@ -6364,7 +6364,7 @@ pub struct EditMessageReplyMarkup {
   message_id: i64,
   /// The new message reply markup
   reply_markup: ReplyMarkup,
-  
+
 }
 
 impl RObject for EditMessageReplyMarkup {
@@ -6401,19 +6401,19 @@ pub struct RTDEditMessageReplyMarkupBuilder {
 impl RTDEditMessageReplyMarkupBuilder {
   pub fn build(&self) -> EditMessageReplyMarkup { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
   }
 
-   
+
   pub fn reply_markup<T: AsRef<ReplyMarkup>>(&mut self, reply_markup: T) -> &mut Self {
     self.inner.reply_markup = reply_markup.as_ref().clone();
     self
@@ -6447,7 +6447,7 @@ pub struct EditMessageSchedulingState {
   message_id: i64,
   /// The new message scheduling state. Pass null to send the message immediately
   scheduling_state: MessageSchedulingState,
-  
+
 }
 
 impl RObject for EditMessageSchedulingState {
@@ -6484,19 +6484,19 @@ pub struct RTDEditMessageSchedulingStateBuilder {
 impl RTDEditMessageSchedulingStateBuilder {
   pub fn build(&self) -> EditMessageSchedulingState { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
   }
 
-   
+
   pub fn scheduling_state<T: AsRef<MessageSchedulingState>>(&mut self, scheduling_state: T) -> &mut Self {
     self.inner.scheduling_state = scheduling_state.as_ref().clone();
     self
@@ -6532,7 +6532,7 @@ pub struct EditMessageText {
   reply_markup: ReplyMarkup,
   /// New text content of the message. Should be of type InputMessageText
   input_message_content: InputMessageContent,
-  
+
 }
 
 impl RObject for EditMessageText {
@@ -6571,25 +6571,25 @@ pub struct RTDEditMessageTextBuilder {
 impl RTDEditMessageTextBuilder {
   pub fn build(&self) -> EditMessageText { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
   }
 
-   
+
   pub fn reply_markup<T: AsRef<ReplyMarkup>>(&mut self, reply_markup: T) -> &mut Self {
     self.inner.reply_markup = reply_markup.as_ref().clone();
     self
   }
 
-   
+
   pub fn input_message_content<T: AsRef<InputMessageContent>>(&mut self, input_message_content: T) -> &mut Self {
     self.inner.input_message_content = input_message_content.as_ref().clone();
     self
@@ -6627,7 +6627,7 @@ pub struct EditProxy {
   enable: bool,
   /// Proxy type
   #[serde(rename(serialize = "type", deserialize = "type"))] type_: ProxyType,
-  
+
 }
 
 impl RObject for EditProxy {
@@ -6668,31 +6668,31 @@ pub struct RTDEditProxyBuilder {
 impl RTDEditProxyBuilder {
   pub fn build(&self) -> EditProxy { self.inner.clone() }
 
-   
+
   pub fn proxy_id(&mut self, proxy_id: i64) -> &mut Self {
     self.inner.proxy_id = proxy_id;
     self
   }
 
-   
+
   pub fn server<T: AsRef<str>>(&mut self, server: T) -> &mut Self {
     self.inner.server = server.as_ref().to_string();
     self
   }
 
-   
+
   pub fn port(&mut self, port: i64) -> &mut Self {
     self.inner.port = port;
     self
   }
 
-   
+
   pub fn enable(&mut self, enable: bool) -> &mut Self {
     self.inner.enable = enable;
     self
   }
 
-   
+
   pub fn type_<T: AsRef<ProxyType>>(&mut self, type_: T) -> &mut Self {
     self.inner.type_ = type_.as_ref().clone();
     self
@@ -6722,7 +6722,7 @@ pub struct EnableProxy {
   td_name: String,
   /// Proxy identifier
   proxy_id: i64,
-  
+
 }
 
 impl RObject for EnableProxy {
@@ -6755,7 +6755,7 @@ pub struct RTDEnableProxyBuilder {
 impl RTDEnableProxyBuilder {
   pub fn build(&self) -> EnableProxy { self.inner.clone() }
 
-   
+
   pub fn proxy_id(&mut self, proxy_id: i64) -> &mut Self {
     self.inner.proxy_id = proxy_id;
     self
@@ -6787,7 +6787,7 @@ pub struct FinishFileGeneration {
   generation_id: isize,
   /// If set, means that file generation has failed and should be terminated
   error: Error,
-  
+
 }
 
 impl RObject for FinishFileGeneration {
@@ -6822,13 +6822,13 @@ pub struct RTDFinishFileGenerationBuilder {
 impl RTDFinishFileGenerationBuilder {
   pub fn build(&self) -> FinishFileGeneration { self.inner.clone() }
 
-   
+
   pub fn generation_id(&mut self, generation_id: isize) -> &mut Self {
     self.inner.generation_id = generation_id;
     self
   }
 
-   
+
   pub fn error<T: AsRef<Error>>(&mut self, error: T) -> &mut Self {
     self.inner.error = error.as_ref().clone();
     self
@@ -6870,7 +6870,7 @@ pub struct ForwardMessages {
   send_copy: bool,
   /// True, if media captions of message copies needs to be removed. Ignored if send_copy is false
   remove_caption: bool,
-  
+
 }
 
 impl RObject for ForwardMessages {
@@ -6915,43 +6915,43 @@ pub struct RTDForwardMessagesBuilder {
 impl RTDForwardMessagesBuilder {
   pub fn build(&self) -> ForwardMessages { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn from_chat_id(&mut self, from_chat_id: i64) -> &mut Self {
     self.inner.from_chat_id = from_chat_id;
     self
   }
 
-   
+
   pub fn message_ids(&mut self, message_ids: Vec<i64>) -> &mut Self {
     self.inner.message_ids = message_ids;
     self
   }
 
-   
+
   pub fn options<T: AsRef<MessageSendOptions>>(&mut self, options: T) -> &mut Self {
     self.inner.options = options.as_ref().clone();
     self
   }
 
-   
+
   pub fn as_album(&mut self, as_album: bool) -> &mut Self {
     self.inner.as_album = as_album;
     self
   }
 
-   
+
   pub fn send_copy(&mut self, send_copy: bool) -> &mut Self {
     self.inner.send_copy = send_copy;
     self
   }
 
-   
+
   pub fn remove_caption(&mut self, remove_caption: bool) -> &mut Self {
     self.inner.remove_caption = remove_caption;
     self
@@ -6981,7 +6981,7 @@ pub struct GenerateChatInviteLink {
   td_name: String,
   /// Chat identifier
   chat_id: i64,
-  
+
 }
 
 impl RObject for GenerateChatInviteLink {
@@ -7014,7 +7014,7 @@ pub struct RTDGenerateChatInviteLinkBuilder {
 impl RTDGenerateChatInviteLinkBuilder {
   pub fn build(&self) -> GenerateChatInviteLink { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
@@ -7042,7 +7042,7 @@ pub struct GetAccountTtl {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetAccountTtl {
@@ -7095,7 +7095,7 @@ pub struct GetActiveLiveLocationMessages {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetActiveLiveLocationMessages {
@@ -7148,7 +7148,7 @@ pub struct GetActiveSessions {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetActiveSessions {
@@ -7203,7 +7203,7 @@ pub struct GetAllPassportElements {
   td_name: String,
   /// Password of the current user
   password: String,
-  
+
 }
 
 impl RObject for GetAllPassportElements {
@@ -7236,7 +7236,7 @@ pub struct RTDGetAllPassportElementsBuilder {
 impl RTDGetAllPassportElementsBuilder {
   pub fn build(&self) -> GetAllPassportElements { self.inner.clone() }
 
-   
+
   pub fn password<T: AsRef<str>>(&mut self, password: T) -> &mut Self {
     self.inner.password = password.as_ref().to_string();
     self
@@ -7264,7 +7264,7 @@ pub struct GetApplicationConfig {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetApplicationConfig {
@@ -7323,7 +7323,7 @@ pub struct GetArchivedStickerSets {
   offset_sticker_set_id: isize,
   /// The maximum number of sticker sets to return
   limit: i64,
-  
+
 }
 
 impl RObject for GetArchivedStickerSets {
@@ -7360,19 +7360,19 @@ pub struct RTDGetArchivedStickerSetsBuilder {
 impl RTDGetArchivedStickerSetsBuilder {
   pub fn build(&self) -> GetArchivedStickerSets { self.inner.clone() }
 
-   
+
   pub fn is_masks(&mut self, is_masks: bool) -> &mut Self {
     self.inner.is_masks = is_masks;
     self
   }
 
-   
+
   pub fn offset_sticker_set_id(&mut self, offset_sticker_set_id: isize) -> &mut Self {
     self.inner.offset_sticker_set_id = offset_sticker_set_id;
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
@@ -7402,7 +7402,7 @@ pub struct GetAttachedStickerSets {
   td_name: String,
   /// File identifier
   file_id: i64,
-  
+
 }
 
 impl RObject for GetAttachedStickerSets {
@@ -7435,7 +7435,7 @@ pub struct RTDGetAttachedStickerSetsBuilder {
 impl RTDGetAttachedStickerSetsBuilder {
   pub fn build(&self) -> GetAttachedStickerSets { self.inner.clone() }
 
-   
+
   pub fn file_id(&mut self, file_id: i64) -> &mut Self {
     self.inner.file_id = file_id;
     self
@@ -7463,7 +7463,7 @@ pub struct GetAuthorizationState {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetAuthorizationState {
@@ -7516,7 +7516,7 @@ pub struct GetAutoDownloadSettingsPresets {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetAutoDownloadSettingsPresets {
@@ -7573,7 +7573,7 @@ pub struct GetBackgroundUrl {
   name: String,
   /// Background type
   #[serde(rename(serialize = "type", deserialize = "type"))] type_: BackgroundType,
-  
+
 }
 
 impl RObject for GetBackgroundUrl {
@@ -7608,13 +7608,13 @@ pub struct RTDGetBackgroundUrlBuilder {
 impl RTDGetBackgroundUrlBuilder {
   pub fn build(&self) -> GetBackgroundUrl { self.inner.clone() }
 
-   
+
   pub fn name<T: AsRef<str>>(&mut self, name: T) -> &mut Self {
     self.inner.name = name.as_ref().to_string();
     self
   }
 
-   
+
   pub fn type_<T: AsRef<BackgroundType>>(&mut self, type_: T) -> &mut Self {
     self.inner.type_ = type_.as_ref().clone();
     self
@@ -7644,7 +7644,7 @@ pub struct GetBackgrounds {
   td_name: String,
   /// True, if the backgrounds needs to be ordered for dark theme
   for_dark_theme: bool,
-  
+
 }
 
 impl RObject for GetBackgrounds {
@@ -7677,7 +7677,7 @@ pub struct RTDGetBackgroundsBuilder {
 impl RTDGetBackgroundsBuilder {
   pub fn build(&self) -> GetBackgrounds { self.inner.clone() }
 
-   
+
   pub fn for_dark_theme(&mut self, for_dark_theme: bool) -> &mut Self {
     self.inner.for_dark_theme = for_dark_theme;
     self
@@ -7707,7 +7707,7 @@ pub struct GetBankCardInfo {
   td_name: String,
   /// The bank card number
   bank_card_number: String,
-  
+
 }
 
 impl RObject for GetBankCardInfo {
@@ -7740,7 +7740,7 @@ pub struct RTDGetBankCardInfoBuilder {
 impl RTDGetBankCardInfoBuilder {
   pub fn build(&self) -> GetBankCardInfo { self.inner.clone() }
 
-   
+
   pub fn bank_card_number<T: AsRef<str>>(&mut self, bank_card_number: T) -> &mut Self {
     self.inner.bank_card_number = bank_card_number.as_ref().to_string();
     self
@@ -7770,7 +7770,7 @@ pub struct GetBasicGroup {
   td_name: String,
   /// Basic group identifier
   basic_group_id: i64,
-  
+
 }
 
 impl RObject for GetBasicGroup {
@@ -7803,7 +7803,7 @@ pub struct RTDGetBasicGroupBuilder {
 impl RTDGetBasicGroupBuilder {
   pub fn build(&self) -> GetBasicGroup { self.inner.clone() }
 
-   
+
   pub fn basic_group_id(&mut self, basic_group_id: i64) -> &mut Self {
     self.inner.basic_group_id = basic_group_id;
     self
@@ -7833,7 +7833,7 @@ pub struct GetBasicGroupFullInfo {
   td_name: String,
   /// Basic group identifier
   basic_group_id: i64,
-  
+
 }
 
 impl RObject for GetBasicGroupFullInfo {
@@ -7866,7 +7866,7 @@ pub struct RTDGetBasicGroupFullInfoBuilder {
 impl RTDGetBasicGroupFullInfoBuilder {
   pub fn build(&self) -> GetBasicGroupFullInfo { self.inner.clone() }
 
-   
+
   pub fn basic_group_id(&mut self, basic_group_id: i64) -> &mut Self {
     self.inner.basic_group_id = basic_group_id;
     self
@@ -7898,7 +7898,7 @@ pub struct GetBlockedUsers {
   offset: i64,
   /// The maximum number of users to return; up to 100
   limit: i64,
-  
+
 }
 
 impl RObject for GetBlockedUsers {
@@ -7933,13 +7933,13 @@ pub struct RTDGetBlockedUsersBuilder {
 impl RTDGetBlockedUsersBuilder {
   pub fn build(&self) -> GetBlockedUsers { self.inner.clone() }
 
-   
+
   pub fn offset(&mut self, offset: i64) -> &mut Self {
     self.inner.offset = offset;
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
@@ -7973,7 +7973,7 @@ pub struct GetCallbackQueryAnswer {
   message_id: i64,
   /// Query payload
   payload: CallbackQueryPayload,
-  
+
 }
 
 impl RObject for GetCallbackQueryAnswer {
@@ -8010,19 +8010,19 @@ pub struct RTDGetCallbackQueryAnswerBuilder {
 impl RTDGetCallbackQueryAnswerBuilder {
   pub fn build(&self) -> GetCallbackQueryAnswer { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
   }
 
-   
+
   pub fn payload<T: AsRef<CallbackQueryPayload>>(&mut self, payload: T) -> &mut Self {
     self.inner.payload = payload.as_ref().clone();
     self
@@ -8050,9 +8050,17 @@ pub struct GetChat {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: String,
   /// Chat identifier
   chat_id: i64,
-  
+
+}
+
+impl GetChat {
+  pub fn extra(&self) -> &str {self.extra.as_ref()}
 }
 
 impl RObject for GetChat {
@@ -8085,7 +8093,7 @@ pub struct RTDGetChatBuilder {
 impl RTDGetChatBuilder {
   pub fn build(&self) -> GetChat { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
@@ -8115,7 +8123,7 @@ pub struct GetChatAdministrators {
   td_name: String,
   /// Chat identifier
   chat_id: i64,
-  
+
 }
 
 impl RObject for GetChatAdministrators {
@@ -8148,7 +8156,7 @@ pub struct RTDGetChatAdministratorsBuilder {
 impl RTDGetChatAdministratorsBuilder {
   pub fn build(&self) -> GetChatAdministrators { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
@@ -8188,7 +8196,7 @@ pub struct GetChatEventLog {
   filters: ChatEventLogFilters,
   /// User identifiers by which to filter events. By default, events relating to all users will be returned
   user_ids: Vec<i64>,
-  
+
 }
 
 impl RObject for GetChatEventLog {
@@ -8231,37 +8239,37 @@ pub struct RTDGetChatEventLogBuilder {
 impl RTDGetChatEventLogBuilder {
   pub fn build(&self) -> GetChatEventLog { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn query<T: AsRef<str>>(&mut self, query: T) -> &mut Self {
     self.inner.query = query.as_ref().to_string();
     self
   }
 
-   
+
   pub fn from_event_id(&mut self, from_event_id: isize) -> &mut Self {
     self.inner.from_event_id = from_event_id;
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
   }
 
-   
+
   pub fn filters<T: AsRef<ChatEventLogFilters>>(&mut self, filters: T) -> &mut Self {
     self.inner.filters = filters.as_ref().clone();
     self
   }
 
-   
+
   pub fn user_ids(&mut self, user_ids: Vec<i64>) -> &mut Self {
     self.inner.user_ids = user_ids;
     self
@@ -8291,7 +8299,7 @@ pub struct GetChatFilter {
   td_name: String,
   /// Chat filter identifier
   chat_filter_id: i64,
-  
+
 }
 
 impl RObject for GetChatFilter {
@@ -8324,7 +8332,7 @@ pub struct RTDGetChatFilterBuilder {
 impl RTDGetChatFilterBuilder {
   pub fn build(&self) -> GetChatFilter { self.inner.clone() }
 
-   
+
   pub fn chat_filter_id(&mut self, chat_filter_id: i64) -> &mut Self {
     self.inner.chat_filter_id = chat_filter_id;
     self
@@ -8354,7 +8362,7 @@ pub struct GetChatFilterDefaultIconName {
   td_name: String,
   /// Chat filter
   filter: ChatFilter,
-  
+
 }
 
 impl RObject for GetChatFilterDefaultIconName {
@@ -8387,7 +8395,7 @@ pub struct RTDGetChatFilterDefaultIconNameBuilder {
 impl RTDGetChatFilterDefaultIconNameBuilder {
   pub fn build(&self) -> GetChatFilterDefaultIconName { self.inner.clone() }
 
-   
+
   pub fn filter<T: AsRef<ChatFilter>>(&mut self, filter: T) -> &mut Self {
     self.inner.filter = filter.as_ref().clone();
     self
@@ -8425,7 +8433,7 @@ pub struct GetChatHistory {
   limit: i64,
   /// If true, returns only messages that are available locally without sending network requests
   only_local: bool,
-  
+
 }
 
 impl RObject for GetChatHistory {
@@ -8466,31 +8474,31 @@ pub struct RTDGetChatHistoryBuilder {
 impl RTDGetChatHistoryBuilder {
   pub fn build(&self) -> GetChatHistory { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn from_message_id(&mut self, from_message_id: i64) -> &mut Self {
     self.inner.from_message_id = from_message_id;
     self
   }
 
-   
+
   pub fn offset(&mut self, offset: i64) -> &mut Self {
     self.inner.offset = offset;
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
   }
 
-   
+
   pub fn only_local(&mut self, only_local: bool) -> &mut Self {
     self.inner.only_local = only_local;
     self
@@ -8520,7 +8528,7 @@ pub struct GetChatListsToAddChat {
   td_name: String,
   /// Chat identifier
   chat_id: i64,
-  
+
 }
 
 impl RObject for GetChatListsToAddChat {
@@ -8553,7 +8561,7 @@ pub struct RTDGetChatListsToAddChatBuilder {
 impl RTDGetChatListsToAddChatBuilder {
   pub fn build(&self) -> GetChatListsToAddChat { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
@@ -8585,7 +8593,7 @@ pub struct GetChatMember {
   chat_id: i64,
   /// User identifier
   user_id: i64,
-  
+
 }
 
 impl RObject for GetChatMember {
@@ -8620,13 +8628,13 @@ pub struct RTDGetChatMemberBuilder {
 impl RTDGetChatMemberBuilder {
   pub fn build(&self) -> GetChatMember { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
@@ -8658,7 +8666,7 @@ pub struct GetChatMessageByDate {
   chat_id: i64,
   /// Point in time (Unix timestamp) relative to which to search for messages
   date: i64,
-  
+
 }
 
 impl RObject for GetChatMessageByDate {
@@ -8693,13 +8701,13 @@ pub struct RTDGetChatMessageByDateBuilder {
 impl RTDGetChatMessageByDateBuilder {
   pub fn build(&self) -> GetChatMessageByDate { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn date(&mut self, date: i64) -> &mut Self {
     self.inner.date = date;
     self
@@ -8733,7 +8741,7 @@ pub struct GetChatMessageCount {
   filter: SearchMessagesFilter,
   /// If true, returns count that is available locally without sending network requests, returning 1 if the number of messages is unknown
   return_local: bool,
-  
+
 }
 
 impl RObject for GetChatMessageCount {
@@ -8770,19 +8778,19 @@ pub struct RTDGetChatMessageCountBuilder {
 impl RTDGetChatMessageCountBuilder {
   pub fn build(&self) -> GetChatMessageCount { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn filter<T: AsRef<SearchMessagesFilter>>(&mut self, filter: T) -> &mut Self {
     self.inner.filter = filter.as_ref().clone();
     self
   }
 
-   
+
   pub fn return_local(&mut self, return_local: bool) -> &mut Self {
     self.inner.return_local = return_local;
     self
@@ -8814,7 +8822,7 @@ pub struct GetChatNotificationSettingsExceptions {
   scope: NotificationSettingsScope,
   /// If true, also chats with non-default sound will be returned
   compare_sound: bool,
-  
+
 }
 
 impl RObject for GetChatNotificationSettingsExceptions {
@@ -8849,13 +8857,13 @@ pub struct RTDGetChatNotificationSettingsExceptionsBuilder {
 impl RTDGetChatNotificationSettingsExceptionsBuilder {
   pub fn build(&self) -> GetChatNotificationSettingsExceptions { self.inner.clone() }
 
-   
+
   pub fn scope<T: AsRef<NotificationSettingsScope>>(&mut self, scope: T) -> &mut Self {
     self.inner.scope = scope.as_ref().clone();
     self
   }
 
-   
+
   pub fn compare_sound(&mut self, compare_sound: bool) -> &mut Self {
     self.inner.compare_sound = compare_sound;
     self
@@ -8885,7 +8893,7 @@ pub struct GetChatPinnedMessage {
   td_name: String,
   /// Identifier of the chat the message belongs to
   chat_id: i64,
-  
+
 }
 
 impl RObject for GetChatPinnedMessage {
@@ -8918,7 +8926,7 @@ pub struct RTDGetChatPinnedMessageBuilder {
 impl RTDGetChatPinnedMessageBuilder {
   pub fn build(&self) -> GetChatPinnedMessage { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
@@ -8948,7 +8956,7 @@ pub struct GetChatScheduledMessages {
   td_name: String,
   /// Chat identifier
   chat_id: i64,
-  
+
 }
 
 impl RObject for GetChatScheduledMessages {
@@ -8981,7 +8989,7 @@ pub struct RTDGetChatScheduledMessagesBuilder {
 impl RTDGetChatScheduledMessagesBuilder {
   pub fn build(&self) -> GetChatScheduledMessages { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
@@ -9013,7 +9021,7 @@ pub struct GetChatStatistics {
   chat_id: i64,
   /// Pass true if a dark theme is used by the app
   is_dark: bool,
-  
+
 }
 
 impl RObject for GetChatStatistics {
@@ -9048,13 +9056,13 @@ pub struct RTDGetChatStatisticsBuilder {
 impl RTDGetChatStatisticsBuilder {
   pub fn build(&self) -> GetChatStatistics { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn is_dark(&mut self, is_dark: bool) -> &mut Self {
     self.inner.is_dark = is_dark;
     self
@@ -9088,7 +9096,7 @@ pub struct GetChatStatisticsGraph {
   token: String,
   /// X-value for zoomed in graph or 0 otherwise
   x: i64,
-  
+
 }
 
 impl RObject for GetChatStatisticsGraph {
@@ -9125,19 +9133,19 @@ pub struct RTDGetChatStatisticsGraphBuilder {
 impl RTDGetChatStatisticsGraphBuilder {
   pub fn build(&self) -> GetChatStatisticsGraph { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn token<T: AsRef<str>>(&mut self, token: T) -> &mut Self {
     self.inner.token = token.as_ref().to_string();
     self
   }
 
-   
+
   pub fn x(&mut self, x: i64) -> &mut Self {
     self.inner.x = x;
     self
@@ -9171,7 +9179,7 @@ pub struct GetChatStatisticsUrl {
   parameters: String,
   /// Pass true if a URL with the dark theme must be returned
   is_dark: bool,
-  
+
 }
 
 impl RObject for GetChatStatisticsUrl {
@@ -9208,19 +9216,19 @@ pub struct RTDGetChatStatisticsUrlBuilder {
 impl RTDGetChatStatisticsUrlBuilder {
   pub fn build(&self) -> GetChatStatisticsUrl { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn parameters<T: AsRef<str>>(&mut self, parameters: T) -> &mut Self {
     self.inner.parameters = parameters.as_ref().to_string();
     self
   }
 
-   
+
   pub fn is_dark(&mut self, is_dark: bool) -> &mut Self {
     self.inner.is_dark = is_dark;
     self
@@ -9256,7 +9264,7 @@ pub struct GetChats {
   offset_chat_id: i64,
   /// The maximum number of chats to be returned. It is possible that fewer chats than the limit are returned even if the end of the list is not reached
   limit: i64,
-  
+
 }
 
 impl RObject for GetChats {
@@ -9295,25 +9303,25 @@ pub struct RTDGetChatsBuilder {
 impl RTDGetChatsBuilder {
   pub fn build(&self) -> GetChats { self.inner.clone() }
 
-   
+
   pub fn chat_list<T: AsRef<ChatList>>(&mut self, chat_list: T) -> &mut Self {
     self.inner.chat_list = chat_list.as_ref().clone();
     self
   }
 
-   
+
   pub fn offset_order(&mut self, offset_order: isize) -> &mut Self {
     self.inner.offset_order = offset_order;
     self
   }
 
-   
+
   pub fn offset_chat_id(&mut self, offset_chat_id: i64) -> &mut Self {
     self.inner.offset_chat_id = offset_chat_id;
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
@@ -9341,7 +9349,7 @@ pub struct GetConnectedWebsites {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetConnectedWebsites {
@@ -9394,7 +9402,7 @@ pub struct GetContacts {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetContacts {
@@ -9447,7 +9455,7 @@ pub struct GetCountryCode {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetCountryCode {
@@ -9502,7 +9510,7 @@ pub struct GetCreatedPublicChats {
   td_name: String,
   /// Type of the public chats to return
   #[serde(rename(serialize = "type", deserialize = "type"))] type_: PublicChatType,
-  
+
 }
 
 impl RObject for GetCreatedPublicChats {
@@ -9535,7 +9543,7 @@ pub struct RTDGetCreatedPublicChatsBuilder {
 impl RTDGetCreatedPublicChatsBuilder {
   pub fn build(&self) -> GetCreatedPublicChats { self.inner.clone() }
 
-   
+
   pub fn type_<T: AsRef<PublicChatType>>(&mut self, type_: T) -> &mut Self {
     self.inner.type_ = type_.as_ref().clone();
     self
@@ -9563,7 +9571,7 @@ pub struct GetCurrentState {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetCurrentState {
@@ -9616,7 +9624,7 @@ pub struct GetDatabaseStatistics {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetDatabaseStatistics {
@@ -9671,7 +9679,7 @@ pub struct GetDeepLinkInfo {
   td_name: String,
   /// The link
   link: String,
-  
+
 }
 
 impl RObject for GetDeepLinkInfo {
@@ -9704,7 +9712,7 @@ pub struct RTDGetDeepLinkInfoBuilder {
 impl RTDGetDeepLinkInfoBuilder {
   pub fn build(&self) -> GetDeepLinkInfo { self.inner.clone() }
 
-   
+
   pub fn link<T: AsRef<str>>(&mut self, link: T) -> &mut Self {
     self.inner.link = link.as_ref().to_string();
     self
@@ -9734,7 +9742,7 @@ pub struct GetEmojiSuggestionsUrl {
   td_name: String,
   /// Language code for which the emoji replacements will be suggested
   language_code: String,
-  
+
 }
 
 impl RObject for GetEmojiSuggestionsUrl {
@@ -9767,7 +9775,7 @@ pub struct RTDGetEmojiSuggestionsUrlBuilder {
 impl RTDGetEmojiSuggestionsUrlBuilder {
   pub fn build(&self) -> GetEmojiSuggestionsUrl { self.inner.clone() }
 
-   
+
   pub fn language_code<T: AsRef<str>>(&mut self, language_code: T) -> &mut Self {
     self.inner.language_code = language_code.as_ref().to_string();
     self
@@ -9795,7 +9803,7 @@ pub struct GetFavoriteStickers {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetFavoriteStickers {
@@ -9850,7 +9858,7 @@ pub struct GetFile {
   td_name: String,
   /// Identifier of the file to get
   file_id: i64,
-  
+
 }
 
 impl RObject for GetFile {
@@ -9883,7 +9891,7 @@ pub struct RTDGetFileBuilder {
 impl RTDGetFileBuilder {
   pub fn build(&self) -> GetFile { self.inner.clone() }
 
-   
+
   pub fn file_id(&mut self, file_id: i64) -> &mut Self {
     self.inner.file_id = file_id;
     self
@@ -9915,7 +9923,7 @@ pub struct GetFileDownloadedPrefixSize {
   file_id: i64,
   /// Offset from which downloaded prefix size should be calculated
   offset: i64,
-  
+
 }
 
 impl RObject for GetFileDownloadedPrefixSize {
@@ -9950,13 +9958,13 @@ pub struct RTDGetFileDownloadedPrefixSizeBuilder {
 impl RTDGetFileDownloadedPrefixSizeBuilder {
   pub fn build(&self) -> GetFileDownloadedPrefixSize { self.inner.clone() }
 
-   
+
   pub fn file_id(&mut self, file_id: i64) -> &mut Self {
     self.inner.file_id = file_id;
     self
   }
 
-   
+
   pub fn offset(&mut self, offset: i64) -> &mut Self {
     self.inner.offset = offset;
     self
@@ -9986,7 +9994,7 @@ pub struct GetFileExtension {
   td_name: String,
   /// The MIME type of the file
   mime_type: String,
-  
+
 }
 
 impl RObject for GetFileExtension {
@@ -10019,7 +10027,7 @@ pub struct RTDGetFileExtensionBuilder {
 impl RTDGetFileExtensionBuilder {
   pub fn build(&self) -> GetFileExtension { self.inner.clone() }
 
-   
+
   pub fn mime_type<T: AsRef<str>>(&mut self, mime_type: T) -> &mut Self {
     self.inner.mime_type = mime_type.as_ref().to_string();
     self
@@ -10049,7 +10057,7 @@ pub struct GetFileMimeType {
   td_name: String,
   /// The name of the file or path to the file
   file_name: String,
-  
+
 }
 
 impl RObject for GetFileMimeType {
@@ -10082,7 +10090,7 @@ pub struct RTDGetFileMimeTypeBuilder {
 impl RTDGetFileMimeTypeBuilder {
   pub fn build(&self) -> GetFileMimeType { self.inner.clone() }
 
-   
+
   pub fn file_name<T: AsRef<str>>(&mut self, file_name: T) -> &mut Self {
     self.inner.file_name = file_name.as_ref().to_string();
     self
@@ -10116,7 +10124,7 @@ pub struct GetGameHighScores {
   message_id: i64,
   /// User identifier
   user_id: i64,
-  
+
 }
 
 impl RObject for GetGameHighScores {
@@ -10153,19 +10161,19 @@ pub struct RTDGetGameHighScoresBuilder {
 impl RTDGetGameHighScoresBuilder {
   pub fn build(&self) -> GetGameHighScores { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
   }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
@@ -10199,7 +10207,7 @@ pub struct GetGroupsInCommon {
   offset_chat_id: i64,
   /// The maximum number of chats to be returned; up to 100
   limit: i64,
-  
+
 }
 
 impl RObject for GetGroupsInCommon {
@@ -10236,19 +10244,19 @@ pub struct RTDGetGroupsInCommonBuilder {
 impl RTDGetGroupsInCommonBuilder {
   pub fn build(&self) -> GetGroupsInCommon { self.inner.clone() }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
   }
 
-   
+
   pub fn offset_chat_id(&mut self, offset_chat_id: i64) -> &mut Self {
     self.inner.offset_chat_id = offset_chat_id;
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
@@ -10276,7 +10284,7 @@ pub struct GetImportedContactCount {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetImportedContactCount {
@@ -10329,7 +10337,7 @@ pub struct GetInactiveSupergroupChats {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetInactiveSupergroupChats {
@@ -10386,7 +10394,7 @@ pub struct GetInlineGameHighScores {
   inline_message_id: String,
   /// User identifier
   user_id: i64,
-  
+
 }
 
 impl RObject for GetInlineGameHighScores {
@@ -10421,13 +10429,13 @@ pub struct RTDGetInlineGameHighScoresBuilder {
 impl RTDGetInlineGameHighScoresBuilder {
   pub fn build(&self) -> GetInlineGameHighScores { self.inner.clone() }
 
-   
+
   pub fn inline_message_id<T: AsRef<str>>(&mut self, inline_message_id: T) -> &mut Self {
     self.inner.inline_message_id = inline_message_id.as_ref().to_string();
     self
   }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
@@ -10465,7 +10473,7 @@ pub struct GetInlineQueryResults {
   query: String,
   /// Offset of the first entry to return
   offset: String,
-  
+
 }
 
 impl RObject for GetInlineQueryResults {
@@ -10506,31 +10514,31 @@ pub struct RTDGetInlineQueryResultsBuilder {
 impl RTDGetInlineQueryResultsBuilder {
   pub fn build(&self) -> GetInlineQueryResults { self.inner.clone() }
 
-   
+
   pub fn bot_user_id(&mut self, bot_user_id: i64) -> &mut Self {
     self.inner.bot_user_id = bot_user_id;
     self
   }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn user_location<T: AsRef<Location>>(&mut self, user_location: T) -> &mut Self {
     self.inner.user_location = user_location.as_ref().clone();
     self
   }
 
-   
+
   pub fn query<T: AsRef<str>>(&mut self, query: T) -> &mut Self {
     self.inner.query = query.as_ref().to_string();
     self
   }
 
-   
+
   pub fn offset<T: AsRef<str>>(&mut self, offset: T) -> &mut Self {
     self.inner.offset = offset.as_ref().to_string();
     self
@@ -10560,7 +10568,7 @@ pub struct GetInstalledStickerSets {
   td_name: String,
   /// Pass true to return mask sticker sets; pass false to return ordinary sticker sets
   is_masks: bool,
-  
+
 }
 
 impl RObject for GetInstalledStickerSets {
@@ -10593,7 +10601,7 @@ pub struct RTDGetInstalledStickerSetsBuilder {
 impl RTDGetInstalledStickerSetsBuilder {
   pub fn build(&self) -> GetInstalledStickerSets { self.inner.clone() }
 
-   
+
   pub fn is_masks(&mut self, is_masks: bool) -> &mut Self {
     self.inner.is_masks = is_masks;
     self
@@ -10621,7 +10629,7 @@ pub struct GetInviteText {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetInviteText {
@@ -10676,7 +10684,7 @@ pub struct GetJsonString {
   td_name: String,
   /// The JsonValue object
   json_value: JsonValue,
-  
+
 }
 
 impl RObject for GetJsonString {
@@ -10709,7 +10717,7 @@ pub struct RTDGetJsonStringBuilder {
 impl RTDGetJsonStringBuilder {
   pub fn build(&self) -> GetJsonString { self.inner.clone() }
 
-   
+
   pub fn json_value<T: AsRef<JsonValue>>(&mut self, json_value: T) -> &mut Self {
     self.inner.json_value = json_value.as_ref().clone();
     self
@@ -10739,7 +10747,7 @@ pub struct GetJsonValue {
   td_name: String,
   /// The JSON-serialized string
   json: String,
-  
+
 }
 
 impl RObject for GetJsonValue {
@@ -10772,7 +10780,7 @@ pub struct RTDGetJsonValueBuilder {
 impl RTDGetJsonValueBuilder {
   pub fn build(&self) -> GetJsonValue { self.inner.clone() }
 
-   
+
   pub fn json<T: AsRef<str>>(&mut self, json: T) -> &mut Self {
     self.inner.json = json.as_ref().to_string();
     self
@@ -10802,7 +10810,7 @@ pub struct GetLanguagePackInfo {
   td_name: String,
   /// Language pack identifier
   language_pack_id: String,
-  
+
 }
 
 impl RObject for GetLanguagePackInfo {
@@ -10835,7 +10843,7 @@ pub struct RTDGetLanguagePackInfoBuilder {
 impl RTDGetLanguagePackInfoBuilder {
   pub fn build(&self) -> GetLanguagePackInfo { self.inner.clone() }
 
-   
+
   pub fn language_pack_id<T: AsRef<str>>(&mut self, language_pack_id: T) -> &mut Self {
     self.inner.language_pack_id = language_pack_id.as_ref().to_string();
     self
@@ -10871,7 +10879,7 @@ pub struct GetLanguagePackString {
   language_pack_id: String,
   /// Language pack key of the string to be returned
   key: String,
-  
+
 }
 
 impl RObject for GetLanguagePackString {
@@ -10910,25 +10918,25 @@ pub struct RTDGetLanguagePackStringBuilder {
 impl RTDGetLanguagePackStringBuilder {
   pub fn build(&self) -> GetLanguagePackString { self.inner.clone() }
 
-   
+
   pub fn language_pack_database_path<T: AsRef<str>>(&mut self, language_pack_database_path: T) -> &mut Self {
     self.inner.language_pack_database_path = language_pack_database_path.as_ref().to_string();
     self
   }
 
-   
+
   pub fn localization_target<T: AsRef<str>>(&mut self, localization_target: T) -> &mut Self {
     self.inner.localization_target = localization_target.as_ref().to_string();
     self
   }
 
-   
+
   pub fn language_pack_id<T: AsRef<str>>(&mut self, language_pack_id: T) -> &mut Self {
     self.inner.language_pack_id = language_pack_id.as_ref().to_string();
     self
   }
 
-   
+
   pub fn key<T: AsRef<str>>(&mut self, key: T) -> &mut Self {
     self.inner.key = key.as_ref().to_string();
     self
@@ -10960,7 +10968,7 @@ pub struct GetLanguagePackStrings {
   language_pack_id: String,
   /// Language pack keys of the strings to be returned; leave empty to request all available strings
   keys: Vec<String>,
-  
+
 }
 
 impl RObject for GetLanguagePackStrings {
@@ -10995,13 +11003,13 @@ pub struct RTDGetLanguagePackStringsBuilder {
 impl RTDGetLanguagePackStringsBuilder {
   pub fn build(&self) -> GetLanguagePackStrings { self.inner.clone() }
 
-   
+
   pub fn language_pack_id<T: AsRef<str>>(&mut self, language_pack_id: T) -> &mut Self {
     self.inner.language_pack_id = language_pack_id.as_ref().to_string();
     self
   }
 
-   
+
   pub fn keys(&mut self, keys: Vec<String>) -> &mut Self {
     self.inner.keys = keys;
     self
@@ -11031,7 +11039,7 @@ pub struct GetLocalizationTargetInfo {
   td_name: String,
   /// If true, returns only locally available information without sending network requests
   only_local: bool,
-  
+
 }
 
 impl RObject for GetLocalizationTargetInfo {
@@ -11064,7 +11072,7 @@ pub struct RTDGetLocalizationTargetInfoBuilder {
 impl RTDGetLocalizationTargetInfoBuilder {
   pub fn build(&self) -> GetLocalizationTargetInfo { self.inner.clone() }
 
-   
+
   pub fn only_local(&mut self, only_local: bool) -> &mut Self {
     self.inner.only_local = only_local;
     self
@@ -11092,7 +11100,7 @@ pub struct GetLogStream {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetLogStream {
@@ -11147,7 +11155,7 @@ pub struct GetLogTagVerbosityLevel {
   td_name: String,
   /// Logging tag to change verbosity level
   tag: String,
-  
+
 }
 
 impl RObject for GetLogTagVerbosityLevel {
@@ -11180,7 +11188,7 @@ pub struct RTDGetLogTagVerbosityLevelBuilder {
 impl RTDGetLogTagVerbosityLevelBuilder {
   pub fn build(&self) -> GetLogTagVerbosityLevel { self.inner.clone() }
 
-   
+
   pub fn tag<T: AsRef<str>>(&mut self, tag: T) -> &mut Self {
     self.inner.tag = tag.as_ref().to_string();
     self
@@ -11208,7 +11216,7 @@ pub struct GetLogTags {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetLogTags {
@@ -11261,7 +11269,7 @@ pub struct GetLogVerbosityLevel {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetLogVerbosityLevel {
@@ -11322,7 +11330,7 @@ pub struct GetLoginUrl {
   button_id: i64,
   /// True, if the user allowed the bot to send them messages
   allow_write_access: bool,
-  
+
 }
 
 impl RObject for GetLoginUrl {
@@ -11361,25 +11369,25 @@ pub struct RTDGetLoginUrlBuilder {
 impl RTDGetLoginUrlBuilder {
   pub fn build(&self) -> GetLoginUrl { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
   }
 
-   
+
   pub fn button_id(&mut self, button_id: i64) -> &mut Self {
     self.inner.button_id = button_id;
     self
   }
 
-   
+
   pub fn allow_write_access(&mut self, allow_write_access: bool) -> &mut Self {
     self.inner.allow_write_access = allow_write_access;
     self
@@ -11413,7 +11421,7 @@ pub struct GetLoginUrlInfo {
   message_id: i64,
   /// Button identifier
   button_id: i64,
-  
+
 }
 
 impl RObject for GetLoginUrlInfo {
@@ -11450,19 +11458,19 @@ pub struct RTDGetLoginUrlInfoBuilder {
 impl RTDGetLoginUrlInfoBuilder {
   pub fn build(&self) -> GetLoginUrlInfo { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
   }
 
-   
+
   pub fn button_id(&mut self, button_id: i64) -> &mut Self {
     self.inner.button_id = button_id;
     self
@@ -11502,7 +11510,7 @@ pub struct GetMapThumbnailFile {
   scale: i64,
   /// Identifier of a chat, in which the thumbnail will be shown. Use 0 if unknown
   chat_id: i64,
-  
+
 }
 
 impl RObject for GetMapThumbnailFile {
@@ -11545,37 +11553,37 @@ pub struct RTDGetMapThumbnailFileBuilder {
 impl RTDGetMapThumbnailFileBuilder {
   pub fn build(&self) -> GetMapThumbnailFile { self.inner.clone() }
 
-   
+
   pub fn location<T: AsRef<Location>>(&mut self, location: T) -> &mut Self {
     self.inner.location = location.as_ref().clone();
     self
   }
 
-   
+
   pub fn zoom(&mut self, zoom: i64) -> &mut Self {
     self.inner.zoom = zoom;
     self
   }
 
-   
+
   pub fn width(&mut self, width: i64) -> &mut Self {
     self.inner.width = width;
     self
   }
 
-   
+
   pub fn height(&mut self, height: i64) -> &mut Self {
     self.inner.height = height;
     self
   }
 
-   
+
   pub fn scale(&mut self, scale: i64) -> &mut Self {
     self.inner.scale = scale;
     self
   }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
@@ -11605,7 +11613,7 @@ pub struct GetMarkdownText {
   td_name: String,
   /// The text
   text: FormattedText,
-  
+
 }
 
 impl RObject for GetMarkdownText {
@@ -11638,7 +11646,7 @@ pub struct RTDGetMarkdownTextBuilder {
 impl RTDGetMarkdownTextBuilder {
   pub fn build(&self) -> GetMarkdownText { self.inner.clone() }
 
-   
+
   pub fn text<T: AsRef<FormattedText>>(&mut self, text: T) -> &mut Self {
     self.inner.text = text.as_ref().clone();
     self
@@ -11666,7 +11674,7 @@ pub struct GetMe {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetMe {
@@ -11723,7 +11731,7 @@ pub struct GetMessage {
   chat_id: i64,
   /// Identifier of the message to get
   message_id: i64,
-  
+
 }
 
 impl RObject for GetMessage {
@@ -11758,13 +11766,13 @@ pub struct RTDGetMessageBuilder {
 impl RTDGetMessageBuilder {
   pub fn build(&self) -> GetMessage { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
@@ -11796,7 +11804,7 @@ pub struct GetMessageLink {
   chat_id: i64,
   /// Identifier of the message
   message_id: i64,
-  
+
 }
 
 impl RObject for GetMessageLink {
@@ -11831,13 +11839,13 @@ pub struct RTDGetMessageLinkBuilder {
 impl RTDGetMessageLinkBuilder {
   pub fn build(&self) -> GetMessageLink { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
@@ -11867,7 +11875,7 @@ pub struct GetMessageLinkInfo {
   td_name: String,
   /// The message link in the format "https://t.me/c/...", or "tg://privatepost?...", or "https://t.me/username/...", or "tg://resolve?..."
   url: String,
-  
+
 }
 
 impl RObject for GetMessageLinkInfo {
@@ -11900,7 +11908,7 @@ pub struct RTDGetMessageLinkInfoBuilder {
 impl RTDGetMessageLinkInfoBuilder {
   pub fn build(&self) -> GetMessageLinkInfo { self.inner.clone() }
 
-   
+
   pub fn url<T: AsRef<str>>(&mut self, url: T) -> &mut Self {
     self.inner.url = url.as_ref().to_string();
     self
@@ -11932,7 +11940,7 @@ pub struct GetMessageLocally {
   chat_id: i64,
   /// Identifier of the message to get
   message_id: i64,
-  
+
 }
 
 impl RObject for GetMessageLocally {
@@ -11967,13 +11975,13 @@ pub struct RTDGetMessageLocallyBuilder {
 impl RTDGetMessageLocallyBuilder {
   pub fn build(&self) -> GetMessageLocally { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
@@ -12005,7 +12013,7 @@ pub struct GetMessages {
   chat_id: i64,
   /// Identifiers of the messages to get
   message_ids: Vec<i64>,
-  
+
 }
 
 impl RObject for GetMessages {
@@ -12040,13 +12048,13 @@ pub struct RTDGetMessagesBuilder {
 impl RTDGetMessagesBuilder {
   pub fn build(&self) -> GetMessages { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_ids(&mut self, message_ids: Vec<i64>) -> &mut Self {
     self.inner.message_ids = message_ids;
     self
@@ -12076,7 +12084,7 @@ pub struct GetNetworkStatistics {
   td_name: String,
   /// If true, returns only data for the current library launch
   only_current: bool,
-  
+
 }
 
 impl RObject for GetNetworkStatistics {
@@ -12109,7 +12117,7 @@ pub struct RTDGetNetworkStatisticsBuilder {
 impl RTDGetNetworkStatisticsBuilder {
   pub fn build(&self) -> GetNetworkStatistics { self.inner.clone() }
 
-   
+
   pub fn only_current(&mut self, only_current: bool) -> &mut Self {
     self.inner.only_current = only_current;
     self
@@ -12139,7 +12147,7 @@ pub struct GetOption {
   td_name: String,
   /// The name of the option
   name: String,
-  
+
 }
 
 impl RObject for GetOption {
@@ -12172,7 +12180,7 @@ pub struct RTDGetOptionBuilder {
 impl RTDGetOptionBuilder {
   pub fn build(&self) -> GetOption { self.inner.clone() }
 
-   
+
   pub fn name<T: AsRef<str>>(&mut self, name: T) -> &mut Self {
     self.inner.name = name.as_ref().to_string();
     self
@@ -12208,7 +12216,7 @@ pub struct GetPassportAuthorizationForm {
   public_key: String,
   /// Authorization form nonce provided by the service
   nonce: String,
-  
+
 }
 
 impl RObject for GetPassportAuthorizationForm {
@@ -12247,25 +12255,25 @@ pub struct RTDGetPassportAuthorizationFormBuilder {
 impl RTDGetPassportAuthorizationFormBuilder {
   pub fn build(&self) -> GetPassportAuthorizationForm { self.inner.clone() }
 
-   
+
   pub fn bot_user_id(&mut self, bot_user_id: i64) -> &mut Self {
     self.inner.bot_user_id = bot_user_id;
     self
   }
 
-   
+
   pub fn scope<T: AsRef<str>>(&mut self, scope: T) -> &mut Self {
     self.inner.scope = scope.as_ref().to_string();
     self
   }
 
-   
+
   pub fn public_key<T: AsRef<str>>(&mut self, public_key: T) -> &mut Self {
     self.inner.public_key = public_key.as_ref().to_string();
     self
   }
 
-   
+
   pub fn nonce<T: AsRef<str>>(&mut self, nonce: T) -> &mut Self {
     self.inner.nonce = nonce.as_ref().to_string();
     self
@@ -12297,7 +12305,7 @@ pub struct GetPassportAuthorizationFormAvailableElements {
   autorization_form_id: i64,
   /// Password of the current user
   password: String,
-  
+
 }
 
 impl RObject for GetPassportAuthorizationFormAvailableElements {
@@ -12332,13 +12340,13 @@ pub struct RTDGetPassportAuthorizationFormAvailableElementsBuilder {
 impl RTDGetPassportAuthorizationFormAvailableElementsBuilder {
   pub fn build(&self) -> GetPassportAuthorizationFormAvailableElements { self.inner.clone() }
 
-   
+
   pub fn autorization_form_id(&mut self, autorization_form_id: i64) -> &mut Self {
     self.inner.autorization_form_id = autorization_form_id;
     self
   }
 
-   
+
   pub fn password<T: AsRef<str>>(&mut self, password: T) -> &mut Self {
     self.inner.password = password.as_ref().to_string();
     self
@@ -12370,7 +12378,7 @@ pub struct GetPassportElement {
   #[serde(rename(serialize = "type", deserialize = "type"))] type_: PassportElementType,
   /// Password of the current user
   password: String,
-  
+
 }
 
 impl RObject for GetPassportElement {
@@ -12405,13 +12413,13 @@ pub struct RTDGetPassportElementBuilder {
 impl RTDGetPassportElementBuilder {
   pub fn build(&self) -> GetPassportElement { self.inner.clone() }
 
-   
+
   pub fn type_<T: AsRef<PassportElementType>>(&mut self, type_: T) -> &mut Self {
     self.inner.type_ = type_.as_ref().clone();
     self
   }
 
-   
+
   pub fn password<T: AsRef<str>>(&mut self, password: T) -> &mut Self {
     self.inner.password = password.as_ref().to_string();
     self
@@ -12439,7 +12447,7 @@ pub struct GetPasswordState {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetPasswordState {
@@ -12496,7 +12504,7 @@ pub struct GetPaymentForm {
   chat_id: i64,
   /// Message identifier
   message_id: i64,
-  
+
 }
 
 impl RObject for GetPaymentForm {
@@ -12531,13 +12539,13 @@ pub struct RTDGetPaymentFormBuilder {
 impl RTDGetPaymentFormBuilder {
   pub fn build(&self) -> GetPaymentForm { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
@@ -12569,7 +12577,7 @@ pub struct GetPaymentReceipt {
   chat_id: i64,
   /// Message identifier
   message_id: i64,
-  
+
 }
 
 impl RObject for GetPaymentReceipt {
@@ -12604,13 +12612,13 @@ pub struct RTDGetPaymentReceiptBuilder {
 impl RTDGetPaymentReceiptBuilder {
   pub fn build(&self) -> GetPaymentReceipt { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
@@ -12648,7 +12656,7 @@ pub struct GetPollVoters {
   offset: i64,
   /// The maximum number of users to be returned; must be positive and can't be greater than 50. Fewer users may be returned than specified by the limit, even if the end of the voter list has not been reached
   limit: i64,
-  
+
 }
 
 impl RObject for GetPollVoters {
@@ -12689,31 +12697,31 @@ pub struct RTDGetPollVotersBuilder {
 impl RTDGetPollVotersBuilder {
   pub fn build(&self) -> GetPollVoters { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
   }
 
-   
+
   pub fn option_id(&mut self, option_id: i64) -> &mut Self {
     self.inner.option_id = option_id;
     self
   }
 
-   
+
   pub fn offset(&mut self, offset: i64) -> &mut Self {
     self.inner.offset = offset;
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
@@ -12743,7 +12751,7 @@ pub struct GetPreferredCountryLanguage {
   td_name: String,
   /// A two-letter ISO 3166-1 alpha-2 country code
   country_code: String,
-  
+
 }
 
 impl RObject for GetPreferredCountryLanguage {
@@ -12776,7 +12784,7 @@ pub struct RTDGetPreferredCountryLanguageBuilder {
 impl RTDGetPreferredCountryLanguageBuilder {
   pub fn build(&self) -> GetPreferredCountryLanguage { self.inner.clone() }
 
-   
+
   pub fn country_code<T: AsRef<str>>(&mut self, country_code: T) -> &mut Self {
     self.inner.country_code = country_code.as_ref().to_string();
     self
@@ -12804,7 +12812,7 @@ pub struct GetProxies {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetProxies {
@@ -12859,7 +12867,7 @@ pub struct GetProxyLink {
   td_name: String,
   /// Proxy identifier
   proxy_id: i64,
-  
+
 }
 
 impl RObject for GetProxyLink {
@@ -12892,7 +12900,7 @@ pub struct RTDGetProxyLinkBuilder {
 impl RTDGetProxyLinkBuilder {
   pub fn build(&self) -> GetProxyLink { self.inner.clone() }
 
-   
+
   pub fn proxy_id(&mut self, proxy_id: i64) -> &mut Self {
     self.inner.proxy_id = proxy_id;
     self
@@ -12926,7 +12934,7 @@ pub struct GetPublicMessageLink {
   message_id: i64,
   /// Pass true if a link for a whole media album should be returned
   for_album: bool,
-  
+
 }
 
 impl RObject for GetPublicMessageLink {
@@ -12963,19 +12971,19 @@ pub struct RTDGetPublicMessageLinkBuilder {
 impl RTDGetPublicMessageLinkBuilder {
   pub fn build(&self) -> GetPublicMessageLink { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
   }
 
-   
+
   pub fn for_album(&mut self, for_album: bool) -> &mut Self {
     self.inner.for_album = for_album;
     self
@@ -13005,7 +13013,7 @@ pub struct GetPushReceiverId {
   td_name: String,
   /// JSON-encoded push notification payload
   payload: String,
-  
+
 }
 
 impl RObject for GetPushReceiverId {
@@ -13038,7 +13046,7 @@ pub struct RTDGetPushReceiverIdBuilder {
 impl RTDGetPushReceiverIdBuilder {
   pub fn build(&self) -> GetPushReceiverId { self.inner.clone() }
 
-   
+
   pub fn payload<T: AsRef<str>>(&mut self, payload: T) -> &mut Self {
     self.inner.payload = payload.as_ref().to_string();
     self
@@ -13066,7 +13074,7 @@ pub struct GetRecentInlineBots {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetRecentInlineBots {
@@ -13121,7 +13129,7 @@ pub struct GetRecentStickers {
   td_name: String,
   /// Pass true to return stickers and masks that were recently attached to photos or video files; pass false to return recently sent stickers
   is_attached: bool,
-  
+
 }
 
 impl RObject for GetRecentStickers {
@@ -13154,7 +13162,7 @@ pub struct RTDGetRecentStickersBuilder {
 impl RTDGetRecentStickersBuilder {
   pub fn build(&self) -> GetRecentStickers { self.inner.clone() }
 
-   
+
   pub fn is_attached(&mut self, is_attached: bool) -> &mut Self {
     self.inner.is_attached = is_attached;
     self
@@ -13184,7 +13192,7 @@ pub struct GetRecentlyVisitedTMeUrls {
   td_name: String,
   /// Google Play referrer to identify the user
   referrer: String,
-  
+
 }
 
 impl RObject for GetRecentlyVisitedTMeUrls {
@@ -13217,7 +13225,7 @@ pub struct RTDGetRecentlyVisitedTMeUrlsBuilder {
 impl RTDGetRecentlyVisitedTMeUrlsBuilder {
   pub fn build(&self) -> GetRecentlyVisitedTMeUrls { self.inner.clone() }
 
-   
+
   pub fn referrer<T: AsRef<str>>(&mut self, referrer: T) -> &mut Self {
     self.inner.referrer = referrer.as_ref().to_string();
     self
@@ -13245,7 +13253,7 @@ pub struct GetRecommendedChatFilters {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetRecommendedChatFilters {
@@ -13300,7 +13308,7 @@ pub struct GetRecoveryEmailAddress {
   td_name: String,
   /// The password for the current user
   password: String,
-  
+
 }
 
 impl RObject for GetRecoveryEmailAddress {
@@ -13333,7 +13341,7 @@ pub struct RTDGetRecoveryEmailAddressBuilder {
 impl RTDGetRecoveryEmailAddressBuilder {
   pub fn build(&self) -> GetRecoveryEmailAddress { self.inner.clone() }
 
-   
+
   pub fn password<T: AsRef<str>>(&mut self, password: T) -> &mut Self {
     self.inner.password = password.as_ref().to_string();
     self
@@ -13365,7 +13373,7 @@ pub struct GetRemoteFile {
   remote_file_id: String,
   /// File type, if known
   file_type: FileType,
-  
+
 }
 
 impl RObject for GetRemoteFile {
@@ -13400,13 +13408,13 @@ pub struct RTDGetRemoteFileBuilder {
 impl RTDGetRemoteFileBuilder {
   pub fn build(&self) -> GetRemoteFile { self.inner.clone() }
 
-   
+
   pub fn remote_file_id<T: AsRef<str>>(&mut self, remote_file_id: T) -> &mut Self {
     self.inner.remote_file_id = remote_file_id.as_ref().to_string();
     self
   }
 
-   
+
   pub fn file_type<T: AsRef<FileType>>(&mut self, file_type: T) -> &mut Self {
     self.inner.file_type = file_type.as_ref().clone();
     self
@@ -13438,7 +13446,7 @@ pub struct GetRepliedMessage {
   chat_id: i64,
   /// Identifier of the message reply to which get
   message_id: i64,
-  
+
 }
 
 impl RObject for GetRepliedMessage {
@@ -13473,13 +13481,13 @@ pub struct RTDGetRepliedMessageBuilder {
 impl RTDGetRepliedMessageBuilder {
   pub fn build(&self) -> GetRepliedMessage { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
@@ -13507,7 +13515,7 @@ pub struct GetSavedAnimations {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetSavedAnimations {
@@ -13560,7 +13568,7 @@ pub struct GetSavedOrderInfo {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetSavedOrderInfo {
@@ -13615,7 +13623,7 @@ pub struct GetScopeNotificationSettings {
   td_name: String,
   /// Types of chats for which to return the notification settings information
   scope: NotificationSettingsScope,
-  
+
 }
 
 impl RObject for GetScopeNotificationSettings {
@@ -13648,7 +13656,7 @@ pub struct RTDGetScopeNotificationSettingsBuilder {
 impl RTDGetScopeNotificationSettingsBuilder {
   pub fn build(&self) -> GetScopeNotificationSettings { self.inner.clone() }
 
-   
+
   pub fn scope<T: AsRef<NotificationSettingsScope>>(&mut self, scope: T) -> &mut Self {
     self.inner.scope = scope.as_ref().clone();
     self
@@ -13678,7 +13686,7 @@ pub struct GetSecretChat {
   td_name: String,
   /// Secret chat identifier
   secret_chat_id: i64,
-  
+
 }
 
 impl RObject for GetSecretChat {
@@ -13711,7 +13719,7 @@ pub struct RTDGetSecretChatBuilder {
 impl RTDGetSecretChatBuilder {
   pub fn build(&self) -> GetSecretChat { self.inner.clone() }
 
-   
+
   pub fn secret_chat_id(&mut self, secret_chat_id: i64) -> &mut Self {
     self.inner.secret_chat_id = secret_chat_id;
     self
@@ -13741,7 +13749,7 @@ pub struct GetStickerEmojis {
   td_name: String,
   /// Sticker file identifier
   sticker: InputFile,
-  
+
 }
 
 impl RObject for GetStickerEmojis {
@@ -13774,7 +13782,7 @@ pub struct RTDGetStickerEmojisBuilder {
 impl RTDGetStickerEmojisBuilder {
   pub fn build(&self) -> GetStickerEmojis { self.inner.clone() }
 
-   
+
   pub fn sticker<T: AsRef<InputFile>>(&mut self, sticker: T) -> &mut Self {
     self.inner.sticker = sticker.as_ref().clone();
     self
@@ -13804,7 +13812,7 @@ pub struct GetStickerSet {
   td_name: String,
   /// Identifier of the sticker set
   set_id: isize,
-  
+
 }
 
 impl RObject for GetStickerSet {
@@ -13837,7 +13845,7 @@ pub struct RTDGetStickerSetBuilder {
 impl RTDGetStickerSetBuilder {
   pub fn build(&self) -> GetStickerSet { self.inner.clone() }
 
-   
+
   pub fn set_id(&mut self, set_id: isize) -> &mut Self {
     self.inner.set_id = set_id;
     self
@@ -13869,7 +13877,7 @@ pub struct GetStickers {
   emoji: String,
   /// The maximum number of stickers to be returned
   limit: i64,
-  
+
 }
 
 impl RObject for GetStickers {
@@ -13904,13 +13912,13 @@ pub struct RTDGetStickersBuilder {
 impl RTDGetStickersBuilder {
   pub fn build(&self) -> GetStickers { self.inner.clone() }
 
-   
+
   pub fn emoji<T: AsRef<str>>(&mut self, emoji: T) -> &mut Self {
     self.inner.emoji = emoji.as_ref().to_string();
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
@@ -13940,7 +13948,7 @@ pub struct GetStorageStatistics {
   td_name: String,
   /// The maximum number of chats with the largest storage usage for which separate statistics should be returned. All other chats will be grouped in entries with chat_id == 0. If the chat info database is not used, the chat_limit is ignored and is always set to 0
   chat_limit: i64,
-  
+
 }
 
 impl RObject for GetStorageStatistics {
@@ -13973,7 +13981,7 @@ pub struct RTDGetStorageStatisticsBuilder {
 impl RTDGetStorageStatisticsBuilder {
   pub fn build(&self) -> GetStorageStatistics { self.inner.clone() }
 
-   
+
   pub fn chat_limit(&mut self, chat_limit: i64) -> &mut Self {
     self.inner.chat_limit = chat_limit;
     self
@@ -14001,7 +14009,7 @@ pub struct GetStorageStatisticsFast {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetStorageStatisticsFast {
@@ -14054,7 +14062,7 @@ pub struct GetSuitableDiscussionChats {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetSuitableDiscussionChats {
@@ -14109,7 +14117,7 @@ pub struct GetSupergroup {
   td_name: String,
   /// Supergroup or channel identifier
   supergroup_id: i64,
-  
+
 }
 
 impl RObject for GetSupergroup {
@@ -14142,7 +14150,7 @@ pub struct RTDGetSupergroupBuilder {
 impl RTDGetSupergroupBuilder {
   pub fn build(&self) -> GetSupergroup { self.inner.clone() }
 
-   
+
   pub fn supergroup_id(&mut self, supergroup_id: i64) -> &mut Self {
     self.inner.supergroup_id = supergroup_id;
     self
@@ -14172,7 +14180,7 @@ pub struct GetSupergroupFullInfo {
   td_name: String,
   /// Supergroup or channel identifier
   supergroup_id: i64,
-  
+
 }
 
 impl RObject for GetSupergroupFullInfo {
@@ -14205,7 +14213,7 @@ pub struct RTDGetSupergroupFullInfoBuilder {
 impl RTDGetSupergroupFullInfoBuilder {
   pub fn build(&self) -> GetSupergroupFullInfo { self.inner.clone() }
 
-   
+
   pub fn supergroup_id(&mut self, supergroup_id: i64) -> &mut Self {
     self.inner.supergroup_id = supergroup_id;
     self
@@ -14241,7 +14249,7 @@ pub struct GetSupergroupMembers {
   offset: i64,
   /// The maximum number of users be returned; up to 200
   limit: i64,
-  
+
 }
 
 impl RObject for GetSupergroupMembers {
@@ -14280,25 +14288,25 @@ pub struct RTDGetSupergroupMembersBuilder {
 impl RTDGetSupergroupMembersBuilder {
   pub fn build(&self) -> GetSupergroupMembers { self.inner.clone() }
 
-   
+
   pub fn supergroup_id(&mut self, supergroup_id: i64) -> &mut Self {
     self.inner.supergroup_id = supergroup_id;
     self
   }
 
-   
+
   pub fn filter<T: AsRef<SupergroupMembersFilter>>(&mut self, filter: T) -> &mut Self {
     self.inner.filter = filter.as_ref().clone();
     self
   }
 
-   
+
   pub fn offset(&mut self, offset: i64) -> &mut Self {
     self.inner.offset = offset;
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
@@ -14326,7 +14334,7 @@ pub struct GetSupportUser {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetSupportUser {
@@ -14379,7 +14387,7 @@ pub struct GetTemporaryPasswordState {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for GetTemporaryPasswordState {
@@ -14434,7 +14442,7 @@ pub struct GetTextEntities {
   td_name: String,
   /// The text in which to look for entites
   text: String,
-  
+
 }
 
 impl RObject for GetTextEntities {
@@ -14467,7 +14475,7 @@ pub struct RTDGetTextEntitiesBuilder {
 impl RTDGetTextEntitiesBuilder {
   pub fn build(&self) -> GetTextEntities { self.inner.clone() }
 
-   
+
   pub fn text<T: AsRef<str>>(&mut self, text: T) -> &mut Self {
     self.inner.text = text.as_ref().to_string();
     self
@@ -14499,7 +14507,7 @@ pub struct GetTopChats {
   category: TopChatCategory,
   /// The maximum number of chats to be returned; up to 30
   limit: i64,
-  
+
 }
 
 impl RObject for GetTopChats {
@@ -14534,13 +14542,13 @@ pub struct RTDGetTopChatsBuilder {
 impl RTDGetTopChatsBuilder {
   pub fn build(&self) -> GetTopChats { self.inner.clone() }
 
-   
+
   pub fn category<T: AsRef<TopChatCategory>>(&mut self, category: T) -> &mut Self {
     self.inner.category = category.as_ref().clone();
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
@@ -14572,7 +14580,7 @@ pub struct GetTrendingStickerSets {
   offset: i64,
   /// The maximum number of sticker sets to be returned; must be non-negative. Fewer sticker sets may be returned than specified by the limit, even if the end of the list has not been reached
   limit: i64,
-  
+
 }
 
 impl RObject for GetTrendingStickerSets {
@@ -14607,13 +14615,13 @@ pub struct RTDGetTrendingStickerSetsBuilder {
 impl RTDGetTrendingStickerSetsBuilder {
   pub fn build(&self) -> GetTrendingStickerSets { self.inner.clone() }
 
-   
+
   pub fn offset(&mut self, offset: i64) -> &mut Self {
     self.inner.offset = offset;
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
@@ -14643,7 +14651,7 @@ pub struct GetUser {
   td_name: String,
   /// User identifier
   user_id: i64,
-  
+
 }
 
 impl RObject for GetUser {
@@ -14676,7 +14684,7 @@ pub struct RTDGetUserBuilder {
 impl RTDGetUserBuilder {
   pub fn build(&self) -> GetUser { self.inner.clone() }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
@@ -14706,7 +14714,7 @@ pub struct GetUserFullInfo {
   td_name: String,
   /// User identifier
   user_id: i64,
-  
+
 }
 
 impl RObject for GetUserFullInfo {
@@ -14739,7 +14747,7 @@ pub struct RTDGetUserFullInfoBuilder {
 impl RTDGetUserFullInfoBuilder {
   pub fn build(&self) -> GetUserFullInfo { self.inner.clone() }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
@@ -14769,7 +14777,7 @@ pub struct GetUserPrivacySettingRules {
   td_name: String,
   /// The privacy setting
   setting: UserPrivacySetting,
-  
+
 }
 
 impl RObject for GetUserPrivacySettingRules {
@@ -14802,7 +14810,7 @@ pub struct RTDGetUserPrivacySettingRulesBuilder {
 impl RTDGetUserPrivacySettingRulesBuilder {
   pub fn build(&self) -> GetUserPrivacySettingRules { self.inner.clone() }
 
-   
+
   pub fn setting<T: AsRef<UserPrivacySetting>>(&mut self, setting: T) -> &mut Self {
     self.inner.setting = setting.as_ref().clone();
     self
@@ -14836,7 +14844,7 @@ pub struct GetUserProfilePhotos {
   offset: i64,
   /// The maximum number of photos to be returned; up to 100
   limit: i64,
-  
+
 }
 
 impl RObject for GetUserProfilePhotos {
@@ -14873,19 +14881,19 @@ pub struct RTDGetUserProfilePhotosBuilder {
 impl RTDGetUserProfilePhotosBuilder {
   pub fn build(&self) -> GetUserProfilePhotos { self.inner.clone() }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
   }
 
-   
+
   pub fn offset(&mut self, offset: i64) -> &mut Self {
     self.inner.offset = offset;
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
@@ -14917,7 +14925,7 @@ pub struct GetWebPageInstantView {
   url: String,
   /// If true, the full instant view for the web page will be returned
   force_full: bool,
-  
+
 }
 
 impl RObject for GetWebPageInstantView {
@@ -14952,13 +14960,13 @@ pub struct RTDGetWebPageInstantViewBuilder {
 impl RTDGetWebPageInstantViewBuilder {
   pub fn build(&self) -> GetWebPageInstantView { self.inner.clone() }
 
-   
+
   pub fn url<T: AsRef<str>>(&mut self, url: T) -> &mut Self {
     self.inner.url = url.as_ref().to_string();
     self
   }
 
-   
+
   pub fn force_full(&mut self, force_full: bool) -> &mut Self {
     self.inner.force_full = force_full;
     self
@@ -14988,7 +14996,7 @@ pub struct GetWebPagePreview {
   td_name: String,
   /// Message text with formatting
   text: FormattedText,
-  
+
 }
 
 impl RObject for GetWebPagePreview {
@@ -15021,7 +15029,7 @@ pub struct RTDGetWebPagePreviewBuilder {
 impl RTDGetWebPagePreviewBuilder {
   pub fn build(&self) -> GetWebPagePreview { self.inner.clone() }
 
-   
+
   pub fn text<T: AsRef<FormattedText>>(&mut self, text: T) -> &mut Self {
     self.inner.text = text.as_ref().clone();
     self
@@ -15051,7 +15059,7 @@ pub struct HideSuggestedAction {
   td_name: String,
   /// Suggested action to hide
   action: SuggestedAction,
-  
+
 }
 
 impl RObject for HideSuggestedAction {
@@ -15084,7 +15092,7 @@ pub struct RTDHideSuggestedActionBuilder {
 impl RTDHideSuggestedActionBuilder {
   pub fn build(&self) -> HideSuggestedAction { self.inner.clone() }
 
-   
+
   pub fn action<T: AsRef<SuggestedAction>>(&mut self, action: T) -> &mut Self {
     self.inner.action = action.as_ref().clone();
     self
@@ -15114,7 +15122,7 @@ pub struct ImportContacts {
   td_name: String,
   /// The list of contacts to import or edit; contacts' vCard are ignored and are not imported
   contacts: Vec<Contact>,
-  
+
 }
 
 impl RObject for ImportContacts {
@@ -15147,7 +15155,7 @@ pub struct RTDImportContactsBuilder {
 impl RTDImportContactsBuilder {
   pub fn build(&self) -> ImportContacts { self.inner.clone() }
 
-   
+
   pub fn contacts(&mut self, contacts: Vec<Contact>) -> &mut Self {
     self.inner.contacts = contacts;
     self
@@ -15177,7 +15185,7 @@ pub struct JoinChat {
   td_name: String,
   /// Chat identifier
   chat_id: i64,
-  
+
 }
 
 impl RObject for JoinChat {
@@ -15210,7 +15218,7 @@ pub struct RTDJoinChatBuilder {
 impl RTDJoinChatBuilder {
   pub fn build(&self) -> JoinChat { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
@@ -15240,7 +15248,7 @@ pub struct JoinChatByInviteLink {
   td_name: String,
   /// Invite link to import; should begin with "https://t.me/joinchat/", "https://telegram.me/joinchat/", or "https://telegram.dog/joinchat/"
   invite_link: String,
-  
+
 }
 
 impl RObject for JoinChatByInviteLink {
@@ -15273,7 +15281,7 @@ pub struct RTDJoinChatByInviteLinkBuilder {
 impl RTDJoinChatByInviteLinkBuilder {
   pub fn build(&self) -> JoinChatByInviteLink { self.inner.clone() }
 
-   
+
   pub fn invite_link<T: AsRef<str>>(&mut self, invite_link: T) -> &mut Self {
     self.inner.invite_link = invite_link.as_ref().to_string();
     self
@@ -15303,7 +15311,7 @@ pub struct LeaveChat {
   td_name: String,
   /// Chat identifier
   chat_id: i64,
-  
+
 }
 
 impl RObject for LeaveChat {
@@ -15336,7 +15344,7 @@ pub struct RTDLeaveChatBuilder {
 impl RTDLeaveChatBuilder {
   pub fn build(&self) -> LeaveChat { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
@@ -15364,7 +15372,7 @@ pub struct LogOut {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for LogOut {
@@ -15419,7 +15427,7 @@ pub struct OpenChat {
   td_name: String,
   /// Chat identifier
   chat_id: i64,
-  
+
 }
 
 impl RObject for OpenChat {
@@ -15452,7 +15460,7 @@ pub struct RTDOpenChatBuilder {
 impl RTDOpenChatBuilder {
   pub fn build(&self) -> OpenChat { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
@@ -15484,7 +15492,7 @@ pub struct OpenMessageContent {
   chat_id: i64,
   /// Identifier of the message with the opened content
   message_id: i64,
-  
+
 }
 
 impl RObject for OpenMessageContent {
@@ -15519,13 +15527,13 @@ pub struct RTDOpenMessageContentBuilder {
 impl RTDOpenMessageContentBuilder {
   pub fn build(&self) -> OpenMessageContent { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
@@ -15571,7 +15579,7 @@ pub struct OptimizeStorage {
   return_deleted_file_statistics: bool,
   /// Same as in getStorageStatistics. Affects only returned statistics
   chat_limit: i64,
-  
+
 }
 
 impl RObject for OptimizeStorage {
@@ -15620,55 +15628,55 @@ pub struct RTDOptimizeStorageBuilder {
 impl RTDOptimizeStorageBuilder {
   pub fn build(&self) -> OptimizeStorage { self.inner.clone() }
 
-   
+
   pub fn size(&mut self, size: i64) -> &mut Self {
     self.inner.size = size;
     self
   }
 
-   
+
   pub fn ttl(&mut self, ttl: i64) -> &mut Self {
     self.inner.ttl = ttl;
     self
   }
 
-   
+
   pub fn count(&mut self, count: i64) -> &mut Self {
     self.inner.count = count;
     self
   }
 
-   
+
   pub fn immunity_delay(&mut self, immunity_delay: i64) -> &mut Self {
     self.inner.immunity_delay = immunity_delay;
     self
   }
 
-   
+
   pub fn file_types(&mut self, file_types: Vec<FileType>) -> &mut Self {
     self.inner.file_types = file_types;
     self
   }
 
-   
+
   pub fn chat_ids(&mut self, chat_ids: Vec<i64>) -> &mut Self {
     self.inner.chat_ids = chat_ids;
     self
   }
 
-   
+
   pub fn exclude_chat_ids(&mut self, exclude_chat_ids: Vec<i64>) -> &mut Self {
     self.inner.exclude_chat_ids = exclude_chat_ids;
     self
   }
 
-   
+
   pub fn return_deleted_file_statistics(&mut self, return_deleted_file_statistics: bool) -> &mut Self {
     self.inner.return_deleted_file_statistics = return_deleted_file_statistics;
     self
   }
 
-   
+
   pub fn chat_limit(&mut self, chat_limit: i64) -> &mut Self {
     self.inner.chat_limit = chat_limit;
     self
@@ -15698,7 +15706,7 @@ pub struct ParseMarkdown {
   td_name: String,
   /// The text to parse. For example, "__italic__ ~~strikethrough~~ **bold** `code` ```pre``` __[italic__ text_url](telegram.org) __italic**bold italic__bold**"
   text: FormattedText,
-  
+
 }
 
 impl RObject for ParseMarkdown {
@@ -15731,7 +15739,7 @@ pub struct RTDParseMarkdownBuilder {
 impl RTDParseMarkdownBuilder {
   pub fn build(&self) -> ParseMarkdown { self.inner.clone() }
 
-   
+
   pub fn text<T: AsRef<FormattedText>>(&mut self, text: T) -> &mut Self {
     self.inner.text = text.as_ref().clone();
     self
@@ -15763,7 +15771,7 @@ pub struct ParseTextEntities {
   text: String,
   /// Text parse mode
   parse_mode: TextParseMode,
-  
+
 }
 
 impl RObject for ParseTextEntities {
@@ -15798,13 +15806,13 @@ pub struct RTDParseTextEntitiesBuilder {
 impl RTDParseTextEntitiesBuilder {
   pub fn build(&self) -> ParseTextEntities { self.inner.clone() }
 
-   
+
   pub fn text<T: AsRef<str>>(&mut self, text: T) -> &mut Self {
     self.inner.text = text.as_ref().to_string();
     self
   }
 
-   
+
   pub fn parse_mode<T: AsRef<TextParseMode>>(&mut self, parse_mode: T) -> &mut Self {
     self.inner.parse_mode = parse_mode.as_ref().clone();
     self
@@ -15838,7 +15846,7 @@ pub struct PinChatMessage {
   message_id: i64,
   /// True, if there should be no notification about the pinned message
   disable_notification: bool,
-  
+
 }
 
 impl RObject for PinChatMessage {
@@ -15875,19 +15883,19 @@ pub struct RTDPinChatMessageBuilder {
 impl RTDPinChatMessageBuilder {
   pub fn build(&self) -> PinChatMessage { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
   }
 
-   
+
   pub fn disable_notification(&mut self, disable_notification: bool) -> &mut Self {
     self.inner.disable_notification = disable_notification;
     self
@@ -15917,7 +15925,7 @@ pub struct PingProxy {
   td_name: String,
   /// Proxy identifier. Use 0 to ping a Telegram server without a proxy
   proxy_id: i64,
-  
+
 }
 
 impl RObject for PingProxy {
@@ -15950,7 +15958,7 @@ pub struct RTDPingProxyBuilder {
 impl RTDPingProxyBuilder {
   pub fn build(&self) -> PingProxy { self.inner.clone() }
 
-   
+
   pub fn proxy_id(&mut self, proxy_id: i64) -> &mut Self {
     self.inner.proxy_id = proxy_id;
     self
@@ -15980,7 +15988,7 @@ pub struct ProcessPushNotification {
   td_name: String,
   /// JSON-encoded push notification payload with all fields sent by the server, and "google.sent_time" and "google.notification.sound" fields added
   payload: String,
-  
+
 }
 
 impl RObject for ProcessPushNotification {
@@ -16013,7 +16021,7 @@ pub struct RTDProcessPushNotificationBuilder {
 impl RTDProcessPushNotificationBuilder {
   pub fn build(&self) -> ProcessPushNotification { self.inner.clone() }
 
-   
+
   pub fn payload<T: AsRef<str>>(&mut self, payload: T) -> &mut Self {
     self.inner.payload = payload.as_ref().to_string();
     self
@@ -16043,7 +16051,7 @@ pub struct ReadAllChatMentions {
   td_name: String,
   /// Chat identifier
   chat_id: i64,
-  
+
 }
 
 impl RObject for ReadAllChatMentions {
@@ -16076,7 +16084,7 @@ pub struct RTDReadAllChatMentionsBuilder {
 impl RTDReadAllChatMentionsBuilder {
   pub fn build(&self) -> ReadAllChatMentions { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
@@ -16110,7 +16118,7 @@ pub struct ReadFilePart {
   offset: i64,
   /// Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position
   count: i64,
-  
+
 }
 
 impl RObject for ReadFilePart {
@@ -16147,19 +16155,19 @@ pub struct RTDReadFilePartBuilder {
 impl RTDReadFilePartBuilder {
   pub fn build(&self) -> ReadFilePart { self.inner.clone() }
 
-   
+
   pub fn file_id(&mut self, file_id: i64) -> &mut Self {
     self.inner.file_id = file_id;
     self
   }
 
-   
+
   pub fn offset(&mut self, offset: i64) -> &mut Self {
     self.inner.offset = offset;
     self
   }
 
-   
+
   pub fn count(&mut self, count: i64) -> &mut Self {
     self.inner.count = count;
     self
@@ -16189,7 +16197,7 @@ pub struct RecoverAuthenticationPassword {
   td_name: String,
   /// Recovery code to check
   recovery_code: String,
-  
+
 }
 
 impl RObject for RecoverAuthenticationPassword {
@@ -16222,7 +16230,7 @@ pub struct RTDRecoverAuthenticationPasswordBuilder {
 impl RTDRecoverAuthenticationPasswordBuilder {
   pub fn build(&self) -> RecoverAuthenticationPassword { self.inner.clone() }
 
-   
+
   pub fn recovery_code<T: AsRef<str>>(&mut self, recovery_code: T) -> &mut Self {
     self.inner.recovery_code = recovery_code.as_ref().to_string();
     self
@@ -16252,7 +16260,7 @@ pub struct RecoverPassword {
   td_name: String,
   /// Recovery code to check
   recovery_code: String,
-  
+
 }
 
 impl RObject for RecoverPassword {
@@ -16285,7 +16293,7 @@ pub struct RTDRecoverPasswordBuilder {
 impl RTDRecoverPasswordBuilder {
   pub fn build(&self) -> RecoverPassword { self.inner.clone() }
 
-   
+
   pub fn recovery_code<T: AsRef<str>>(&mut self, recovery_code: T) -> &mut Self {
     self.inner.recovery_code = recovery_code.as_ref().to_string();
     self
@@ -16317,7 +16325,7 @@ pub struct RegisterDevice {
   device_token: DeviceToken,
   /// List of user identifiers of other users currently using the application
   other_user_ids: Vec<i64>,
-  
+
 }
 
 impl RObject for RegisterDevice {
@@ -16352,13 +16360,13 @@ pub struct RTDRegisterDeviceBuilder {
 impl RTDRegisterDeviceBuilder {
   pub fn build(&self) -> RegisterDevice { self.inner.clone() }
 
-   
+
   pub fn device_token<T: AsRef<DeviceToken>>(&mut self, device_token: T) -> &mut Self {
     self.inner.device_token = device_token.as_ref().clone();
     self
   }
 
-   
+
   pub fn other_user_ids(&mut self, other_user_ids: Vec<i64>) -> &mut Self {
     self.inner.other_user_ids = other_user_ids;
     self
@@ -16390,7 +16398,7 @@ pub struct RegisterUser {
   first_name: String,
   /// The last name of the user; 0-64 characters
   last_name: String,
-  
+
 }
 
 impl RObject for RegisterUser {
@@ -16425,13 +16433,13 @@ pub struct RTDRegisterUserBuilder {
 impl RTDRegisterUserBuilder {
   pub fn build(&self) -> RegisterUser { self.inner.clone() }
 
-   
+
   pub fn first_name<T: AsRef<str>>(&mut self, first_name: T) -> &mut Self {
     self.inner.first_name = first_name.as_ref().to_string();
     self
   }
 
-   
+
   pub fn last_name<T: AsRef<str>>(&mut self, last_name: T) -> &mut Self {
     self.inner.last_name = last_name.as_ref().to_string();
     self
@@ -16461,7 +16469,7 @@ pub struct RemoveBackground {
   td_name: String,
   /// The background identifier
   background_id: isize,
-  
+
 }
 
 impl RObject for RemoveBackground {
@@ -16494,7 +16502,7 @@ pub struct RTDRemoveBackgroundBuilder {
 impl RTDRemoveBackgroundBuilder {
   pub fn build(&self) -> RemoveBackground { self.inner.clone() }
 
-   
+
   pub fn background_id(&mut self, background_id: isize) -> &mut Self {
     self.inner.background_id = background_id;
     self
@@ -16524,7 +16532,7 @@ pub struct RemoveChatActionBar {
   td_name: String,
   /// Chat identifier
   chat_id: i64,
-  
+
 }
 
 impl RObject for RemoveChatActionBar {
@@ -16557,7 +16565,7 @@ pub struct RTDRemoveChatActionBarBuilder {
 impl RTDRemoveChatActionBarBuilder {
   pub fn build(&self) -> RemoveChatActionBar { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
@@ -16587,7 +16595,7 @@ pub struct RemoveContacts {
   td_name: String,
   /// Identifiers of users to be deleted
   user_ids: Vec<i64>,
-  
+
 }
 
 impl RObject for RemoveContacts {
@@ -16620,7 +16628,7 @@ pub struct RTDRemoveContactsBuilder {
 impl RTDRemoveContactsBuilder {
   pub fn build(&self) -> RemoveContacts { self.inner.clone() }
 
-   
+
   pub fn user_ids(&mut self, user_ids: Vec<i64>) -> &mut Self {
     self.inner.user_ids = user_ids;
     self
@@ -16650,7 +16658,7 @@ pub struct RemoveFavoriteSticker {
   td_name: String,
   /// Sticker file to delete from the list
   sticker: InputFile,
-  
+
 }
 
 impl RObject for RemoveFavoriteSticker {
@@ -16683,7 +16691,7 @@ pub struct RTDRemoveFavoriteStickerBuilder {
 impl RTDRemoveFavoriteStickerBuilder {
   pub fn build(&self) -> RemoveFavoriteSticker { self.inner.clone() }
 
-   
+
   pub fn sticker<T: AsRef<InputFile>>(&mut self, sticker: T) -> &mut Self {
     self.inner.sticker = sticker.as_ref().clone();
     self
@@ -16715,7 +16723,7 @@ pub struct RemoveNotification {
   notification_group_id: i64,
   /// Identifier of removed notification
   notification_id: i64,
-  
+
 }
 
 impl RObject for RemoveNotification {
@@ -16750,13 +16758,13 @@ pub struct RTDRemoveNotificationBuilder {
 impl RTDRemoveNotificationBuilder {
   pub fn build(&self) -> RemoveNotification { self.inner.clone() }
 
-   
+
   pub fn notification_group_id(&mut self, notification_group_id: i64) -> &mut Self {
     self.inner.notification_group_id = notification_group_id;
     self
   }
 
-   
+
   pub fn notification_id(&mut self, notification_id: i64) -> &mut Self {
     self.inner.notification_id = notification_id;
     self
@@ -16788,7 +16796,7 @@ pub struct RemoveNotificationGroup {
   notification_group_id: i64,
   /// The maximum identifier of removed notifications
   max_notification_id: i64,
-  
+
 }
 
 impl RObject for RemoveNotificationGroup {
@@ -16823,13 +16831,13 @@ pub struct RTDRemoveNotificationGroupBuilder {
 impl RTDRemoveNotificationGroupBuilder {
   pub fn build(&self) -> RemoveNotificationGroup { self.inner.clone() }
 
-   
+
   pub fn notification_group_id(&mut self, notification_group_id: i64) -> &mut Self {
     self.inner.notification_group_id = notification_group_id;
     self
   }
 
-   
+
   pub fn max_notification_id(&mut self, max_notification_id: i64) -> &mut Self {
     self.inner.max_notification_id = max_notification_id;
     self
@@ -16859,7 +16867,7 @@ pub struct RemoveProxy {
   td_name: String,
   /// Proxy identifier
   proxy_id: i64,
-  
+
 }
 
 impl RObject for RemoveProxy {
@@ -16892,7 +16900,7 @@ pub struct RTDRemoveProxyBuilder {
 impl RTDRemoveProxyBuilder {
   pub fn build(&self) -> RemoveProxy { self.inner.clone() }
 
-   
+
   pub fn proxy_id(&mut self, proxy_id: i64) -> &mut Self {
     self.inner.proxy_id = proxy_id;
     self
@@ -16922,7 +16930,7 @@ pub struct RemoveRecentHashtag {
   td_name: String,
   /// Hashtag to delete
   hashtag: String,
-  
+
 }
 
 impl RObject for RemoveRecentHashtag {
@@ -16955,7 +16963,7 @@ pub struct RTDRemoveRecentHashtagBuilder {
 impl RTDRemoveRecentHashtagBuilder {
   pub fn build(&self) -> RemoveRecentHashtag { self.inner.clone() }
 
-   
+
   pub fn hashtag<T: AsRef<str>>(&mut self, hashtag: T) -> &mut Self {
     self.inner.hashtag = hashtag.as_ref().to_string();
     self
@@ -16987,7 +16995,7 @@ pub struct RemoveRecentSticker {
   is_attached: bool,
   /// Sticker file to delete
   sticker: InputFile,
-  
+
 }
 
 impl RObject for RemoveRecentSticker {
@@ -17022,13 +17030,13 @@ pub struct RTDRemoveRecentStickerBuilder {
 impl RTDRemoveRecentStickerBuilder {
   pub fn build(&self) -> RemoveRecentSticker { self.inner.clone() }
 
-   
+
   pub fn is_attached(&mut self, is_attached: bool) -> &mut Self {
     self.inner.is_attached = is_attached;
     self
   }
 
-   
+
   pub fn sticker<T: AsRef<InputFile>>(&mut self, sticker: T) -> &mut Self {
     self.inner.sticker = sticker.as_ref().clone();
     self
@@ -17058,7 +17066,7 @@ pub struct RemoveRecentlyFoundChat {
   td_name: String,
   /// Identifier of the chat to be removed
   chat_id: i64,
-  
+
 }
 
 impl RObject for RemoveRecentlyFoundChat {
@@ -17091,7 +17099,7 @@ pub struct RTDRemoveRecentlyFoundChatBuilder {
 impl RTDRemoveRecentlyFoundChatBuilder {
   pub fn build(&self) -> RemoveRecentlyFoundChat { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
@@ -17121,7 +17129,7 @@ pub struct RemoveSavedAnimation {
   td_name: String,
   /// Animation file to be removed
   animation: InputFile,
-  
+
 }
 
 impl RObject for RemoveSavedAnimation {
@@ -17154,7 +17162,7 @@ pub struct RTDRemoveSavedAnimationBuilder {
 impl RTDRemoveSavedAnimationBuilder {
   pub fn build(&self) -> RemoveSavedAnimation { self.inner.clone() }
 
-   
+
   pub fn animation<T: AsRef<InputFile>>(&mut self, animation: T) -> &mut Self {
     self.inner.animation = animation.as_ref().clone();
     self
@@ -17184,7 +17192,7 @@ pub struct RemoveStickerFromSet {
   td_name: String,
   /// Sticker
   sticker: InputFile,
-  
+
 }
 
 impl RObject for RemoveStickerFromSet {
@@ -17217,7 +17225,7 @@ pub struct RTDRemoveStickerFromSetBuilder {
 impl RTDRemoveStickerFromSetBuilder {
   pub fn build(&self) -> RemoveStickerFromSet { self.inner.clone() }
 
-   
+
   pub fn sticker<T: AsRef<InputFile>>(&mut self, sticker: T) -> &mut Self {
     self.inner.sticker = sticker.as_ref().clone();
     self
@@ -17249,7 +17257,7 @@ pub struct RemoveTopChat {
   category: TopChatCategory,
   /// Chat identifier
   chat_id: i64,
-  
+
 }
 
 impl RObject for RemoveTopChat {
@@ -17284,13 +17292,13 @@ pub struct RTDRemoveTopChatBuilder {
 impl RTDRemoveTopChatBuilder {
   pub fn build(&self) -> RemoveTopChat { self.inner.clone() }
 
-   
+
   pub fn category<T: AsRef<TopChatCategory>>(&mut self, category: T) -> &mut Self {
     self.inner.category = category.as_ref().clone();
     self
   }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
@@ -17320,7 +17328,7 @@ pub struct ReorderChatFilters {
   td_name: String,
   /// Identifiers of chat filters in the new correct order
   chat_filter_ids: Vec<i64>,
-  
+
 }
 
 impl RObject for ReorderChatFilters {
@@ -17353,7 +17361,7 @@ pub struct RTDReorderChatFiltersBuilder {
 impl RTDReorderChatFiltersBuilder {
   pub fn build(&self) -> ReorderChatFilters { self.inner.clone() }
 
-   
+
   pub fn chat_filter_ids(&mut self, chat_filter_ids: Vec<i64>) -> &mut Self {
     self.inner.chat_filter_ids = chat_filter_ids;
     self
@@ -17385,7 +17393,7 @@ pub struct ReorderInstalledStickerSets {
   is_masks: bool,
   /// Identifiers of installed sticker sets in the new correct order
   sticker_set_ids: Vec<isize>,
-  
+
 }
 
 impl RObject for ReorderInstalledStickerSets {
@@ -17420,13 +17428,13 @@ pub struct RTDReorderInstalledStickerSetsBuilder {
 impl RTDReorderInstalledStickerSetsBuilder {
   pub fn build(&self) -> ReorderInstalledStickerSets { self.inner.clone() }
 
-   
+
   pub fn is_masks(&mut self, is_masks: bool) -> &mut Self {
     self.inner.is_masks = is_masks;
     self
   }
 
-   
+
   pub fn sticker_set_ids(&mut self, sticker_set_ids: Vec<isize>) -> &mut Self {
     self.inner.sticker_set_ids = sticker_set_ids;
     self
@@ -17460,7 +17468,7 @@ pub struct ReportChat {
   reason: ChatReportReason,
   /// Identifiers of reported messages, if any
   message_ids: Vec<i64>,
-  
+
 }
 
 impl RObject for ReportChat {
@@ -17497,19 +17505,19 @@ pub struct RTDReportChatBuilder {
 impl RTDReportChatBuilder {
   pub fn build(&self) -> ReportChat { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn reason<T: AsRef<ChatReportReason>>(&mut self, reason: T) -> &mut Self {
     self.inner.reason = reason.as_ref().clone();
     self
   }
 
-   
+
   pub fn message_ids(&mut self, message_ids: Vec<i64>) -> &mut Self {
     self.inner.message_ids = message_ids;
     self
@@ -17543,7 +17551,7 @@ pub struct ReportSupergroupSpam {
   user_id: i64,
   /// Identifiers of messages sent in the supergroup by the user. This list must be non-empty
   message_ids: Vec<i64>,
-  
+
 }
 
 impl RObject for ReportSupergroupSpam {
@@ -17580,19 +17588,19 @@ pub struct RTDReportSupergroupSpamBuilder {
 impl RTDReportSupergroupSpamBuilder {
   pub fn build(&self) -> ReportSupergroupSpam { self.inner.clone() }
 
-   
+
   pub fn supergroup_id(&mut self, supergroup_id: i64) -> &mut Self {
     self.inner.supergroup_id = supergroup_id;
     self
   }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
   }
 
-   
+
   pub fn message_ids(&mut self, message_ids: Vec<i64>) -> &mut Self {
     self.inner.message_ids = message_ids;
     self
@@ -17620,7 +17628,7 @@ pub struct RequestAuthenticationPasswordRecovery {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for RequestAuthenticationPasswordRecovery {
@@ -17673,7 +17681,7 @@ pub struct RequestPasswordRecovery {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for RequestPasswordRecovery {
@@ -17728,7 +17736,7 @@ pub struct RequestQrCodeAuthentication {
   td_name: String,
   /// List of user identifiers of other users currently using the application
   other_user_ids: Vec<i64>,
-  
+
 }
 
 impl RObject for RequestQrCodeAuthentication {
@@ -17761,7 +17769,7 @@ pub struct RTDRequestQrCodeAuthenticationBuilder {
 impl RTDRequestQrCodeAuthenticationBuilder {
   pub fn build(&self) -> RequestQrCodeAuthentication { self.inner.clone() }
 
-   
+
   pub fn other_user_ids(&mut self, other_user_ids: Vec<i64>) -> &mut Self {
     self.inner.other_user_ids = other_user_ids;
     self
@@ -17789,7 +17797,7 @@ pub struct ResendAuthenticationCode {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for ResendAuthenticationCode {
@@ -17842,7 +17850,7 @@ pub struct ResendChangePhoneNumberCode {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for ResendChangePhoneNumberCode {
@@ -17895,7 +17903,7 @@ pub struct ResendEmailAddressVerificationCode {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for ResendEmailAddressVerificationCode {
@@ -17952,7 +17960,7 @@ pub struct ResendMessages {
   chat_id: i64,
   /// Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
   message_ids: Vec<i64>,
-  
+
 }
 
 impl RObject for ResendMessages {
@@ -17987,13 +17995,13 @@ pub struct RTDResendMessagesBuilder {
 impl RTDResendMessagesBuilder {
   pub fn build(&self) -> ResendMessages { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_ids(&mut self, message_ids: Vec<i64>) -> &mut Self {
     self.inner.message_ids = message_ids;
     self
@@ -18021,7 +18029,7 @@ pub struct ResendPhoneNumberConfirmationCode {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for ResendPhoneNumberConfirmationCode {
@@ -18074,7 +18082,7 @@ pub struct ResendPhoneNumberVerificationCode {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for ResendPhoneNumberVerificationCode {
@@ -18127,7 +18135,7 @@ pub struct ResendRecoveryEmailAddressCode {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for ResendRecoveryEmailAddressCode {
@@ -18180,7 +18188,7 @@ pub struct ResetAllNotificationSettings {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for ResetAllNotificationSettings {
@@ -18233,7 +18241,7 @@ pub struct ResetBackgrounds {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for ResetBackgrounds {
@@ -18286,7 +18294,7 @@ pub struct ResetNetworkStatistics {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for ResetNetworkStatistics {
@@ -18345,7 +18353,7 @@ pub struct SaveApplicationLogEvent {
   chat_id: i64,
   /// The log event data
   data: JsonValue,
-  
+
 }
 
 impl RObject for SaveApplicationLogEvent {
@@ -18382,19 +18390,19 @@ pub struct RTDSaveApplicationLogEventBuilder {
 impl RTDSaveApplicationLogEventBuilder {
   pub fn build(&self) -> SaveApplicationLogEvent { self.inner.clone() }
 
-   
+
   pub fn type_<T: AsRef<str>>(&mut self, type_: T) -> &mut Self {
     self.inner.type_ = type_.as_ref().to_string();
     self
   }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn data<T: AsRef<JsonValue>>(&mut self, data: T) -> &mut Self {
     self.inner.data = data.as_ref().clone();
     self
@@ -18424,7 +18432,7 @@ pub struct SearchBackground {
   td_name: String,
   /// The name of the background
   name: String,
-  
+
 }
 
 impl RObject for SearchBackground {
@@ -18457,7 +18465,7 @@ pub struct RTDSearchBackgroundBuilder {
 impl RTDSearchBackgroundBuilder {
   pub fn build(&self) -> SearchBackground { self.inner.clone() }
 
-   
+
   pub fn name<T: AsRef<str>>(&mut self, name: T) -> &mut Self {
     self.inner.name = name.as_ref().to_string();
     self
@@ -18491,7 +18499,7 @@ pub struct SearchCallMessages {
   limit: i64,
   /// If true, returns only messages with missed calls
   only_missed: bool,
-  
+
 }
 
 impl RObject for SearchCallMessages {
@@ -18528,19 +18536,19 @@ pub struct RTDSearchCallMessagesBuilder {
 impl RTDSearchCallMessagesBuilder {
   pub fn build(&self) -> SearchCallMessages { self.inner.clone() }
 
-   
+
   pub fn from_message_id(&mut self, from_message_id: i64) -> &mut Self {
     self.inner.from_message_id = from_message_id;
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
   }
 
-   
+
   pub fn only_missed(&mut self, only_missed: bool) -> &mut Self {
     self.inner.only_missed = only_missed;
     self
@@ -18576,7 +18584,7 @@ pub struct SearchChatMembers {
   limit: i64,
   /// The type of users to return. By default, chatMembersFilterMembers
   filter: ChatMembersFilter,
-  
+
 }
 
 impl RObject for SearchChatMembers {
@@ -18615,25 +18623,25 @@ pub struct RTDSearchChatMembersBuilder {
 impl RTDSearchChatMembersBuilder {
   pub fn build(&self) -> SearchChatMembers { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn query<T: AsRef<str>>(&mut self, query: T) -> &mut Self {
     self.inner.query = query.as_ref().to_string();
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
   }
 
-   
+
   pub fn filter<T: AsRef<ChatMembersFilter>>(&mut self, filter: T) -> &mut Self {
     self.inner.filter = filter.as_ref().clone();
     self
@@ -18675,7 +18683,7 @@ pub struct SearchChatMessages {
   limit: i64,
   /// Filter for message content in the search results
   filter: SearchMessagesFilter,
-  
+
 }
 
 impl RObject for SearchChatMessages {
@@ -18720,43 +18728,43 @@ pub struct RTDSearchChatMessagesBuilder {
 impl RTDSearchChatMessagesBuilder {
   pub fn build(&self) -> SearchChatMessages { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn query<T: AsRef<str>>(&mut self, query: T) -> &mut Self {
     self.inner.query = query.as_ref().to_string();
     self
   }
 
-   
+
   pub fn sender_user_id(&mut self, sender_user_id: i64) -> &mut Self {
     self.inner.sender_user_id = sender_user_id;
     self
   }
 
-   
+
   pub fn from_message_id(&mut self, from_message_id: i64) -> &mut Self {
     self.inner.from_message_id = from_message_id;
     self
   }
 
-   
+
   pub fn offset(&mut self, offset: i64) -> &mut Self {
     self.inner.offset = offset;
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
   }
 
-   
+
   pub fn filter<T: AsRef<SearchMessagesFilter>>(&mut self, filter: T) -> &mut Self {
     self.inner.filter = filter.as_ref().clone();
     self
@@ -18788,7 +18796,7 @@ pub struct SearchChatRecentLocationMessages {
   chat_id: i64,
   /// The maximum number of messages to be returned
   limit: i64,
-  
+
 }
 
 impl RObject for SearchChatRecentLocationMessages {
@@ -18823,13 +18831,13 @@ pub struct RTDSearchChatRecentLocationMessagesBuilder {
 impl RTDSearchChatRecentLocationMessagesBuilder {
   pub fn build(&self) -> SearchChatRecentLocationMessages { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
@@ -18861,7 +18869,7 @@ pub struct SearchChats {
   query: String,
   /// The maximum number of chats to be returned
   limit: i64,
-  
+
 }
 
 impl RObject for SearchChats {
@@ -18896,13 +18904,13 @@ pub struct RTDSearchChatsBuilder {
 impl RTDSearchChatsBuilder {
   pub fn build(&self) -> SearchChats { self.inner.clone() }
 
-   
+
   pub fn query<T: AsRef<str>>(&mut self, query: T) -> &mut Self {
     self.inner.query = query.as_ref().to_string();
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
@@ -18932,7 +18940,7 @@ pub struct SearchChatsNearby {
   td_name: String,
   /// Current user location
   location: Location,
-  
+
 }
 
 impl RObject for SearchChatsNearby {
@@ -18965,7 +18973,7 @@ pub struct RTDSearchChatsNearbyBuilder {
 impl RTDSearchChatsNearbyBuilder {
   pub fn build(&self) -> SearchChatsNearby { self.inner.clone() }
 
-   
+
   pub fn location<T: AsRef<Location>>(&mut self, location: T) -> &mut Self {
     self.inner.location = location.as_ref().clone();
     self
@@ -18997,7 +19005,7 @@ pub struct SearchChatsOnServer {
   query: String,
   /// The maximum number of chats to be returned
   limit: i64,
-  
+
 }
 
 impl RObject for SearchChatsOnServer {
@@ -19032,13 +19040,13 @@ pub struct RTDSearchChatsOnServerBuilder {
 impl RTDSearchChatsOnServerBuilder {
   pub fn build(&self) -> SearchChatsOnServer { self.inner.clone() }
 
-   
+
   pub fn query<T: AsRef<str>>(&mut self, query: T) -> &mut Self {
     self.inner.query = query.as_ref().to_string();
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
@@ -19070,7 +19078,7 @@ pub struct SearchContacts {
   query: String,
   /// The maximum number of users to be returned
   limit: i64,
-  
+
 }
 
 impl RObject for SearchContacts {
@@ -19105,13 +19113,13 @@ pub struct RTDSearchContactsBuilder {
 impl RTDSearchContactsBuilder {
   pub fn build(&self) -> SearchContacts { self.inner.clone() }
 
-   
+
   pub fn query<T: AsRef<str>>(&mut self, query: T) -> &mut Self {
     self.inner.query = query.as_ref().to_string();
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
@@ -19145,7 +19153,7 @@ pub struct SearchEmojis {
   exact_match: bool,
   /// List of possible IETF language tags of the user's input language; may be empty if unknown
   input_language_codes: Vec<String>,
-  
+
 }
 
 impl RObject for SearchEmojis {
@@ -19182,19 +19190,19 @@ pub struct RTDSearchEmojisBuilder {
 impl RTDSearchEmojisBuilder {
   pub fn build(&self) -> SearchEmojis { self.inner.clone() }
 
-   
+
   pub fn text<T: AsRef<str>>(&mut self, text: T) -> &mut Self {
     self.inner.text = text.as_ref().to_string();
     self
   }
 
-   
+
   pub fn exact_match(&mut self, exact_match: bool) -> &mut Self {
     self.inner.exact_match = exact_match;
     self
   }
 
-   
+
   pub fn input_language_codes(&mut self, input_language_codes: Vec<String>) -> &mut Self {
     self.inner.input_language_codes = input_language_codes;
     self
@@ -19226,7 +19234,7 @@ pub struct SearchHashtags {
   prefix: String,
   /// The maximum number of hashtags to be returned
   limit: i64,
-  
+
 }
 
 impl RObject for SearchHashtags {
@@ -19261,13 +19269,13 @@ pub struct RTDSearchHashtagsBuilder {
 impl RTDSearchHashtagsBuilder {
   pub fn build(&self) -> SearchHashtags { self.inner.clone() }
 
-   
+
   pub fn prefix<T: AsRef<str>>(&mut self, prefix: T) -> &mut Self {
     self.inner.prefix = prefix.as_ref().to_string();
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
@@ -19301,7 +19309,7 @@ pub struct SearchInstalledStickerSets {
   query: String,
   /// The maximum number of sticker sets to return
   limit: i64,
-  
+
 }
 
 impl RObject for SearchInstalledStickerSets {
@@ -19338,19 +19346,19 @@ pub struct RTDSearchInstalledStickerSetsBuilder {
 impl RTDSearchInstalledStickerSetsBuilder {
   pub fn build(&self) -> SearchInstalledStickerSets { self.inner.clone() }
 
-   
+
   pub fn is_masks(&mut self, is_masks: bool) -> &mut Self {
     self.inner.is_masks = is_masks;
     self
   }
 
-   
+
   pub fn query<T: AsRef<str>>(&mut self, query: T) -> &mut Self {
     self.inner.query = query.as_ref().to_string();
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
@@ -19390,7 +19398,7 @@ pub struct SearchMessages {
   offset_message_id: i64,
   /// The maximum number of messages to be returned, up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
   limit: i64,
-  
+
 }
 
 impl RObject for SearchMessages {
@@ -19433,37 +19441,37 @@ pub struct RTDSearchMessagesBuilder {
 impl RTDSearchMessagesBuilder {
   pub fn build(&self) -> SearchMessages { self.inner.clone() }
 
-   
+
   pub fn chat_list<T: AsRef<ChatList>>(&mut self, chat_list: T) -> &mut Self {
     self.inner.chat_list = chat_list.as_ref().clone();
     self
   }
 
-   
+
   pub fn query<T: AsRef<str>>(&mut self, query: T) -> &mut Self {
     self.inner.query = query.as_ref().to_string();
     self
   }
 
-   
+
   pub fn offset_date(&mut self, offset_date: i64) -> &mut Self {
     self.inner.offset_date = offset_date;
     self
   }
 
-   
+
   pub fn offset_chat_id(&mut self, offset_chat_id: i64) -> &mut Self {
     self.inner.offset_chat_id = offset_chat_id;
     self
   }
 
-   
+
   pub fn offset_message_id(&mut self, offset_message_id: i64) -> &mut Self {
     self.inner.offset_message_id = offset_message_id;
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
@@ -19493,7 +19501,7 @@ pub struct SearchPublicChat {
   td_name: String,
   /// Username to be resolved
   username: String,
-  
+
 }
 
 impl RObject for SearchPublicChat {
@@ -19526,7 +19534,7 @@ pub struct RTDSearchPublicChatBuilder {
 impl RTDSearchPublicChatBuilder {
   pub fn build(&self) -> SearchPublicChat { self.inner.clone() }
 
-   
+
   pub fn username<T: AsRef<str>>(&mut self, username: T) -> &mut Self {
     self.inner.username = username.as_ref().to_string();
     self
@@ -19556,7 +19564,7 @@ pub struct SearchPublicChats {
   td_name: String,
   /// Query to search for
   query: String,
-  
+
 }
 
 impl RObject for SearchPublicChats {
@@ -19589,7 +19597,7 @@ pub struct RTDSearchPublicChatsBuilder {
 impl RTDSearchPublicChatsBuilder {
   pub fn build(&self) -> SearchPublicChats { self.inner.clone() }
 
-   
+
   pub fn query<T: AsRef<str>>(&mut self, query: T) -> &mut Self {
     self.inner.query = query.as_ref().to_string();
     self
@@ -19627,7 +19635,7 @@ pub struct SearchSecretMessages {
   limit: i64,
   /// A filter for the content of messages in the search results
   filter: SearchMessagesFilter,
-  
+
 }
 
 impl RObject for SearchSecretMessages {
@@ -19668,31 +19676,31 @@ pub struct RTDSearchSecretMessagesBuilder {
 impl RTDSearchSecretMessagesBuilder {
   pub fn build(&self) -> SearchSecretMessages { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn query<T: AsRef<str>>(&mut self, query: T) -> &mut Self {
     self.inner.query = query.as_ref().to_string();
     self
   }
 
-   
+
   pub fn from_search_id(&mut self, from_search_id: isize) -> &mut Self {
     self.inner.from_search_id = from_search_id;
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
   }
 
-   
+
   pub fn filter<T: AsRef<SearchMessagesFilter>>(&mut self, filter: T) -> &mut Self {
     self.inner.filter = filter.as_ref().clone();
     self
@@ -19722,7 +19730,7 @@ pub struct SearchStickerSet {
   td_name: String,
   /// Name of the sticker set
   name: String,
-  
+
 }
 
 impl RObject for SearchStickerSet {
@@ -19755,7 +19763,7 @@ pub struct RTDSearchStickerSetBuilder {
 impl RTDSearchStickerSetBuilder {
   pub fn build(&self) -> SearchStickerSet { self.inner.clone() }
 
-   
+
   pub fn name<T: AsRef<str>>(&mut self, name: T) -> &mut Self {
     self.inner.name = name.as_ref().to_string();
     self
@@ -19785,7 +19793,7 @@ pub struct SearchStickerSets {
   td_name: String,
   /// Query to search for
   query: String,
-  
+
 }
 
 impl RObject for SearchStickerSets {
@@ -19818,7 +19826,7 @@ pub struct RTDSearchStickerSetsBuilder {
 impl RTDSearchStickerSetsBuilder {
   pub fn build(&self) -> SearchStickerSets { self.inner.clone() }
 
-   
+
   pub fn query<T: AsRef<str>>(&mut self, query: T) -> &mut Self {
     self.inner.query = query.as_ref().to_string();
     self
@@ -19850,7 +19858,7 @@ pub struct SearchStickers {
   emoji: String,
   /// The maximum number of stickers to be returned
   limit: i64,
-  
+
 }
 
 impl RObject for SearchStickers {
@@ -19885,13 +19893,13 @@ pub struct RTDSearchStickersBuilder {
 impl RTDSearchStickersBuilder {
   pub fn build(&self) -> SearchStickers { self.inner.clone() }
 
-   
+
   pub fn emoji<T: AsRef<str>>(&mut self, emoji: T) -> &mut Self {
     self.inner.emoji = emoji.as_ref().to_string();
     self
   }
 
-   
+
   pub fn limit(&mut self, limit: i64) -> &mut Self {
     self.inner.limit = limit;
     self
@@ -19925,7 +19933,7 @@ pub struct SendBotStartMessage {
   chat_id: i64,
   /// A hidden parameter sent to the bot for deep linking purposes (https://core.telegram.org/bots#deep-linking)
   parameter: String,
-  
+
 }
 
 impl RObject for SendBotStartMessage {
@@ -19962,19 +19970,19 @@ pub struct RTDSendBotStartMessageBuilder {
 impl RTDSendBotStartMessageBuilder {
   pub fn build(&self) -> SendBotStartMessage { self.inner.clone() }
 
-   
+
   pub fn bot_user_id(&mut self, bot_user_id: i64) -> &mut Self {
     self.inner.bot_user_id = bot_user_id;
     self
   }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn parameter<T: AsRef<str>>(&mut self, parameter: T) -> &mut Self {
     self.inner.parameter = parameter.as_ref().to_string();
     self
@@ -20006,7 +20014,7 @@ pub struct SendCallDebugInformation {
   call_id: i64,
   /// Debug information in application-specific format
   debug_information: String,
-  
+
 }
 
 impl RObject for SendCallDebugInformation {
@@ -20041,13 +20049,13 @@ pub struct RTDSendCallDebugInformationBuilder {
 impl RTDSendCallDebugInformationBuilder {
   pub fn build(&self) -> SendCallDebugInformation { self.inner.clone() }
 
-   
+
   pub fn call_id(&mut self, call_id: i64) -> &mut Self {
     self.inner.call_id = call_id;
     self
   }
 
-   
+
   pub fn debug_information<T: AsRef<str>>(&mut self, debug_information: T) -> &mut Self {
     self.inner.debug_information = debug_information.as_ref().to_string();
     self
@@ -20083,7 +20091,7 @@ pub struct SendCallRating {
   comment: String,
   /// List of the exact types of problems with the call, specified by the user
   problems: Vec<CallProblem>,
-  
+
 }
 
 impl RObject for SendCallRating {
@@ -20122,25 +20130,25 @@ pub struct RTDSendCallRatingBuilder {
 impl RTDSendCallRatingBuilder {
   pub fn build(&self) -> SendCallRating { self.inner.clone() }
 
-   
+
   pub fn call_id(&mut self, call_id: i64) -> &mut Self {
     self.inner.call_id = call_id;
     self
   }
 
-   
+
   pub fn rating(&mut self, rating: i64) -> &mut Self {
     self.inner.rating = rating;
     self
   }
 
-   
+
   pub fn comment<T: AsRef<str>>(&mut self, comment: T) -> &mut Self {
     self.inner.comment = comment.as_ref().to_string();
     self
   }
 
-   
+
   pub fn problems(&mut self, problems: Vec<CallProblem>) -> &mut Self {
     self.inner.problems = problems;
     self
@@ -20172,7 +20180,7 @@ pub struct SendCallSignalingData {
   call_id: i64,
   /// The data
   data: String,
-  
+
 }
 
 impl RObject for SendCallSignalingData {
@@ -20207,13 +20215,13 @@ pub struct RTDSendCallSignalingDataBuilder {
 impl RTDSendCallSignalingDataBuilder {
   pub fn build(&self) -> SendCallSignalingData { self.inner.clone() }
 
-   
+
   pub fn call_id(&mut self, call_id: i64) -> &mut Self {
     self.inner.call_id = call_id;
     self
   }
 
-   
+
   pub fn data<T: AsRef<str>>(&mut self, data: T) -> &mut Self {
     self.inner.data = data.as_ref().to_string();
     self
@@ -20245,7 +20253,7 @@ pub struct SendChatAction {
   chat_id: i64,
   /// The action description
   action: ChatAction,
-  
+
 }
 
 impl RObject for SendChatAction {
@@ -20280,13 +20288,13 @@ pub struct RTDSendChatActionBuilder {
 impl RTDSendChatActionBuilder {
   pub fn build(&self) -> SendChatAction { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn action<T: AsRef<ChatAction>>(&mut self, action: T) -> &mut Self {
     self.inner.action = action.as_ref().clone();
     self
@@ -20316,7 +20324,7 @@ pub struct SendChatScreenshotTakenNotification {
   td_name: String,
   /// Chat identifier
   chat_id: i64,
-  
+
 }
 
 impl RObject for SendChatScreenshotTakenNotification {
@@ -20349,7 +20357,7 @@ pub struct RTDSendChatScreenshotTakenNotificationBuilder {
 impl RTDSendChatScreenshotTakenNotificationBuilder {
   pub fn build(&self) -> SendChatScreenshotTakenNotification { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
@@ -20381,7 +20389,7 @@ pub struct SendChatSetTtlMessage {
   chat_id: i64,
   /// New TTL value, in seconds
   ttl: i64,
-  
+
 }
 
 impl RObject for SendChatSetTtlMessage {
@@ -20416,13 +20424,13 @@ pub struct RTDSendChatSetTtlMessageBuilder {
 impl RTDSendChatSetTtlMessageBuilder {
   pub fn build(&self) -> SendChatSetTtlMessage { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn ttl(&mut self, ttl: i64) -> &mut Self {
     self.inner.ttl = ttl;
     self
@@ -20454,7 +20462,7 @@ pub struct SendCustomRequest {
   method: String,
   /// JSON-serialized method parameters
   parameters: String,
-  
+
 }
 
 impl RObject for SendCustomRequest {
@@ -20489,13 +20497,13 @@ pub struct RTDSendCustomRequestBuilder {
 impl RTDSendCustomRequestBuilder {
   pub fn build(&self) -> SendCustomRequest { self.inner.clone() }
 
-   
+
   pub fn method<T: AsRef<str>>(&mut self, method: T) -> &mut Self {
     self.inner.method = method.as_ref().to_string();
     self
   }
 
-   
+
   pub fn parameters<T: AsRef<str>>(&mut self, parameters: T) -> &mut Self {
     self.inner.parameters = parameters.as_ref().to_string();
     self
@@ -20525,7 +20533,7 @@ pub struct SendEmailAddressVerificationCode {
   td_name: String,
   /// Email address
   email_address: String,
-  
+
 }
 
 impl RObject for SendEmailAddressVerificationCode {
@@ -20558,7 +20566,7 @@ pub struct RTDSendEmailAddressVerificationCodeBuilder {
 impl RTDSendEmailAddressVerificationCodeBuilder {
   pub fn build(&self) -> SendEmailAddressVerificationCode { self.inner.clone() }
 
-   
+
   pub fn email_address<T: AsRef<str>>(&mut self, email_address: T) -> &mut Self {
     self.inner.email_address = email_address.as_ref().to_string();
     self
@@ -20598,7 +20606,7 @@ pub struct SendInlineQueryResultMessage {
   result_id: String,
   /// If true, there will be no mention of a bot, via which the message is sent. Can be used only for bots GetOption("animation_search_bot_username"), GetOption("photo_search_bot_username") and GetOption("venue_search_bot_username")
   hide_via_bot: bool,
-  
+
 }
 
 impl RObject for SendInlineQueryResultMessage {
@@ -20641,37 +20649,37 @@ pub struct RTDSendInlineQueryResultMessageBuilder {
 impl RTDSendInlineQueryResultMessageBuilder {
   pub fn build(&self) -> SendInlineQueryResultMessage { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn reply_to_message_id(&mut self, reply_to_message_id: i64) -> &mut Self {
     self.inner.reply_to_message_id = reply_to_message_id;
     self
   }
 
-   
+
   pub fn options<T: AsRef<MessageSendOptions>>(&mut self, options: T) -> &mut Self {
     self.inner.options = options.as_ref().clone();
     self
   }
 
-   
+
   pub fn query_id(&mut self, query_id: isize) -> &mut Self {
     self.inner.query_id = query_id;
     self
   }
 
-   
+
   pub fn result_id<T: AsRef<str>>(&mut self, result_id: T) -> &mut Self {
     self.inner.result_id = result_id.as_ref().to_string();
     self
   }
 
-   
+
   pub fn hide_via_bot(&mut self, hide_via_bot: bool) -> &mut Self {
     self.inner.hide_via_bot = hide_via_bot;
     self
@@ -20709,7 +20717,7 @@ pub struct SendMessage {
   reply_markup: ReplyMarkup,
   /// The content of the message to be sent
   input_message_content: InputMessageContent,
-  
+
 }
 
 impl RObject for SendMessage {
@@ -20750,31 +20758,31 @@ pub struct RTDSendMessageBuilder {
 impl RTDSendMessageBuilder {
   pub fn build(&self) -> SendMessage { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn reply_to_message_id(&mut self, reply_to_message_id: i64) -> &mut Self {
     self.inner.reply_to_message_id = reply_to_message_id;
     self
   }
 
-   
+
   pub fn options<T: AsRef<MessageSendOptions>>(&mut self, options: T) -> &mut Self {
     self.inner.options = options.as_ref().clone();
     self
   }
 
-   
+
   pub fn reply_markup<T: AsRef<ReplyMarkup>>(&mut self, reply_markup: T) -> &mut Self {
     self.inner.reply_markup = reply_markup.as_ref().clone();
     self
   }
 
-   
+
   pub fn input_message_content<T: AsRef<InputMessageContent>>(&mut self, input_message_content: T) -> &mut Self {
     self.inner.input_message_content = input_message_content.as_ref().clone();
     self
@@ -20810,7 +20818,7 @@ pub struct SendMessageAlbum {
   options: MessageSendOptions,
   /// Contents of messages to be sent
   input_message_contents: Vec<InputMessageContent>,
-  
+
 }
 
 impl RObject for SendMessageAlbum {
@@ -20849,25 +20857,25 @@ pub struct RTDSendMessageAlbumBuilder {
 impl RTDSendMessageAlbumBuilder {
   pub fn build(&self) -> SendMessageAlbum { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn reply_to_message_id(&mut self, reply_to_message_id: i64) -> &mut Self {
     self.inner.reply_to_message_id = reply_to_message_id;
     self
   }
 
-   
+
   pub fn options<T: AsRef<MessageSendOptions>>(&mut self, options: T) -> &mut Self {
     self.inner.options = options.as_ref().clone();
     self
   }
 
-   
+
   pub fn input_message_contents(&mut self, input_message_contents: Vec<InputMessageContent>) -> &mut Self {
     self.inner.input_message_contents = input_message_contents;
     self
@@ -20899,7 +20907,7 @@ pub struct SendPassportAuthorizationForm {
   autorization_form_id: i64,
   /// Types of Telegram Passport elements chosen by user to complete the authorization form
   types: Vec<PassportElementType>,
-  
+
 }
 
 impl RObject for SendPassportAuthorizationForm {
@@ -20934,13 +20942,13 @@ pub struct RTDSendPassportAuthorizationFormBuilder {
 impl RTDSendPassportAuthorizationFormBuilder {
   pub fn build(&self) -> SendPassportAuthorizationForm { self.inner.clone() }
 
-   
+
   pub fn autorization_form_id(&mut self, autorization_form_id: i64) -> &mut Self {
     self.inner.autorization_form_id = autorization_form_id;
     self
   }
 
-   
+
   pub fn types(&mut self, types: Vec<PassportElementType>) -> &mut Self {
     self.inner.types = types;
     self
@@ -20978,7 +20986,7 @@ pub struct SendPaymentForm {
   shipping_option_id: String,
   /// The credentials chosen by user for payment
   credentials: InputCredentials,
-  
+
 }
 
 impl RObject for SendPaymentForm {
@@ -21019,31 +21027,31 @@ pub struct RTDSendPaymentFormBuilder {
 impl RTDSendPaymentFormBuilder {
   pub fn build(&self) -> SendPaymentForm { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
   }
 
-   
+
   pub fn order_info_id<T: AsRef<str>>(&mut self, order_info_id: T) -> &mut Self {
     self.inner.order_info_id = order_info_id.as_ref().to_string();
     self
   }
 
-   
+
   pub fn shipping_option_id<T: AsRef<str>>(&mut self, shipping_option_id: T) -> &mut Self {
     self.inner.shipping_option_id = shipping_option_id.as_ref().to_string();
     self
   }
 
-   
+
   pub fn credentials<T: AsRef<InputCredentials>>(&mut self, credentials: T) -> &mut Self {
     self.inner.credentials = credentials.as_ref().clone();
     self
@@ -21077,7 +21085,7 @@ pub struct SendPhoneNumberConfirmationCode {
   phone_number: String,
   /// Settings for the authentication of the user's phone number
   settings: PhoneNumberAuthenticationSettings,
-  
+
 }
 
 impl RObject for SendPhoneNumberConfirmationCode {
@@ -21114,19 +21122,19 @@ pub struct RTDSendPhoneNumberConfirmationCodeBuilder {
 impl RTDSendPhoneNumberConfirmationCodeBuilder {
   pub fn build(&self) -> SendPhoneNumberConfirmationCode { self.inner.clone() }
 
-   
+
   pub fn hash<T: AsRef<str>>(&mut self, hash: T) -> &mut Self {
     self.inner.hash = hash.as_ref().to_string();
     self
   }
 
-   
+
   pub fn phone_number<T: AsRef<str>>(&mut self, phone_number: T) -> &mut Self {
     self.inner.phone_number = phone_number.as_ref().to_string();
     self
   }
 
-   
+
   pub fn settings<T: AsRef<PhoneNumberAuthenticationSettings>>(&mut self, settings: T) -> &mut Self {
     self.inner.settings = settings.as_ref().clone();
     self
@@ -21158,7 +21166,7 @@ pub struct SendPhoneNumberVerificationCode {
   phone_number: String,
   /// Settings for the authentication of the user's phone number
   settings: PhoneNumberAuthenticationSettings,
-  
+
 }
 
 impl RObject for SendPhoneNumberVerificationCode {
@@ -21193,13 +21201,13 @@ pub struct RTDSendPhoneNumberVerificationCodeBuilder {
 impl RTDSendPhoneNumberVerificationCodeBuilder {
   pub fn build(&self) -> SendPhoneNumberVerificationCode { self.inner.clone() }
 
-   
+
   pub fn phone_number<T: AsRef<str>>(&mut self, phone_number: T) -> &mut Self {
     self.inner.phone_number = phone_number.as_ref().to_string();
     self
   }
 
-   
+
   pub fn settings<T: AsRef<PhoneNumberAuthenticationSettings>>(&mut self, settings: T) -> &mut Self {
     self.inner.settings = settings.as_ref().clone();
     self
@@ -21229,7 +21237,7 @@ pub struct SetAccountTtl {
   td_name: String,
   /// New account TTL
   ttl: AccountTtl,
-  
+
 }
 
 impl RObject for SetAccountTtl {
@@ -21262,7 +21270,7 @@ pub struct RTDSetAccountTtlBuilder {
 impl RTDSetAccountTtlBuilder {
   pub fn build(&self) -> SetAccountTtl { self.inner.clone() }
 
-   
+
   pub fn ttl<T: AsRef<AccountTtl>>(&mut self, ttl: T) -> &mut Self {
     self.inner.ttl = ttl.as_ref().clone();
     self
@@ -21292,7 +21300,7 @@ pub struct SetAlarm {
   td_name: String,
   /// Number of seconds before the function returns
   seconds: f32,
-  
+
 }
 
 impl RObject for SetAlarm {
@@ -21325,7 +21333,7 @@ pub struct RTDSetAlarmBuilder {
 impl RTDSetAlarmBuilder {
   pub fn build(&self) -> SetAlarm { self.inner.clone() }
 
-   
+
   pub fn seconds(&mut self, seconds: f32) -> &mut Self {
     self.inner.seconds = seconds;
     self
@@ -21357,7 +21365,7 @@ pub struct SetAuthenticationPhoneNumber {
   phone_number: String,
   /// Settings for the authentication of the user's phone number
   settings: PhoneNumberAuthenticationSettings,
-  
+
 }
 
 impl RObject for SetAuthenticationPhoneNumber {
@@ -21392,13 +21400,13 @@ pub struct RTDSetAuthenticationPhoneNumberBuilder {
 impl RTDSetAuthenticationPhoneNumberBuilder {
   pub fn build(&self) -> SetAuthenticationPhoneNumber { self.inner.clone() }
 
-   
+
   pub fn phone_number<T: AsRef<str>>(&mut self, phone_number: T) -> &mut Self {
     self.inner.phone_number = phone_number.as_ref().to_string();
     self
   }
 
-   
+
   pub fn settings<T: AsRef<PhoneNumberAuthenticationSettings>>(&mut self, settings: T) -> &mut Self {
     self.inner.settings = settings.as_ref().clone();
     self
@@ -21430,7 +21438,7 @@ pub struct SetAutoDownloadSettings {
   settings: AutoDownloadSettings,
   /// Type of the network for which the new settings are applied
   #[serde(rename(serialize = "type", deserialize = "type"))] type_: NetworkType,
-  
+
 }
 
 impl RObject for SetAutoDownloadSettings {
@@ -21465,13 +21473,13 @@ pub struct RTDSetAutoDownloadSettingsBuilder {
 impl RTDSetAutoDownloadSettingsBuilder {
   pub fn build(&self) -> SetAutoDownloadSettings { self.inner.clone() }
 
-   
+
   pub fn settings<T: AsRef<AutoDownloadSettings>>(&mut self, settings: T) -> &mut Self {
     self.inner.settings = settings.as_ref().clone();
     self
   }
 
-   
+
   pub fn type_<T: AsRef<NetworkType>>(&mut self, type_: T) -> &mut Self {
     self.inner.type_ = type_.as_ref().clone();
     self
@@ -21505,7 +21513,7 @@ pub struct SetBackground {
   #[serde(rename(serialize = "type", deserialize = "type"))] type_: BackgroundType,
   /// True, if the background is chosen for dark theme
   for_dark_theme: bool,
-  
+
 }
 
 impl RObject for SetBackground {
@@ -21542,19 +21550,19 @@ pub struct RTDSetBackgroundBuilder {
 impl RTDSetBackgroundBuilder {
   pub fn build(&self) -> SetBackground { self.inner.clone() }
 
-   
+
   pub fn background<T: AsRef<InputBackground>>(&mut self, background: T) -> &mut Self {
     self.inner.background = background.as_ref().clone();
     self
   }
 
-   
+
   pub fn type_<T: AsRef<BackgroundType>>(&mut self, type_: T) -> &mut Self {
     self.inner.type_ = type_.as_ref().clone();
     self
   }
 
-   
+
   pub fn for_dark_theme(&mut self, for_dark_theme: bool) -> &mut Self {
     self.inner.for_dark_theme = for_dark_theme;
     self
@@ -21584,7 +21592,7 @@ pub struct SetBio {
   td_name: String,
   /// The new value of the user bio; 0-70 characters without line feeds
   bio: String,
-  
+
 }
 
 impl RObject for SetBio {
@@ -21617,7 +21625,7 @@ pub struct RTDSetBioBuilder {
 impl RTDSetBioBuilder {
   pub fn build(&self) -> SetBio { self.inner.clone() }
 
-   
+
   pub fn bio<T: AsRef<str>>(&mut self, bio: T) -> &mut Self {
     self.inner.bio = bio.as_ref().to_string();
     self
@@ -21649,7 +21657,7 @@ pub struct SetBotUpdatesStatus {
   pending_update_count: i64,
   /// The last error message
   error_message: String,
-  
+
 }
 
 impl RObject for SetBotUpdatesStatus {
@@ -21684,13 +21692,13 @@ pub struct RTDSetBotUpdatesStatusBuilder {
 impl RTDSetBotUpdatesStatusBuilder {
   pub fn build(&self) -> SetBotUpdatesStatus { self.inner.clone() }
 
-   
+
   pub fn pending_update_count(&mut self, pending_update_count: i64) -> &mut Self {
     self.inner.pending_update_count = pending_update_count;
     self
   }
 
-   
+
   pub fn error_message<T: AsRef<str>>(&mut self, error_message: T) -> &mut Self {
     self.inner.error_message = error_message.as_ref().to_string();
     self
@@ -21722,7 +21730,7 @@ pub struct SetChatClientData {
   chat_id: i64,
   /// New value of client_data
   client_data: String,
-  
+
 }
 
 impl RObject for SetChatClientData {
@@ -21757,13 +21765,13 @@ pub struct RTDSetChatClientDataBuilder {
 impl RTDSetChatClientDataBuilder {
   pub fn build(&self) -> SetChatClientData { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn client_data<T: AsRef<str>>(&mut self, client_data: T) -> &mut Self {
     self.inner.client_data = client_data.as_ref().to_string();
     self
@@ -21795,7 +21803,7 @@ pub struct SetChatDescription {
   chat_id: i64,
   /// Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info rights
   description: String,
-  
+
 }
 
 impl RObject for SetChatDescription {
@@ -21830,13 +21838,13 @@ pub struct RTDSetChatDescriptionBuilder {
 impl RTDSetChatDescriptionBuilder {
   pub fn build(&self) -> SetChatDescription { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn description<T: AsRef<str>>(&mut self, description: T) -> &mut Self {
     self.inner.description = description.as_ref().to_string();
     self
@@ -21868,7 +21876,7 @@ pub struct SetChatDiscussionGroup {
   chat_id: i64,
   /// Identifier of a new channel's discussion group. Use 0 to remove the discussion group. Use the method getSuitableDiscussionChats to find all suitable groups. Basic group chats needs to be first upgraded to supergroup chats. If new chat members don't have access to old messages in the supergroup, then toggleSupergroupIsAllHistoryAvailable needs to be used first to change that
   discussion_chat_id: i64,
-  
+
 }
 
 impl RObject for SetChatDiscussionGroup {
@@ -21903,13 +21911,13 @@ pub struct RTDSetChatDiscussionGroupBuilder {
 impl RTDSetChatDiscussionGroupBuilder {
   pub fn build(&self) -> SetChatDiscussionGroup { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn discussion_chat_id(&mut self, discussion_chat_id: i64) -> &mut Self {
     self.inner.discussion_chat_id = discussion_chat_id;
     self
@@ -21941,7 +21949,7 @@ pub struct SetChatDraftMessage {
   chat_id: i64,
   /// New draft message; may be null
   draft_message: Option<DraftMessage>,
-  
+
 }
 
 impl RObject for SetChatDraftMessage {
@@ -21976,13 +21984,13 @@ pub struct RTDSetChatDraftMessageBuilder {
 impl RTDSetChatDraftMessageBuilder {
   pub fn build(&self) -> SetChatDraftMessage { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn draft_message<T: AsRef<DraftMessage>>(&mut self, draft_message: T) -> &mut Self {
     self.inner.draft_message = Some(draft_message.as_ref().clone());
     self
@@ -22014,7 +22022,7 @@ pub struct SetChatLocation {
   chat_id: i64,
   /// New location for the chat; must be valid and not null
   location: ChatLocation,
-  
+
 }
 
 impl RObject for SetChatLocation {
@@ -22049,13 +22057,13 @@ pub struct RTDSetChatLocationBuilder {
 impl RTDSetChatLocationBuilder {
   pub fn build(&self) -> SetChatLocation { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn location<T: AsRef<ChatLocation>>(&mut self, location: T) -> &mut Self {
     self.inner.location = location.as_ref().clone();
     self
@@ -22089,7 +22097,7 @@ pub struct SetChatMemberStatus {
   user_id: i64,
   /// The new status of the member in the chat
   status: ChatMemberStatus,
-  
+
 }
 
 impl RObject for SetChatMemberStatus {
@@ -22126,19 +22134,19 @@ pub struct RTDSetChatMemberStatusBuilder {
 impl RTDSetChatMemberStatusBuilder {
   pub fn build(&self) -> SetChatMemberStatus { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
   }
 
-   
+
   pub fn status<T: AsRef<ChatMemberStatus>>(&mut self, status: T) -> &mut Self {
     self.inner.status = status.as_ref().clone();
     self
@@ -22170,7 +22178,7 @@ pub struct SetChatNotificationSettings {
   chat_id: i64,
   /// New notification settings for the chat. If the chat is muted for more than 1 week, it is considered to be muted forever
   notification_settings: ChatNotificationSettings,
-  
+
 }
 
 impl RObject for SetChatNotificationSettings {
@@ -22205,13 +22213,13 @@ pub struct RTDSetChatNotificationSettingsBuilder {
 impl RTDSetChatNotificationSettingsBuilder {
   pub fn build(&self) -> SetChatNotificationSettings { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn notification_settings<T: AsRef<ChatNotificationSettings>>(&mut self, notification_settings: T) -> &mut Self {
     self.inner.notification_settings = notification_settings.as_ref().clone();
     self
@@ -22243,7 +22251,7 @@ pub struct SetChatPermissions {
   chat_id: i64,
   /// New non-administrator members permissions in the chat
   permissions: ChatPermissions,
-  
+
 }
 
 impl RObject for SetChatPermissions {
@@ -22278,13 +22286,13 @@ pub struct RTDSetChatPermissionsBuilder {
 impl RTDSetChatPermissionsBuilder {
   pub fn build(&self) -> SetChatPermissions { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn permissions<T: AsRef<ChatPermissions>>(&mut self, permissions: T) -> &mut Self {
     self.inner.permissions = permissions.as_ref().clone();
     self
@@ -22316,7 +22324,7 @@ pub struct SetChatPhoto {
   chat_id: i64,
   /// New chat photo. You can pass null to delete the chat photo
   photo: InputChatPhoto,
-  
+
 }
 
 impl RObject for SetChatPhoto {
@@ -22351,13 +22359,13 @@ pub struct RTDSetChatPhotoBuilder {
 impl RTDSetChatPhotoBuilder {
   pub fn build(&self) -> SetChatPhoto { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn photo<T: AsRef<InputChatPhoto>>(&mut self, photo: T) -> &mut Self {
     self.inner.photo = photo.as_ref().clone();
     self
@@ -22389,7 +22397,7 @@ pub struct SetChatSlowModeDelay {
   chat_id: i64,
   /// New slow mode delay for the chat; must be one of 0, 10, 30, 60, 300, 900, 3600
   slow_mode_delay: i64,
-  
+
 }
 
 impl RObject for SetChatSlowModeDelay {
@@ -22424,13 +22432,13 @@ pub struct RTDSetChatSlowModeDelayBuilder {
 impl RTDSetChatSlowModeDelayBuilder {
   pub fn build(&self) -> SetChatSlowModeDelay { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn slow_mode_delay(&mut self, slow_mode_delay: i64) -> &mut Self {
     self.inner.slow_mode_delay = slow_mode_delay;
     self
@@ -22462,7 +22470,7 @@ pub struct SetChatTitle {
   chat_id: i64,
   /// New title of the chat; 1-128 characters
   title: String,
-  
+
 }
 
 impl RObject for SetChatTitle {
@@ -22497,13 +22505,13 @@ pub struct RTDSetChatTitleBuilder {
 impl RTDSetChatTitleBuilder {
   pub fn build(&self) -> SetChatTitle { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn title<T: AsRef<str>>(&mut self, title: T) -> &mut Self {
     self.inner.title = title.as_ref().to_string();
     self
@@ -22533,7 +22541,7 @@ pub struct SetCommands {
   td_name: String,
   /// List of the bot's commands
   commands: Vec<BotCommand>,
-  
+
 }
 
 impl RObject for SetCommands {
@@ -22566,7 +22574,7 @@ pub struct RTDSetCommandsBuilder {
 impl RTDSetCommandsBuilder {
   pub fn build(&self) -> SetCommands { self.inner.clone() }
 
-   
+
   pub fn commands(&mut self, commands: Vec<BotCommand>) -> &mut Self {
     self.inner.commands = commands;
     self
@@ -22598,7 +22606,7 @@ pub struct SetCustomLanguagePack {
   info: LanguagePackInfo,
   /// Strings of the new language pack
   strings: Vec<LanguagePackString>,
-  
+
 }
 
 impl RObject for SetCustomLanguagePack {
@@ -22633,13 +22641,13 @@ pub struct RTDSetCustomLanguagePackBuilder {
 impl RTDSetCustomLanguagePackBuilder {
   pub fn build(&self) -> SetCustomLanguagePack { self.inner.clone() }
 
-   
+
   pub fn info<T: AsRef<LanguagePackInfo>>(&mut self, info: T) -> &mut Self {
     self.inner.info = info.as_ref().clone();
     self
   }
 
-   
+
   pub fn strings(&mut self, strings: Vec<LanguagePackString>) -> &mut Self {
     self.inner.strings = strings;
     self
@@ -22671,7 +22679,7 @@ pub struct SetCustomLanguagePackString {
   language_pack_id: String,
   /// New language pack string
   new_string: LanguagePackString,
-  
+
 }
 
 impl RObject for SetCustomLanguagePackString {
@@ -22706,13 +22714,13 @@ pub struct RTDSetCustomLanguagePackStringBuilder {
 impl RTDSetCustomLanguagePackStringBuilder {
   pub fn build(&self) -> SetCustomLanguagePackString { self.inner.clone() }
 
-   
+
   pub fn language_pack_id<T: AsRef<str>>(&mut self, language_pack_id: T) -> &mut Self {
     self.inner.language_pack_id = language_pack_id.as_ref().to_string();
     self
   }
 
-   
+
   pub fn new_string<T: AsRef<LanguagePackString>>(&mut self, new_string: T) -> &mut Self {
     self.inner.new_string = new_string.as_ref().clone();
     self
@@ -22742,7 +22750,7 @@ pub struct SetDatabaseEncryptionKey {
   td_name: String,
   /// New encryption key
   new_encryption_key: String,
-  
+
 }
 
 impl RObject for SetDatabaseEncryptionKey {
@@ -22775,7 +22783,7 @@ pub struct RTDSetDatabaseEncryptionKeyBuilder {
 impl RTDSetDatabaseEncryptionKeyBuilder {
   pub fn build(&self) -> SetDatabaseEncryptionKey { self.inner.clone() }
 
-   
+
   pub fn new_encryption_key<T: AsRef<str>>(&mut self, new_encryption_key: T) -> &mut Self {
     self.inner.new_encryption_key = new_encryption_key.as_ref().to_string();
     self
@@ -22809,7 +22817,7 @@ pub struct SetFileGenerationProgress {
   expected_size: i64,
   /// The number of bytes already generated
   local_prefix_size: i64,
-  
+
 }
 
 impl RObject for SetFileGenerationProgress {
@@ -22846,19 +22854,19 @@ pub struct RTDSetFileGenerationProgressBuilder {
 impl RTDSetFileGenerationProgressBuilder {
   pub fn build(&self) -> SetFileGenerationProgress { self.inner.clone() }
 
-   
+
   pub fn generation_id(&mut self, generation_id: isize) -> &mut Self {
     self.inner.generation_id = generation_id;
     self
   }
 
-   
+
   pub fn expected_size(&mut self, expected_size: i64) -> &mut Self {
     self.inner.expected_size = expected_size;
     self
   }
 
-   
+
   pub fn local_prefix_size(&mut self, local_prefix_size: i64) -> &mut Self {
     self.inner.local_prefix_size = local_prefix_size;
     self
@@ -22898,7 +22906,7 @@ pub struct SetGameScore {
   score: i64,
   /// Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
   force: bool,
-  
+
 }
 
 impl RObject for SetGameScore {
@@ -22941,37 +22949,37 @@ pub struct RTDSetGameScoreBuilder {
 impl RTDSetGameScoreBuilder {
   pub fn build(&self) -> SetGameScore { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
   }
 
-   
+
   pub fn edit_message(&mut self, edit_message: bool) -> &mut Self {
     self.inner.edit_message = edit_message;
     self
   }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
   }
 
-   
+
   pub fn score(&mut self, score: i64) -> &mut Self {
     self.inner.score = score;
     self
   }
 
-   
+
   pub fn force(&mut self, force: bool) -> &mut Self {
     self.inner.force = force;
     self
@@ -23009,7 +23017,7 @@ pub struct SetInlineGameScore {
   score: i64,
   /// Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
   force: bool,
-  
+
 }
 
 impl RObject for SetInlineGameScore {
@@ -23050,31 +23058,31 @@ pub struct RTDSetInlineGameScoreBuilder {
 impl RTDSetInlineGameScoreBuilder {
   pub fn build(&self) -> SetInlineGameScore { self.inner.clone() }
 
-   
+
   pub fn inline_message_id<T: AsRef<str>>(&mut self, inline_message_id: T) -> &mut Self {
     self.inner.inline_message_id = inline_message_id.as_ref().to_string();
     self
   }
 
-   
+
   pub fn edit_message(&mut self, edit_message: bool) -> &mut Self {
     self.inner.edit_message = edit_message;
     self
   }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
   }
 
-   
+
   pub fn score(&mut self, score: i64) -> &mut Self {
     self.inner.score = score;
     self
   }
 
-   
+
   pub fn force(&mut self, force: bool) -> &mut Self {
     self.inner.force = force;
     self
@@ -23104,7 +23112,7 @@ pub struct SetLocation {
   td_name: String,
   /// The new location of the user
   location: Location,
-  
+
 }
 
 impl RObject for SetLocation {
@@ -23137,7 +23145,7 @@ pub struct RTDSetLocationBuilder {
 impl RTDSetLocationBuilder {
   pub fn build(&self) -> SetLocation { self.inner.clone() }
 
-   
+
   pub fn location<T: AsRef<Location>>(&mut self, location: T) -> &mut Self {
     self.inner.location = location.as_ref().clone();
     self
@@ -23167,7 +23175,7 @@ pub struct SetLogStream {
   td_name: String,
   /// New log stream
   log_stream: LogStream,
-  
+
 }
 
 impl RObject for SetLogStream {
@@ -23200,7 +23208,7 @@ pub struct RTDSetLogStreamBuilder {
 impl RTDSetLogStreamBuilder {
   pub fn build(&self) -> SetLogStream { self.inner.clone() }
 
-   
+
   pub fn log_stream<T: AsRef<LogStream>>(&mut self, log_stream: T) -> &mut Self {
     self.inner.log_stream = log_stream.as_ref().clone();
     self
@@ -23232,7 +23240,7 @@ pub struct SetLogTagVerbosityLevel {
   tag: String,
   /// New verbosity level; 1-1024
   new_verbosity_level: i64,
-  
+
 }
 
 impl RObject for SetLogTagVerbosityLevel {
@@ -23267,13 +23275,13 @@ pub struct RTDSetLogTagVerbosityLevelBuilder {
 impl RTDSetLogTagVerbosityLevelBuilder {
   pub fn build(&self) -> SetLogTagVerbosityLevel { self.inner.clone() }
 
-   
+
   pub fn tag<T: AsRef<str>>(&mut self, tag: T) -> &mut Self {
     self.inner.tag = tag.as_ref().to_string();
     self
   }
 
-   
+
   pub fn new_verbosity_level(&mut self, new_verbosity_level: i64) -> &mut Self {
     self.inner.new_verbosity_level = new_verbosity_level;
     self
@@ -23303,7 +23311,7 @@ pub struct SetLogVerbosityLevel {
   td_name: String,
   /// New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings, value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1023 can be used to enable even more logging
   new_verbosity_level: i64,
-  
+
 }
 
 impl RObject for SetLogVerbosityLevel {
@@ -23336,7 +23344,7 @@ pub struct RTDSetLogVerbosityLevelBuilder {
 impl RTDSetLogVerbosityLevelBuilder {
   pub fn build(&self) -> SetLogVerbosityLevel { self.inner.clone() }
 
-   
+
   pub fn new_verbosity_level(&mut self, new_verbosity_level: i64) -> &mut Self {
     self.inner.new_verbosity_level = new_verbosity_level;
     self
@@ -23368,7 +23376,7 @@ pub struct SetName {
   first_name: String,
   /// The new value of the optional last name for the user; 0-64 characters
   last_name: String,
-  
+
 }
 
 impl RObject for SetName {
@@ -23403,13 +23411,13 @@ pub struct RTDSetNameBuilder {
 impl RTDSetNameBuilder {
   pub fn build(&self) -> SetName { self.inner.clone() }
 
-   
+
   pub fn first_name<T: AsRef<str>>(&mut self, first_name: T) -> &mut Self {
     self.inner.first_name = first_name.as_ref().to_string();
     self
   }
 
-   
+
   pub fn last_name<T: AsRef<str>>(&mut self, last_name: T) -> &mut Self {
     self.inner.last_name = last_name.as_ref().to_string();
     self
@@ -23439,7 +23447,7 @@ pub struct SetNetworkType {
   td_name: String,
   /// The new network type. By default, networkTypeOther
   #[serde(rename(serialize = "type", deserialize = "type"))] type_: NetworkType,
-  
+
 }
 
 impl RObject for SetNetworkType {
@@ -23472,7 +23480,7 @@ pub struct RTDSetNetworkTypeBuilder {
 impl RTDSetNetworkTypeBuilder {
   pub fn build(&self) -> SetNetworkType { self.inner.clone() }
 
-   
+
   pub fn type_<T: AsRef<NetworkType>>(&mut self, type_: T) -> &mut Self {
     self.inner.type_ = type_.as_ref().clone();
     self
@@ -23504,7 +23512,7 @@ pub struct SetOption {
   name: String,
   /// The new value of the option
   value: OptionValue,
-  
+
 }
 
 impl RObject for SetOption {
@@ -23539,13 +23547,13 @@ pub struct RTDSetOptionBuilder {
 impl RTDSetOptionBuilder {
   pub fn build(&self) -> SetOption { self.inner.clone() }
 
-   
+
   pub fn name<T: AsRef<str>>(&mut self, name: T) -> &mut Self {
     self.inner.name = name.as_ref().to_string();
     self
   }
 
-   
+
   pub fn value<T: AsRef<OptionValue>>(&mut self, value: T) -> &mut Self {
     self.inner.value = value.as_ref().clone();
     self
@@ -23577,7 +23585,7 @@ pub struct SetPassportElement {
   element: InputPassportElement,
   /// Password of the current user
   password: String,
-  
+
 }
 
 impl RObject for SetPassportElement {
@@ -23612,13 +23620,13 @@ pub struct RTDSetPassportElementBuilder {
 impl RTDSetPassportElementBuilder {
   pub fn build(&self) -> SetPassportElement { self.inner.clone() }
 
-   
+
   pub fn element<T: AsRef<InputPassportElement>>(&mut self, element: T) -> &mut Self {
     self.inner.element = element.as_ref().clone();
     self
   }
 
-   
+
   pub fn password<T: AsRef<str>>(&mut self, password: T) -> &mut Self {
     self.inner.password = password.as_ref().to_string();
     self
@@ -23650,7 +23658,7 @@ pub struct SetPassportElementErrors {
   user_id: i64,
   /// The errors
   errors: Vec<InputPassportElementError>,
-  
+
 }
 
 impl RObject for SetPassportElementErrors {
@@ -23685,13 +23693,13 @@ pub struct RTDSetPassportElementErrorsBuilder {
 impl RTDSetPassportElementErrorsBuilder {
   pub fn build(&self) -> SetPassportElementErrors { self.inner.clone() }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
   }
 
-   
+
   pub fn errors(&mut self, errors: Vec<InputPassportElementError>) -> &mut Self {
     self.inner.errors = errors;
     self
@@ -23729,7 +23737,7 @@ pub struct SetPassword {
   set_recovery_email_address: bool,
   /// New recovery email address; may be empty
   new_recovery_email_address: String,
-  
+
 }
 
 impl RObject for SetPassword {
@@ -23770,31 +23778,31 @@ pub struct RTDSetPasswordBuilder {
 impl RTDSetPasswordBuilder {
   pub fn build(&self) -> SetPassword { self.inner.clone() }
 
-   
+
   pub fn old_password<T: AsRef<str>>(&mut self, old_password: T) -> &mut Self {
     self.inner.old_password = old_password.as_ref().to_string();
     self
   }
 
-   
+
   pub fn new_password<T: AsRef<str>>(&mut self, new_password: T) -> &mut Self {
     self.inner.new_password = new_password.as_ref().to_string();
     self
   }
 
-   
+
   pub fn new_hint<T: AsRef<str>>(&mut self, new_hint: T) -> &mut Self {
     self.inner.new_hint = new_hint.as_ref().to_string();
     self
   }
 
-   
+
   pub fn set_recovery_email_address(&mut self, set_recovery_email_address: bool) -> &mut Self {
     self.inner.set_recovery_email_address = set_recovery_email_address;
     self
   }
 
-   
+
   pub fn new_recovery_email_address<T: AsRef<str>>(&mut self, new_recovery_email_address: T) -> &mut Self {
     self.inner.new_recovery_email_address = new_recovery_email_address.as_ref().to_string();
     self
@@ -23826,7 +23834,7 @@ pub struct SetPinnedChats {
   chat_list: ChatList,
   /// The new list of pinned chats
   chat_ids: Vec<i64>,
-  
+
 }
 
 impl RObject for SetPinnedChats {
@@ -23861,13 +23869,13 @@ pub struct RTDSetPinnedChatsBuilder {
 impl RTDSetPinnedChatsBuilder {
   pub fn build(&self) -> SetPinnedChats { self.inner.clone() }
 
-   
+
   pub fn chat_list<T: AsRef<ChatList>>(&mut self, chat_list: T) -> &mut Self {
     self.inner.chat_list = chat_list.as_ref().clone();
     self
   }
 
-   
+
   pub fn chat_ids(&mut self, chat_ids: Vec<i64>) -> &mut Self {
     self.inner.chat_ids = chat_ids;
     self
@@ -23901,7 +23909,7 @@ pub struct SetPollAnswer {
   message_id: i64,
   /// 0-based identifiers of answer options, chosen by the user. User can choose more than 1 answer option only is the poll allows multiple answers
   option_ids: Vec<i64>,
-  
+
 }
 
 impl RObject for SetPollAnswer {
@@ -23938,19 +23946,19 @@ pub struct RTDSetPollAnswerBuilder {
 impl RTDSetPollAnswerBuilder {
   pub fn build(&self) -> SetPollAnswer { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
   }
 
-   
+
   pub fn option_ids(&mut self, option_ids: Vec<i64>) -> &mut Self {
     self.inner.option_ids = option_ids;
     self
@@ -23980,7 +23988,7 @@ pub struct SetProfilePhoto {
   td_name: String,
   /// Profile photo to set
   photo: InputChatPhoto,
-  
+
 }
 
 impl RObject for SetProfilePhoto {
@@ -24013,7 +24021,7 @@ pub struct RTDSetProfilePhotoBuilder {
 impl RTDSetProfilePhotoBuilder {
   pub fn build(&self) -> SetProfilePhoto { self.inner.clone() }
 
-   
+
   pub fn photo<T: AsRef<InputChatPhoto>>(&mut self, photo: T) -> &mut Self {
     self.inner.photo = photo.as_ref().clone();
     self
@@ -24045,7 +24053,7 @@ pub struct SetRecoveryEmailAddress {
   password: String,
   /// New recovery email address
   new_recovery_email_address: String,
-  
+
 }
 
 impl RObject for SetRecoveryEmailAddress {
@@ -24080,13 +24088,13 @@ pub struct RTDSetRecoveryEmailAddressBuilder {
 impl RTDSetRecoveryEmailAddressBuilder {
   pub fn build(&self) -> SetRecoveryEmailAddress { self.inner.clone() }
 
-   
+
   pub fn password<T: AsRef<str>>(&mut self, password: T) -> &mut Self {
     self.inner.password = password.as_ref().to_string();
     self
   }
 
-   
+
   pub fn new_recovery_email_address<T: AsRef<str>>(&mut self, new_recovery_email_address: T) -> &mut Self {
     self.inner.new_recovery_email_address = new_recovery_email_address.as_ref().to_string();
     self
@@ -24118,7 +24126,7 @@ pub struct SetScopeNotificationSettings {
   scope: NotificationSettingsScope,
   /// The new notification settings for the given scope
   notification_settings: ScopeNotificationSettings,
-  
+
 }
 
 impl RObject for SetScopeNotificationSettings {
@@ -24153,13 +24161,13 @@ pub struct RTDSetScopeNotificationSettingsBuilder {
 impl RTDSetScopeNotificationSettingsBuilder {
   pub fn build(&self) -> SetScopeNotificationSettings { self.inner.clone() }
 
-   
+
   pub fn scope<T: AsRef<NotificationSettingsScope>>(&mut self, scope: T) -> &mut Self {
     self.inner.scope = scope.as_ref().clone();
     self
   }
 
-   
+
   pub fn notification_settings<T: AsRef<ScopeNotificationSettings>>(&mut self, notification_settings: T) -> &mut Self {
     self.inner.notification_settings = notification_settings.as_ref().clone();
     self
@@ -24191,7 +24199,7 @@ pub struct SetStickerPositionInSet {
   sticker: InputFile,
   /// New position of the sticker in the set, zero-based
   position: i64,
-  
+
 }
 
 impl RObject for SetStickerPositionInSet {
@@ -24226,13 +24234,13 @@ pub struct RTDSetStickerPositionInSetBuilder {
 impl RTDSetStickerPositionInSetBuilder {
   pub fn build(&self) -> SetStickerPositionInSet { self.inner.clone() }
 
-   
+
   pub fn sticker<T: AsRef<InputFile>>(&mut self, sticker: T) -> &mut Self {
     self.inner.sticker = sticker.as_ref().clone();
     self
   }
 
-   
+
   pub fn position(&mut self, position: i64) -> &mut Self {
     self.inner.position = position;
     self
@@ -24266,7 +24274,7 @@ pub struct SetStickerSetThumbnail {
   name: String,
   /// Thumbnail to set in PNG or TGS format. Animated thumbnail must be set for animated sticker sets and only for them. You can use a zero InputFileId to delete the thumbnail
   thumbnail: InputFile,
-  
+
 }
 
 impl RObject for SetStickerSetThumbnail {
@@ -24303,19 +24311,19 @@ pub struct RTDSetStickerSetThumbnailBuilder {
 impl RTDSetStickerSetThumbnailBuilder {
   pub fn build(&self) -> SetStickerSetThumbnail { self.inner.clone() }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
   }
 
-   
+
   pub fn name<T: AsRef<str>>(&mut self, name: T) -> &mut Self {
     self.inner.name = name.as_ref().to_string();
     self
   }
 
-   
+
   pub fn thumbnail<T: AsRef<InputFile>>(&mut self, thumbnail: T) -> &mut Self {
     self.inner.thumbnail = thumbnail.as_ref().clone();
     self
@@ -24347,7 +24355,7 @@ pub struct SetSupergroupStickerSet {
   supergroup_id: i64,
   /// New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set
   sticker_set_id: isize,
-  
+
 }
 
 impl RObject for SetSupergroupStickerSet {
@@ -24382,13 +24390,13 @@ pub struct RTDSetSupergroupStickerSetBuilder {
 impl RTDSetSupergroupStickerSetBuilder {
   pub fn build(&self) -> SetSupergroupStickerSet { self.inner.clone() }
 
-   
+
   pub fn supergroup_id(&mut self, supergroup_id: i64) -> &mut Self {
     self.inner.supergroup_id = supergroup_id;
     self
   }
 
-   
+
   pub fn sticker_set_id(&mut self, sticker_set_id: isize) -> &mut Self {
     self.inner.sticker_set_id = sticker_set_id;
     self
@@ -24420,7 +24428,7 @@ pub struct SetSupergroupUsername {
   supergroup_id: i64,
   /// New value of the username. Use an empty string to remove the username
   username: String,
-  
+
 }
 
 impl RObject for SetSupergroupUsername {
@@ -24455,13 +24463,13 @@ pub struct RTDSetSupergroupUsernameBuilder {
 impl RTDSetSupergroupUsernameBuilder {
   pub fn build(&self) -> SetSupergroupUsername { self.inner.clone() }
 
-   
+
   pub fn supergroup_id(&mut self, supergroup_id: i64) -> &mut Self {
     self.inner.supergroup_id = supergroup_id;
     self
   }
 
-   
+
   pub fn username<T: AsRef<str>>(&mut self, username: T) -> &mut Self {
     self.inner.username = username.as_ref().to_string();
     self
@@ -24491,7 +24499,7 @@ pub struct SetTdlibParameters {
   td_name: String,
   /// Parameters
   parameters: TdlibParameters,
-  
+
 }
 
 impl RObject for SetTdlibParameters {
@@ -24524,7 +24532,7 @@ pub struct RTDSetTdlibParametersBuilder {
 impl RTDSetTdlibParametersBuilder {
   pub fn build(&self) -> SetTdlibParameters { self.inner.clone() }
 
-   
+
   pub fn parameters<T: AsRef<TdlibParameters>>(&mut self, parameters: T) -> &mut Self {
     self.inner.parameters = parameters.as_ref().clone();
     self
@@ -24556,7 +24564,7 @@ pub struct SetUserPrivacySettingRules {
   setting: UserPrivacySetting,
   /// The new privacy rules
   rules: UserPrivacySettingRules,
-  
+
 }
 
 impl RObject for SetUserPrivacySettingRules {
@@ -24591,13 +24599,13 @@ pub struct RTDSetUserPrivacySettingRulesBuilder {
 impl RTDSetUserPrivacySettingRulesBuilder {
   pub fn build(&self) -> SetUserPrivacySettingRules { self.inner.clone() }
 
-   
+
   pub fn setting<T: AsRef<UserPrivacySetting>>(&mut self, setting: T) -> &mut Self {
     self.inner.setting = setting.as_ref().clone();
     self
   }
 
-   
+
   pub fn rules<T: AsRef<UserPrivacySettingRules>>(&mut self, rules: T) -> &mut Self {
     self.inner.rules = rules.as_ref().clone();
     self
@@ -24627,7 +24635,7 @@ pub struct SetUsername {
   td_name: String,
   /// The new value of the username. Use an empty string to remove the username
   username: String,
-  
+
 }
 
 impl RObject for SetUsername {
@@ -24660,7 +24668,7 @@ pub struct RTDSetUsernameBuilder {
 impl RTDSetUsernameBuilder {
   pub fn build(&self) -> SetUsername { self.inner.clone() }
 
-   
+
   pub fn username<T: AsRef<str>>(&mut self, username: T) -> &mut Self {
     self.inner.username = username.as_ref().to_string();
     self
@@ -24690,7 +24698,7 @@ pub struct SharePhoneNumber {
   td_name: String,
   /// Identifier of the user with whom to share the phone number. The user must be a mutual contact
   user_id: i64,
-  
+
 }
 
 impl RObject for SharePhoneNumber {
@@ -24723,7 +24731,7 @@ pub struct RTDSharePhoneNumberBuilder {
 impl RTDSharePhoneNumberBuilder {
   pub fn build(&self) -> SharePhoneNumber { self.inner.clone() }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
@@ -24757,7 +24765,7 @@ pub struct StopPoll {
   message_id: i64,
   /// The new message reply markup; for bots only
   reply_markup: ReplyMarkup,
-  
+
 }
 
 impl RObject for StopPoll {
@@ -24794,19 +24802,19 @@ pub struct RTDStopPollBuilder {
 impl RTDStopPollBuilder {
   pub fn build(&self) -> StopPoll { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
   }
 
-   
+
   pub fn reply_markup<T: AsRef<ReplyMarkup>>(&mut self, reply_markup: T) -> &mut Self {
     self.inner.reply_markup = reply_markup.as_ref().clone();
     self
@@ -24836,7 +24844,7 @@ pub struct SynchronizeLanguagePack {
   td_name: String,
   /// Language pack identifier
   language_pack_id: String,
-  
+
 }
 
 impl RObject for SynchronizeLanguagePack {
@@ -24869,7 +24877,7 @@ pub struct RTDSynchronizeLanguagePackBuilder {
 impl RTDSynchronizeLanguagePackBuilder {
   pub fn build(&self) -> SynchronizeLanguagePack { self.inner.clone() }
 
-   
+
   pub fn language_pack_id<T: AsRef<str>>(&mut self, language_pack_id: T) -> &mut Self {
     self.inner.language_pack_id = language_pack_id.as_ref().to_string();
     self
@@ -24897,7 +24905,7 @@ pub struct TerminateAllOtherSessions {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for TerminateAllOtherSessions {
@@ -24952,7 +24960,7 @@ pub struct TerminateSession {
   td_name: String,
   /// Session identifier
   session_id: isize,
-  
+
 }
 
 impl RObject for TerminateSession {
@@ -24985,7 +24993,7 @@ pub struct RTDTerminateSessionBuilder {
 impl RTDTerminateSessionBuilder {
   pub fn build(&self) -> TerminateSession { self.inner.clone() }
 
-   
+
   pub fn session_id(&mut self, session_id: isize) -> &mut Self {
     self.inner.session_id = session_id;
     self
@@ -25015,7 +25023,7 @@ pub struct TestCallBytes {
   td_name: String,
   /// Bytes to return
   x: String,
-  
+
 }
 
 impl RObject for TestCallBytes {
@@ -25048,7 +25056,7 @@ pub struct RTDTestCallBytesBuilder {
 impl RTDTestCallBytesBuilder {
   pub fn build(&self) -> TestCallBytes { self.inner.clone() }
 
-   
+
   pub fn x<T: AsRef<str>>(&mut self, x: T) -> &mut Self {
     self.inner.x = x.as_ref().to_string();
     self
@@ -25076,7 +25084,7 @@ pub struct TestCallEmpty {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for TestCallEmpty {
@@ -25131,7 +25139,7 @@ pub struct TestCallString {
   td_name: String,
   /// String to return
   x: String,
-  
+
 }
 
 impl RObject for TestCallString {
@@ -25164,7 +25172,7 @@ pub struct RTDTestCallStringBuilder {
 impl RTDTestCallStringBuilder {
   pub fn build(&self) -> TestCallString { self.inner.clone() }
 
-   
+
   pub fn x<T: AsRef<str>>(&mut self, x: T) -> &mut Self {
     self.inner.x = x.as_ref().to_string();
     self
@@ -25194,7 +25202,7 @@ pub struct TestCallVectorInt {
   td_name: String,
   /// Vector of numbers to return
   x: Vec<i64>,
-  
+
 }
 
 impl RObject for TestCallVectorInt {
@@ -25227,7 +25235,7 @@ pub struct RTDTestCallVectorIntBuilder {
 impl RTDTestCallVectorIntBuilder {
   pub fn build(&self) -> TestCallVectorInt { self.inner.clone() }
 
-   
+
   pub fn x(&mut self, x: Vec<i64>) -> &mut Self {
     self.inner.x = x;
     self
@@ -25257,7 +25265,7 @@ pub struct TestCallVectorIntObject {
   td_name: String,
   /// Vector of objects to return
   x: Vec<TestInt>,
-  
+
 }
 
 impl RObject for TestCallVectorIntObject {
@@ -25290,7 +25298,7 @@ pub struct RTDTestCallVectorIntObjectBuilder {
 impl RTDTestCallVectorIntObjectBuilder {
   pub fn build(&self) -> TestCallVectorIntObject { self.inner.clone() }
 
-   
+
   pub fn x(&mut self, x: Vec<TestInt>) -> &mut Self {
     self.inner.x = x;
     self
@@ -25320,7 +25328,7 @@ pub struct TestCallVectorString {
   td_name: String,
   /// Vector of strings to return
   x: Vec<String>,
-  
+
 }
 
 impl RObject for TestCallVectorString {
@@ -25353,7 +25361,7 @@ pub struct RTDTestCallVectorStringBuilder {
 impl RTDTestCallVectorStringBuilder {
   pub fn build(&self) -> TestCallVectorString { self.inner.clone() }
 
-   
+
   pub fn x(&mut self, x: Vec<String>) -> &mut Self {
     self.inner.x = x;
     self
@@ -25383,7 +25391,7 @@ pub struct TestCallVectorStringObject {
   td_name: String,
   /// Vector of objects to return
   x: Vec<TestString>,
-  
+
 }
 
 impl RObject for TestCallVectorStringObject {
@@ -25416,7 +25424,7 @@ pub struct RTDTestCallVectorStringObjectBuilder {
 impl RTDTestCallVectorStringObjectBuilder {
   pub fn build(&self) -> TestCallVectorStringObject { self.inner.clone() }
 
-   
+
   pub fn x(&mut self, x: Vec<TestString>) -> &mut Self {
     self.inner.x = x;
     self
@@ -25444,7 +25452,7 @@ pub struct TestGetDifference {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for TestGetDifference {
@@ -25497,7 +25505,7 @@ pub struct TestNetwork {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for TestNetwork {
@@ -25560,7 +25568,7 @@ pub struct TestProxy {
   dc_id: i64,
   /// The maximum overall timeout for the request
   timeout: f32,
-  
+
 }
 
 impl RObject for TestProxy {
@@ -25601,31 +25609,31 @@ pub struct RTDTestProxyBuilder {
 impl RTDTestProxyBuilder {
   pub fn build(&self) -> TestProxy { self.inner.clone() }
 
-   
+
   pub fn server<T: AsRef<str>>(&mut self, server: T) -> &mut Self {
     self.inner.server = server.as_ref().to_string();
     self
   }
 
-   
+
   pub fn port(&mut self, port: i64) -> &mut Self {
     self.inner.port = port;
     self
   }
 
-   
+
   pub fn type_<T: AsRef<ProxyType>>(&mut self, type_: T) -> &mut Self {
     self.inner.type_ = type_.as_ref().clone();
     self
   }
 
-   
+
   pub fn dc_id(&mut self, dc_id: i64) -> &mut Self {
     self.inner.dc_id = dc_id;
     self
   }
 
-   
+
   pub fn timeout(&mut self, timeout: f32) -> &mut Self {
     self.inner.timeout = timeout;
     self
@@ -25655,7 +25663,7 @@ pub struct TestReturnError {
   td_name: String,
   /// The error to be returned
   error: Error,
-  
+
 }
 
 impl RObject for TestReturnError {
@@ -25688,7 +25696,7 @@ pub struct RTDTestReturnErrorBuilder {
 impl RTDTestReturnErrorBuilder {
   pub fn build(&self) -> TestReturnError { self.inner.clone() }
 
-   
+
   pub fn error<T: AsRef<Error>>(&mut self, error: T) -> &mut Self {
     self.inner.error = error.as_ref().clone();
     self
@@ -25718,7 +25726,7 @@ pub struct TestSquareInt {
   td_name: String,
   /// Number to square
   x: i64,
-  
+
 }
 
 impl RObject for TestSquareInt {
@@ -25751,7 +25759,7 @@ pub struct RTDTestSquareIntBuilder {
 impl RTDTestSquareIntBuilder {
   pub fn build(&self) -> TestSquareInt { self.inner.clone() }
 
-   
+
   pub fn x(&mut self, x: i64) -> &mut Self {
     self.inner.x = x;
     self
@@ -25779,7 +25787,7 @@ pub struct TestUseUpdate {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  
+
 }
 
 impl RObject for TestUseUpdate {
@@ -25836,7 +25844,7 @@ pub struct ToggleChatDefaultDisableNotification {
   chat_id: i64,
   /// New value of default_disable_notification
   default_disable_notification: bool,
-  
+
 }
 
 impl RObject for ToggleChatDefaultDisableNotification {
@@ -25871,13 +25879,13 @@ pub struct RTDToggleChatDefaultDisableNotificationBuilder {
 impl RTDToggleChatDefaultDisableNotificationBuilder {
   pub fn build(&self) -> ToggleChatDefaultDisableNotification { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn default_disable_notification(&mut self, default_disable_notification: bool) -> &mut Self {
     self.inner.default_disable_notification = default_disable_notification;
     self
@@ -25909,7 +25917,7 @@ pub struct ToggleChatIsMarkedAsUnread {
   chat_id: i64,
   /// New value of is_marked_as_unread
   is_marked_as_unread: bool,
-  
+
 }
 
 impl RObject for ToggleChatIsMarkedAsUnread {
@@ -25944,13 +25952,13 @@ pub struct RTDToggleChatIsMarkedAsUnreadBuilder {
 impl RTDToggleChatIsMarkedAsUnreadBuilder {
   pub fn build(&self) -> ToggleChatIsMarkedAsUnread { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn is_marked_as_unread(&mut self, is_marked_as_unread: bool) -> &mut Self {
     self.inner.is_marked_as_unread = is_marked_as_unread;
     self
@@ -25984,7 +25992,7 @@ pub struct ToggleChatIsPinned {
   chat_id: i64,
   /// True, if the chat is pinned
   is_pinned: bool,
-  
+
 }
 
 impl RObject for ToggleChatIsPinned {
@@ -26021,19 +26029,19 @@ pub struct RTDToggleChatIsPinnedBuilder {
 impl RTDToggleChatIsPinnedBuilder {
   pub fn build(&self) -> ToggleChatIsPinned { self.inner.clone() }
 
-   
+
   pub fn chat_list<T: AsRef<ChatList>>(&mut self, chat_list: T) -> &mut Self {
     self.inner.chat_list = chat_list.as_ref().clone();
     self
   }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn is_pinned(&mut self, is_pinned: bool) -> &mut Self {
     self.inner.is_pinned = is_pinned;
     self
@@ -26065,7 +26073,7 @@ pub struct ToggleSupergroupIsAllHistoryAvailable {
   supergroup_id: i64,
   /// The new value of is_all_history_available
   is_all_history_available: bool,
-  
+
 }
 
 impl RObject for ToggleSupergroupIsAllHistoryAvailable {
@@ -26100,13 +26108,13 @@ pub struct RTDToggleSupergroupIsAllHistoryAvailableBuilder {
 impl RTDToggleSupergroupIsAllHistoryAvailableBuilder {
   pub fn build(&self) -> ToggleSupergroupIsAllHistoryAvailable { self.inner.clone() }
 
-   
+
   pub fn supergroup_id(&mut self, supergroup_id: i64) -> &mut Self {
     self.inner.supergroup_id = supergroup_id;
     self
   }
 
-   
+
   pub fn is_all_history_available(&mut self, is_all_history_available: bool) -> &mut Self {
     self.inner.is_all_history_available = is_all_history_available;
     self
@@ -26138,7 +26146,7 @@ pub struct ToggleSupergroupSignMessages {
   supergroup_id: i64,
   /// New value of sign_messages
   sign_messages: bool,
-  
+
 }
 
 impl RObject for ToggleSupergroupSignMessages {
@@ -26173,13 +26181,13 @@ pub struct RTDToggleSupergroupSignMessagesBuilder {
 impl RTDToggleSupergroupSignMessagesBuilder {
   pub fn build(&self) -> ToggleSupergroupSignMessages { self.inner.clone() }
 
-   
+
   pub fn supergroup_id(&mut self, supergroup_id: i64) -> &mut Self {
     self.inner.supergroup_id = supergroup_id;
     self
   }
 
-   
+
   pub fn sign_messages(&mut self, sign_messages: bool) -> &mut Self {
     self.inner.sign_messages = sign_messages;
     self
@@ -26213,7 +26221,7 @@ pub struct TransferChatOwnership {
   user_id: i64,
   /// The password of the current user
   password: String,
-  
+
 }
 
 impl RObject for TransferChatOwnership {
@@ -26250,19 +26258,19 @@ pub struct RTDTransferChatOwnershipBuilder {
 impl RTDTransferChatOwnershipBuilder {
   pub fn build(&self) -> TransferChatOwnership { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
   }
 
-   
+
   pub fn password<T: AsRef<str>>(&mut self, password: T) -> &mut Self {
     self.inner.password = password.as_ref().to_string();
     self
@@ -26292,7 +26300,7 @@ pub struct UnblockUser {
   td_name: String,
   /// User identifier
   user_id: i64,
-  
+
 }
 
 impl RObject for UnblockUser {
@@ -26325,7 +26333,7 @@ pub struct RTDUnblockUserBuilder {
 impl RTDUnblockUserBuilder {
   pub fn build(&self) -> UnblockUser { self.inner.clone() }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
@@ -26355,7 +26363,7 @@ pub struct UnpinChatMessage {
   td_name: String,
   /// Identifier of the chat
   chat_id: i64,
-  
+
 }
 
 impl RObject for UnpinChatMessage {
@@ -26388,7 +26396,7 @@ pub struct RTDUnpinChatMessageBuilder {
 impl RTDUnpinChatMessageBuilder {
   pub fn build(&self) -> UnpinChatMessage { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
@@ -26418,7 +26426,7 @@ pub struct UpgradeBasicGroupChatToSupergroupChat {
   td_name: String,
   /// Identifier of the chat to upgrade
   chat_id: i64,
-  
+
 }
 
 impl RObject for UpgradeBasicGroupChatToSupergroupChat {
@@ -26451,7 +26459,7 @@ pub struct RTDUpgradeBasicGroupChatToSupergroupChatBuilder {
 impl RTDUpgradeBasicGroupChatToSupergroupChatBuilder {
   pub fn build(&self) -> UpgradeBasicGroupChatToSupergroupChat { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
@@ -26485,7 +26493,7 @@ pub struct UploadFile {
   file_type: FileType,
   /// Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which uploadFile was called will be uploaded first
   priority: i64,
-  
+
 }
 
 impl RObject for UploadFile {
@@ -26522,19 +26530,19 @@ pub struct RTDUploadFileBuilder {
 impl RTDUploadFileBuilder {
   pub fn build(&self) -> UploadFile { self.inner.clone() }
 
-   
+
   pub fn file<T: AsRef<InputFile>>(&mut self, file: T) -> &mut Self {
     self.inner.file = file.as_ref().clone();
     self
   }
 
-   
+
   pub fn file_type<T: AsRef<FileType>>(&mut self, file_type: T) -> &mut Self {
     self.inner.file_type = file_type.as_ref().clone();
     self
   }
 
-   
+
   pub fn priority(&mut self, priority: i64) -> &mut Self {
     self.inner.priority = priority;
     self
@@ -26566,7 +26574,7 @@ pub struct UploadStickerFile {
   user_id: i64,
   /// PNG image with the sticker; must be up to 512 KB in size and fit in 512x512 square
   png_sticker: InputFile,
-  
+
 }
 
 impl RObject for UploadStickerFile {
@@ -26601,13 +26609,13 @@ pub struct RTDUploadStickerFileBuilder {
 impl RTDUploadStickerFileBuilder {
   pub fn build(&self) -> UploadStickerFile { self.inner.clone() }
 
-   
+
   pub fn user_id(&mut self, user_id: i64) -> &mut Self {
     self.inner.user_id = user_id;
     self
   }
 
-   
+
   pub fn png_sticker<T: AsRef<InputFile>>(&mut self, png_sticker: T) -> &mut Self {
     self.inner.png_sticker = png_sticker.as_ref().clone();
     self
@@ -26643,7 +26651,7 @@ pub struct ValidateOrderInfo {
   order_info: OrderInfo,
   /// True, if the order information can be saved
   allow_save: bool,
-  
+
 }
 
 impl RObject for ValidateOrderInfo {
@@ -26682,25 +26690,25 @@ pub struct RTDValidateOrderInfoBuilder {
 impl RTDValidateOrderInfoBuilder {
   pub fn build(&self) -> ValidateOrderInfo { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_id(&mut self, message_id: i64) -> &mut Self {
     self.inner.message_id = message_id;
     self
   }
 
-   
+
   pub fn order_info<T: AsRef<OrderInfo>>(&mut self, order_info: T) -> &mut Self {
     self.inner.order_info = order_info.as_ref().clone();
     self
   }
 
-   
+
   pub fn allow_save(&mut self, allow_save: bool) -> &mut Self {
     self.inner.allow_save = allow_save;
     self
@@ -26734,7 +26742,7 @@ pub struct ViewMessages {
   message_ids: Vec<i64>,
   /// True, if messages in closed chats should be marked as read
   force_read: bool,
-  
+
 }
 
 impl RObject for ViewMessages {
@@ -26771,19 +26779,19 @@ pub struct RTDViewMessagesBuilder {
 impl RTDViewMessagesBuilder {
   pub fn build(&self) -> ViewMessages { self.inner.clone() }
 
-   
+
   pub fn chat_id(&mut self, chat_id: i64) -> &mut Self {
     self.inner.chat_id = chat_id;
     self
   }
 
-   
+
   pub fn message_ids(&mut self, message_ids: Vec<i64>) -> &mut Self {
     self.inner.message_ids = message_ids;
     self
   }
 
-   
+
   pub fn force_read(&mut self, force_read: bool) -> &mut Self {
     self.inner.force_read = force_read;
     self
@@ -26813,7 +26821,7 @@ pub struct ViewTrendingStickerSets {
   td_name: String,
   /// Identifiers of viewed trending sticker sets
   sticker_set_ids: Vec<isize>,
-  
+
 }
 
 impl RObject for ViewTrendingStickerSets {
@@ -26846,7 +26854,7 @@ pub struct RTDViewTrendingStickerSetsBuilder {
 impl RTDViewTrendingStickerSetsBuilder {
   pub fn build(&self) -> ViewTrendingStickerSets { self.inner.clone() }
 
-   
+
   pub fn sticker_set_ids(&mut self, sticker_set_ids: Vec<isize>) -> &mut Self {
     self.inner.sticker_set_ids = sticker_set_ids;
     self
@@ -26880,7 +26888,7 @@ pub struct WriteGeneratedFilePart {
   offset: i64,
   /// The data to write
   data: String,
-  
+
 }
 
 impl RObject for WriteGeneratedFilePart {
@@ -26917,19 +26925,19 @@ pub struct RTDWriteGeneratedFilePartBuilder {
 impl RTDWriteGeneratedFilePartBuilder {
   pub fn build(&self) -> WriteGeneratedFilePart { self.inner.clone() }
 
-   
+
   pub fn generation_id(&mut self, generation_id: isize) -> &mut Self {
     self.inner.generation_id = generation_id;
     self
   }
 
-   
+
   pub fn offset(&mut self, offset: i64) -> &mut Self {
     self.inner.offset = offset;
     self
   }
 
-   
+
   pub fn data<T: AsRef<str>>(&mut self, data: T) -> &mut Self {
     self.inner.data = data.as_ref().to_string();
     self
