@@ -1,6 +1,7 @@
 
 use crate::types::*;
 use crate::errors::*;
+use uuid;
 
 
 
@@ -8078,6 +8079,7 @@ impl GetChat {
   pub fn builder() -> RTDGetChatBuilder {
     let mut inner = GetChat::default();
     inner.td_name = "getChat".to_string();
+    inner.extra = uuid::Uuid::new_v4().to_string();
     RTDGetChatBuilder { inner }
   }
 
