@@ -1,6 +1,7 @@
 
 use crate::types::*;
 use crate::errors::*;
+use uuid::Uuid;
 
 
 
@@ -18,8 +19,10 @@ pub trait TDInputInlineQueryResult: Debug + RObject {}
 #[serde(untagged)]
 pub enum InputInlineQueryResult {
   #[doc(hidden)] _Default(()),
-  /// Represents a link to an animated GIF or an animated (i.e. without sound) H.264/MPEG-4 AVC video
-  Animation(InputInlineQueryResultAnimation),
+  /// Represents a link to an animated GIF
+  AnimatedGif(InputInlineQueryResultAnimatedGif),
+  /// Represents a link to an animated (i.e. without sound) H.264/MPEG-4 AVC video
+  AnimatedMpeg4(InputInlineQueryResultAnimatedMpeg4),
   /// Represents a link to an article or web page
   Article(InputInlineQueryResultArticle),
   /// Represents a link to an MP3 audio file
@@ -54,7 +57,8 @@ impl<'de> Deserialize<'de> for InputInlineQueryResult {
     use serde::de::Error;
     rtd_enum_deserialize!(
       InputInlineQueryResult,
-      (inputInlineQueryResultAnimation, Animation);
+      (inputInlineQueryResultAnimatedGif, AnimatedGif);
+      (inputInlineQueryResultAnimatedMpeg4, AnimatedMpeg4);
       (inputInlineQueryResultArticle, Article);
       (inputInlineQueryResultAudio, Audio);
       (inputInlineQueryResultContact, Contact);
@@ -74,7 +78,8 @@ impl<'de> Deserialize<'de> for InputInlineQueryResult {
 impl RObject for InputInlineQueryResult {
   #[doc(hidden)] fn td_name(&self) -> &'static str {
     match self {
-      InputInlineQueryResult::Animation(t) => t.td_name(),
+      InputInlineQueryResult::AnimatedGif(t) => t.td_name(),
+      InputInlineQueryResult::AnimatedMpeg4(t) => t.td_name(),
       InputInlineQueryResult::Article(t) => t.td_name(),
       InputInlineQueryResult::Audio(t) => t.td_name(),
       InputInlineQueryResult::Contact(t) => t.td_name(),
@@ -90,6 +95,25 @@ impl RObject for InputInlineQueryResult {
       _ => "-1",
     }
   }
+  #[doc(hidden)] fn extra(&self) -> Option<String> {
+    match self {
+      InputInlineQueryResult::AnimatedGif(t) => t.extra(),
+      InputInlineQueryResult::AnimatedMpeg4(t) => t.extra(),
+      InputInlineQueryResult::Article(t) => t.extra(),
+      InputInlineQueryResult::Audio(t) => t.extra(),
+      InputInlineQueryResult::Contact(t) => t.extra(),
+      InputInlineQueryResult::Document(t) => t.extra(),
+      InputInlineQueryResult::Game(t) => t.extra(),
+      InputInlineQueryResult::Location(t) => t.extra(),
+      InputInlineQueryResult::Photo(t) => t.extra(),
+      InputInlineQueryResult::Sticker(t) => t.extra(),
+      InputInlineQueryResult::Venue(t) => t.extra(),
+      InputInlineQueryResult::Video(t) => t.extra(),
+      InputInlineQueryResult::VoiceNote(t) => t.extra(),
+
+      _ => None,
+    }
+  }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -97,7 +121,8 @@ impl InputInlineQueryResult {
   pub fn from_json<S: AsRef<str>>(json: S) -> RTDResult<Self> { Ok(serde_json::from_str(json.as_ref())?) }
   #[doc(hidden)] pub fn _is_default(&self) -> bool { if let InputInlineQueryResult::_Default(_) = self { true } else { false } }
 
-  pub fn is_animation(&self) -> bool { if let InputInlineQueryResult::Animation(_) = self { true } else { false } }
+  pub fn is_animated_gif(&self) -> bool { if let InputInlineQueryResult::AnimatedGif(_) = self { true } else { false } }
+  pub fn is_animated_mpeg4(&self) -> bool { if let InputInlineQueryResult::AnimatedMpeg4(_) = self { true } else { false } }
   pub fn is_article(&self) -> bool { if let InputInlineQueryResult::Article(_) = self { true } else { false } }
   pub fn is_audio(&self) -> bool { if let InputInlineQueryResult::Audio(_) = self { true } else { false } }
   pub fn is_contact(&self) -> bool { if let InputInlineQueryResult::Contact(_) = self { true } else { false } }
@@ -110,7 +135,8 @@ impl InputInlineQueryResult {
   pub fn is_video(&self) -> bool { if let InputInlineQueryResult::Video(_) = self { true } else { false } }
   pub fn is_voice_note(&self) -> bool { if let InputInlineQueryResult::VoiceNote(_) = self { true } else { false } }
 
-  pub fn on_animation<F: FnOnce(&InputInlineQueryResultAnimation)>(&self, fnc: F) -> &Self { if let InputInlineQueryResult::Animation(t) = self { fnc(t) }; self }
+  pub fn on_animated_gif<F: FnOnce(&InputInlineQueryResultAnimatedGif)>(&self, fnc: F) -> &Self { if let InputInlineQueryResult::AnimatedGif(t) = self { fnc(t) }; self }
+  pub fn on_animated_mpeg4<F: FnOnce(&InputInlineQueryResultAnimatedMpeg4)>(&self, fnc: F) -> &Self { if let InputInlineQueryResult::AnimatedMpeg4(t) = self { fnc(t) }; self }
   pub fn on_article<F: FnOnce(&InputInlineQueryResultArticle)>(&self, fnc: F) -> &Self { if let InputInlineQueryResult::Article(t) = self { fnc(t) }; self }
   pub fn on_audio<F: FnOnce(&InputInlineQueryResultAudio)>(&self, fnc: F) -> &Self { if let InputInlineQueryResult::Audio(t) = self { fnc(t) }; self }
   pub fn on_contact<F: FnOnce(&InputInlineQueryResultContact)>(&self, fnc: F) -> &Self { if let InputInlineQueryResult::Contact(t) = self { fnc(t) }; self }
@@ -123,7 +149,8 @@ impl InputInlineQueryResult {
   pub fn on_video<F: FnOnce(&InputInlineQueryResultVideo)>(&self, fnc: F) -> &Self { if let InputInlineQueryResult::Video(t) = self { fnc(t) }; self }
   pub fn on_voice_note<F: FnOnce(&InputInlineQueryResultVoiceNote)>(&self, fnc: F) -> &Self { if let InputInlineQueryResult::VoiceNote(t) = self { fnc(t) }; self }
 
-  pub fn as_animation(&self) -> Option<&InputInlineQueryResultAnimation> { if let InputInlineQueryResult::Animation(t) = self { return Some(t) } None }
+  pub fn as_animated_gif(&self) -> Option<&InputInlineQueryResultAnimatedGif> { if let InputInlineQueryResult::AnimatedGif(t) = self { return Some(t) } None }
+  pub fn as_animated_mpeg4(&self) -> Option<&InputInlineQueryResultAnimatedMpeg4> { if let InputInlineQueryResult::AnimatedMpeg4(t) = self { return Some(t) } None }
   pub fn as_article(&self) -> Option<&InputInlineQueryResultArticle> { if let InputInlineQueryResult::Article(t) = self { return Some(t) } None }
   pub fn as_audio(&self) -> Option<&InputInlineQueryResultAudio> { if let InputInlineQueryResult::Audio(t) = self { return Some(t) } None }
   pub fn as_contact(&self) -> Option<&InputInlineQueryResultContact> { if let InputInlineQueryResult::Contact(t) = self { return Some(t) } None }
@@ -138,7 +165,9 @@ impl InputInlineQueryResult {
 
 
 
-  pub fn animation<T: AsRef<InputInlineQueryResultAnimation>>(t: T) -> Self { InputInlineQueryResult::Animation(t.as_ref().clone()) }
+  pub fn animated_gif<T: AsRef<InputInlineQueryResultAnimatedGif>>(t: T) -> Self { InputInlineQueryResult::AnimatedGif(t.as_ref().clone()) }
+
+  pub fn animated_mpeg4<T: AsRef<InputInlineQueryResultAnimatedMpeg4>>(t: T) -> Self { InputInlineQueryResult::AnimatedMpeg4(t.as_ref().clone()) }
 
   pub fn article<T: AsRef<InputInlineQueryResultArticle>>(t: T) -> Self { InputInlineQueryResult::Article(t.as_ref().clone()) }
 
@@ -174,30 +203,29 @@ impl AsRef<InputInlineQueryResult> for InputInlineQueryResult {
 
 
 
-/// Represents a link to an animated GIF or an animated (i.e. without sound) H.264/MPEG-4 AVC video
+/// Represents a link to an animated GIF
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
-pub struct InputInlineQueryResultAnimation {
+pub struct InputInlineQueryResultAnimatedGif {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// Unique identifier of the query result
   id: String,
   /// Title of the query result
   title: String,
-  /// URL of the result thumbnail (JPEG, GIF, or MPEG4), if it exists
+  /// URL of the static result thumbnail (JPEG or GIF), if it exists
   thumbnail_url: String,
-  /// MIME type of the video thumbnail. If non-empty, must be one of "image/jpeg", "image/gif" and "video/mp4"
-  thumbnail_mime_type: String,
-  /// The URL of the video file (file size must not exceed 1MB)
-  video_url: String,
-  /// MIME type of the video file. Must be one of "image/gif" and "video/mp4"
-  video_mime_type: String,
-  /// Duration of the video, in seconds
-  video_duration: i64,
-  /// Width of the video
-  video_width: i64,
-  /// Height of the video
-  video_height: i64,
+  /// The URL of the GIF-file (file size must not exceed 1MB)
+  gif_url: String,
+  /// Duration of the GIF, in seconds
+  gif_duration: i64,
+  /// Width of the GIF
+  gif_width: i64,
+  /// Height of the GIF
+  gif_height: i64,
   /// The message reply markup. Must be of type replyMarkupInlineKeyboard or null
   reply_markup: ReplyMarkup,
   /// The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageAnimation, InputMessageLocation, InputMessageVenue or InputMessageContact
@@ -205,22 +233,24 @@ pub struct InputInlineQueryResultAnimation {
   
 }
 
-impl RObject for InputInlineQueryResultAnimation {
-  #[doc(hidden)] fn td_name(&self) -> &'static str { "inputInlineQueryResultAnimation" }
+impl RObject for InputInlineQueryResultAnimatedGif {
+  #[doc(hidden)] fn td_name(&self) -> &'static str { "inputInlineQueryResultAnimatedGif" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
 
-impl TDInputInlineQueryResult for InputInlineQueryResultAnimation {}
+impl TDInputInlineQueryResult for InputInlineQueryResultAnimatedGif {}
 
 
 
-impl InputInlineQueryResultAnimation {
+impl InputInlineQueryResultAnimatedGif {
   pub fn from_json<S: AsRef<str>>(json: S) -> RTDResult<Self> { Ok(serde_json::from_str(json.as_ref())?) }
-  pub fn builder() -> RTDInputInlineQueryResultAnimationBuilder {
-    let mut inner = InputInlineQueryResultAnimation::default();
-    inner.td_name = "inputInlineQueryResultAnimation".to_string();
-    RTDInputInlineQueryResultAnimationBuilder { inner }
+  pub fn builder() -> RTDInputInlineQueryResultAnimatedGifBuilder {
+    let mut inner = InputInlineQueryResultAnimatedGif::default();
+    inner.td_name = "inputInlineQueryResultAnimatedGif".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
+    RTDInputInlineQueryResultAnimatedGifBuilder { inner }
   }
 
   pub fn id(&self) -> &String { &self.id }
@@ -229,17 +259,13 @@ impl InputInlineQueryResultAnimation {
 
   pub fn thumbnail_url(&self) -> &String { &self.thumbnail_url }
 
-  pub fn thumbnail_mime_type(&self) -> &String { &self.thumbnail_mime_type }
+  pub fn gif_url(&self) -> &String { &self.gif_url }
 
-  pub fn video_url(&self) -> &String { &self.video_url }
+  pub fn gif_duration(&self) -> i64 { self.gif_duration }
 
-  pub fn video_mime_type(&self) -> &String { &self.video_mime_type }
+  pub fn gif_width(&self) -> i64 { self.gif_width }
 
-  pub fn video_duration(&self) -> i64 { self.video_duration }
-
-  pub fn video_width(&self) -> i64 { self.video_width }
-
-  pub fn video_height(&self) -> i64 { self.video_height }
+  pub fn gif_height(&self) -> i64 { self.gif_height }
 
   pub fn reply_markup(&self) -> &ReplyMarkup { &self.reply_markup }
 
@@ -248,12 +274,12 @@ impl InputInlineQueryResultAnimation {
 }
 
 #[doc(hidden)]
-pub struct RTDInputInlineQueryResultAnimationBuilder {
-  inner: InputInlineQueryResultAnimation
+pub struct RTDInputInlineQueryResultAnimatedGifBuilder {
+  inner: InputInlineQueryResultAnimatedGif
 }
 
-impl RTDInputInlineQueryResultAnimationBuilder {
-  pub fn build(&self) -> InputInlineQueryResultAnimation { self.inner.clone() }
+impl RTDInputInlineQueryResultAnimatedGifBuilder {
+  pub fn build(&self) -> InputInlineQueryResultAnimatedGif { self.inner.clone() }
 
    
   pub fn id<T: AsRef<str>>(&mut self, id: T) -> &mut Self {
@@ -274,38 +300,26 @@ impl RTDInputInlineQueryResultAnimationBuilder {
   }
 
    
-  pub fn thumbnail_mime_type<T: AsRef<str>>(&mut self, thumbnail_mime_type: T) -> &mut Self {
-    self.inner.thumbnail_mime_type = thumbnail_mime_type.as_ref().to_string();
+  pub fn gif_url<T: AsRef<str>>(&mut self, gif_url: T) -> &mut Self {
+    self.inner.gif_url = gif_url.as_ref().to_string();
     self
   }
 
    
-  pub fn video_url<T: AsRef<str>>(&mut self, video_url: T) -> &mut Self {
-    self.inner.video_url = video_url.as_ref().to_string();
+  pub fn gif_duration(&mut self, gif_duration: i64) -> &mut Self {
+    self.inner.gif_duration = gif_duration;
     self
   }
 
    
-  pub fn video_mime_type<T: AsRef<str>>(&mut self, video_mime_type: T) -> &mut Self {
-    self.inner.video_mime_type = video_mime_type.as_ref().to_string();
+  pub fn gif_width(&mut self, gif_width: i64) -> &mut Self {
+    self.inner.gif_width = gif_width;
     self
   }
 
    
-  pub fn video_duration(&mut self, video_duration: i64) -> &mut Self {
-    self.inner.video_duration = video_duration;
-    self
-  }
-
-   
-  pub fn video_width(&mut self, video_width: i64) -> &mut Self {
-    self.inner.video_width = video_width;
-    self
-  }
-
-   
-  pub fn video_height(&mut self, video_height: i64) -> &mut Self {
-    self.inner.video_height = video_height;
+  pub fn gif_height(&mut self, gif_height: i64) -> &mut Self {
+    self.inner.gif_height = gif_height;
     self
   }
 
@@ -323,12 +337,160 @@ impl RTDInputInlineQueryResultAnimationBuilder {
 
 }
 
-impl AsRef<InputInlineQueryResultAnimation> for InputInlineQueryResultAnimation {
-  fn as_ref(&self) -> &InputInlineQueryResultAnimation { self }
+impl AsRef<InputInlineQueryResultAnimatedGif> for InputInlineQueryResultAnimatedGif {
+  fn as_ref(&self) -> &InputInlineQueryResultAnimatedGif { self }
 }
 
-impl AsRef<InputInlineQueryResultAnimation> for RTDInputInlineQueryResultAnimationBuilder {
-  fn as_ref(&self) -> &InputInlineQueryResultAnimation { &self.inner }
+impl AsRef<InputInlineQueryResultAnimatedGif> for RTDInputInlineQueryResultAnimatedGifBuilder {
+  fn as_ref(&self) -> &InputInlineQueryResultAnimatedGif { &self.inner }
+}
+
+
+
+
+
+
+
+/// Represents a link to an animated (i.e. without sound) H.264/MPEG-4 AVC video
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+pub struct InputInlineQueryResultAnimatedMpeg4 {
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@type", deserialize = "@type"))]
+  td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
+  /// Unique identifier of the query result
+  id: String,
+  /// Title of the result
+  title: String,
+  /// URL of the static result thumbnail (JPEG or GIF), if it exists
+  thumbnail_url: String,
+  /// The URL of the MPEG4-file (file size must not exceed 1MB)
+  mpeg4_url: String,
+  /// Duration of the video, in seconds
+  mpeg4_duration: i64,
+  /// Width of the video
+  mpeg4_width: i64,
+  /// Height of the video
+  mpeg4_height: i64,
+  /// The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+  reply_markup: ReplyMarkup,
+  /// The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageAnimation, InputMessageLocation, InputMessageVenue or InputMessageContact
+  input_message_content: InputMessageContent,
+  
+}
+
+impl RObject for InputInlineQueryResultAnimatedMpeg4 {
+  #[doc(hidden)] fn td_name(&self) -> &'static str { "inputInlineQueryResultAnimatedMpeg4" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
+  fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
+}
+
+
+impl TDInputInlineQueryResult for InputInlineQueryResultAnimatedMpeg4 {}
+
+
+
+impl InputInlineQueryResultAnimatedMpeg4 {
+  pub fn from_json<S: AsRef<str>>(json: S) -> RTDResult<Self> { Ok(serde_json::from_str(json.as_ref())?) }
+  pub fn builder() -> RTDInputInlineQueryResultAnimatedMpeg4Builder {
+    let mut inner = InputInlineQueryResultAnimatedMpeg4::default();
+    inner.td_name = "inputInlineQueryResultAnimatedMpeg4".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
+    RTDInputInlineQueryResultAnimatedMpeg4Builder { inner }
+  }
+
+  pub fn id(&self) -> &String { &self.id }
+
+  pub fn title(&self) -> &String { &self.title }
+
+  pub fn thumbnail_url(&self) -> &String { &self.thumbnail_url }
+
+  pub fn mpeg4_url(&self) -> &String { &self.mpeg4_url }
+
+  pub fn mpeg4_duration(&self) -> i64 { self.mpeg4_duration }
+
+  pub fn mpeg4_width(&self) -> i64 { self.mpeg4_width }
+
+  pub fn mpeg4_height(&self) -> i64 { self.mpeg4_height }
+
+  pub fn reply_markup(&self) -> &ReplyMarkup { &self.reply_markup }
+
+  pub fn input_message_content(&self) -> &InputMessageContent { &self.input_message_content }
+
+}
+
+#[doc(hidden)]
+pub struct RTDInputInlineQueryResultAnimatedMpeg4Builder {
+  inner: InputInlineQueryResultAnimatedMpeg4
+}
+
+impl RTDInputInlineQueryResultAnimatedMpeg4Builder {
+  pub fn build(&self) -> InputInlineQueryResultAnimatedMpeg4 { self.inner.clone() }
+
+   
+  pub fn id<T: AsRef<str>>(&mut self, id: T) -> &mut Self {
+    self.inner.id = id.as_ref().to_string();
+    self
+  }
+
+   
+  pub fn title<T: AsRef<str>>(&mut self, title: T) -> &mut Self {
+    self.inner.title = title.as_ref().to_string();
+    self
+  }
+
+   
+  pub fn thumbnail_url<T: AsRef<str>>(&mut self, thumbnail_url: T) -> &mut Self {
+    self.inner.thumbnail_url = thumbnail_url.as_ref().to_string();
+    self
+  }
+
+   
+  pub fn mpeg4_url<T: AsRef<str>>(&mut self, mpeg4_url: T) -> &mut Self {
+    self.inner.mpeg4_url = mpeg4_url.as_ref().to_string();
+    self
+  }
+
+   
+  pub fn mpeg4_duration(&mut self, mpeg4_duration: i64) -> &mut Self {
+    self.inner.mpeg4_duration = mpeg4_duration;
+    self
+  }
+
+   
+  pub fn mpeg4_width(&mut self, mpeg4_width: i64) -> &mut Self {
+    self.inner.mpeg4_width = mpeg4_width;
+    self
+  }
+
+   
+  pub fn mpeg4_height(&mut self, mpeg4_height: i64) -> &mut Self {
+    self.inner.mpeg4_height = mpeg4_height;
+    self
+  }
+
+   
+  pub fn reply_markup<T: AsRef<ReplyMarkup>>(&mut self, reply_markup: T) -> &mut Self {
+    self.inner.reply_markup = reply_markup.as_ref().clone();
+    self
+  }
+
+   
+  pub fn input_message_content<T: AsRef<InputMessageContent>>(&mut self, input_message_content: T) -> &mut Self {
+    self.inner.input_message_content = input_message_content.as_ref().clone();
+    self
+  }
+
+}
+
+impl AsRef<InputInlineQueryResultAnimatedMpeg4> for InputInlineQueryResultAnimatedMpeg4 {
+  fn as_ref(&self) -> &InputInlineQueryResultAnimatedMpeg4 { self }
+}
+
+impl AsRef<InputInlineQueryResultAnimatedMpeg4> for RTDInputInlineQueryResultAnimatedMpeg4Builder {
+  fn as_ref(&self) -> &InputInlineQueryResultAnimatedMpeg4 { &self.inner }
 }
 
 
@@ -343,6 +505,9 @@ pub struct InputInlineQueryResultArticle {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// Unique identifier of the query result
   id: String,
   /// URL of the result, if it exists
@@ -368,6 +533,7 @@ pub struct InputInlineQueryResultArticle {
 
 impl RObject for InputInlineQueryResultArticle {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "inputInlineQueryResultArticle" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -381,6 +547,7 @@ impl InputInlineQueryResultArticle {
   pub fn builder() -> RTDInputInlineQueryResultArticleBuilder {
     let mut inner = InputInlineQueryResultArticle::default();
     inner.td_name = "inputInlineQueryResultArticle".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDInputInlineQueryResultArticleBuilder { inner }
   }
 
@@ -496,6 +663,9 @@ pub struct InputInlineQueryResultAudio {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// Unique identifier of the query result
   id: String,
   /// Title of the audio file
@@ -515,6 +685,7 @@ pub struct InputInlineQueryResultAudio {
 
 impl RObject for InputInlineQueryResultAudio {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "inputInlineQueryResultAudio" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -528,6 +699,7 @@ impl InputInlineQueryResultAudio {
   pub fn builder() -> RTDInputInlineQueryResultAudioBuilder {
     let mut inner = InputInlineQueryResultAudio::default();
     inner.td_name = "inputInlineQueryResultAudio".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDInputInlineQueryResultAudioBuilder { inner }
   }
 
@@ -619,6 +791,9 @@ pub struct InputInlineQueryResultContact {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// Unique identifier of the query result
   id: String,
   /// User contact
@@ -638,6 +813,7 @@ pub struct InputInlineQueryResultContact {
 
 impl RObject for InputInlineQueryResultContact {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "inputInlineQueryResultContact" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -651,6 +827,7 @@ impl InputInlineQueryResultContact {
   pub fn builder() -> RTDInputInlineQueryResultContactBuilder {
     let mut inner = InputInlineQueryResultContact::default();
     inner.td_name = "inputInlineQueryResultContact".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDInputInlineQueryResultContactBuilder { inner }
   }
 
@@ -742,6 +919,9 @@ pub struct InputInlineQueryResultDocument {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// Unique identifier of the query result
   id: String,
   /// Title of the resulting file
@@ -767,6 +947,7 @@ pub struct InputInlineQueryResultDocument {
 
 impl RObject for InputInlineQueryResultDocument {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "inputInlineQueryResultDocument" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -780,6 +961,7 @@ impl InputInlineQueryResultDocument {
   pub fn builder() -> RTDInputInlineQueryResultDocumentBuilder {
     let mut inner = InputInlineQueryResultDocument::default();
     inner.td_name = "inputInlineQueryResultDocument".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDInputInlineQueryResultDocumentBuilder { inner }
   }
 
@@ -895,6 +1077,9 @@ pub struct InputInlineQueryResultGame {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// Unique identifier of the query result
   id: String,
   /// Short name of the game
@@ -906,6 +1091,7 @@ pub struct InputInlineQueryResultGame {
 
 impl RObject for InputInlineQueryResultGame {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "inputInlineQueryResultGame" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -919,6 +1105,7 @@ impl InputInlineQueryResultGame {
   pub fn builder() -> RTDInputInlineQueryResultGameBuilder {
     let mut inner = InputInlineQueryResultGame::default();
     inner.td_name = "inputInlineQueryResultGame".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDInputInlineQueryResultGameBuilder { inner }
   }
 
@@ -978,6 +1165,9 @@ pub struct InputInlineQueryResultLocation {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// Unique identifier of the query result
   id: String,
   /// Location result
@@ -1001,6 +1191,7 @@ pub struct InputInlineQueryResultLocation {
 
 impl RObject for InputInlineQueryResultLocation {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "inputInlineQueryResultLocation" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -1014,6 +1205,7 @@ impl InputInlineQueryResultLocation {
   pub fn builder() -> RTDInputInlineQueryResultLocationBuilder {
     let mut inner = InputInlineQueryResultLocation::default();
     inner.td_name = "inputInlineQueryResultLocation".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDInputInlineQueryResultLocationBuilder { inner }
   }
 
@@ -1121,6 +1313,9 @@ pub struct InputInlineQueryResultPhoto {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// Unique identifier of the query result
   id: String,
   /// Title of the result, if known
@@ -1144,6 +1339,7 @@ pub struct InputInlineQueryResultPhoto {
 
 impl RObject for InputInlineQueryResultPhoto {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "inputInlineQueryResultPhoto" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -1157,6 +1353,7 @@ impl InputInlineQueryResultPhoto {
   pub fn builder() -> RTDInputInlineQueryResultPhotoBuilder {
     let mut inner = InputInlineQueryResultPhoto::default();
     inner.td_name = "inputInlineQueryResultPhoto".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDInputInlineQueryResultPhotoBuilder { inner }
   }
 
@@ -1264,6 +1461,9 @@ pub struct InputInlineQueryResultSticker {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// Unique identifier of the query result
   id: String,
   /// URL of the sticker thumbnail, if it exists
@@ -1283,6 +1483,7 @@ pub struct InputInlineQueryResultSticker {
 
 impl RObject for InputInlineQueryResultSticker {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "inputInlineQueryResultSticker" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -1296,6 +1497,7 @@ impl InputInlineQueryResultSticker {
   pub fn builder() -> RTDInputInlineQueryResultStickerBuilder {
     let mut inner = InputInlineQueryResultSticker::default();
     inner.td_name = "inputInlineQueryResultSticker".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDInputInlineQueryResultStickerBuilder { inner }
   }
 
@@ -1387,6 +1589,9 @@ pub struct InputInlineQueryResultVenue {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// Unique identifier of the query result
   id: String,
   /// Venue result
@@ -1406,6 +1611,7 @@ pub struct InputInlineQueryResultVenue {
 
 impl RObject for InputInlineQueryResultVenue {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "inputInlineQueryResultVenue" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -1419,6 +1625,7 @@ impl InputInlineQueryResultVenue {
   pub fn builder() -> RTDInputInlineQueryResultVenueBuilder {
     let mut inner = InputInlineQueryResultVenue::default();
     inner.td_name = "inputInlineQueryResultVenue".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDInputInlineQueryResultVenueBuilder { inner }
   }
 
@@ -1510,6 +1717,9 @@ pub struct InputInlineQueryResultVideo {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// Unique identifier of the query result
   id: String,
   /// Title of the result
@@ -1537,6 +1747,7 @@ pub struct InputInlineQueryResultVideo {
 
 impl RObject for InputInlineQueryResultVideo {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "inputInlineQueryResultVideo" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -1550,6 +1761,7 @@ impl InputInlineQueryResultVideo {
   pub fn builder() -> RTDInputInlineQueryResultVideoBuilder {
     let mut inner = InputInlineQueryResultVideo::default();
     inner.td_name = "inputInlineQueryResultVideo".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDInputInlineQueryResultVideoBuilder { inner }
   }
 
@@ -1673,6 +1885,9 @@ pub struct InputInlineQueryResultVoiceNote {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// Unique identifier of the query result
   id: String,
   /// Title of the voice note
@@ -1690,6 +1905,7 @@ pub struct InputInlineQueryResultVoiceNote {
 
 impl RObject for InputInlineQueryResultVoiceNote {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "inputInlineQueryResultVoiceNote" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -1703,6 +1919,7 @@ impl InputInlineQueryResultVoiceNote {
   pub fn builder() -> RTDInputInlineQueryResultVoiceNoteBuilder {
     let mut inner = InputInlineQueryResultVoiceNote::default();
     inner.td_name = "inputInlineQueryResultVoiceNote".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDInputInlineQueryResultVoiceNoteBuilder { inner }
   }
 

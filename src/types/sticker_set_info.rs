@@ -1,6 +1,7 @@
 
 use crate::types::*;
 use crate::errors::*;
+use uuid::Uuid;
 
 
 
@@ -11,14 +12,17 @@ pub struct StickerSetInfo {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// Identifier of the sticker set
   id: isize,
   /// Title of the sticker set
   title: String,
   /// Name of the sticker set
   name: String,
-  /// Sticker set thumbnail in WEBP or TGS format with width and height 100; may be null
-  thumbnail: Option<Thumbnail>,
+  /// Sticker set thumbnail in WEBP format with width and height 100; may be null
+  thumbnail: Option<PhotoSize>,
   /// True, if the sticker set has been installed by current user
   is_installed: bool,
   /// True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously
@@ -33,13 +37,14 @@ pub struct StickerSetInfo {
   is_viewed: bool,
   /// Total number of stickers in the set
   size: i64,
-  /// Contains up to the first 5 stickers from the set, depending on the context. If the application needs more stickers the full set should be requested
+  /// Contains up to the first 5 stickers from the set, depending on the context. If the client needs more stickers the full set should be requested
   covers: Vec<Sticker>,
   
 }
 
 impl RObject for StickerSetInfo {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "stickerSetInfo" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -50,6 +55,7 @@ impl StickerSetInfo {
   pub fn builder() -> RTDStickerSetInfoBuilder {
     let mut inner = StickerSetInfo::default();
     inner.td_name = "stickerSetInfo".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDStickerSetInfoBuilder { inner }
   }
 
@@ -59,7 +65,7 @@ impl StickerSetInfo {
 
   pub fn name(&self) -> &String { &self.name }
 
-  pub fn thumbnail(&self) -> &Option<Thumbnail> { &self.thumbnail }
+  pub fn thumbnail(&self) -> &Option<PhotoSize> { &self.thumbnail }
 
   pub fn is_installed(&self) -> bool { self.is_installed }
 
@@ -106,7 +112,7 @@ impl RTDStickerSetInfoBuilder {
   }
 
    
-  pub fn thumbnail<T: AsRef<Thumbnail>>(&mut self, thumbnail: T) -> &mut Self {
+  pub fn thumbnail<T: AsRef<PhotoSize>>(&mut self, thumbnail: T) -> &mut Self {
     self.inner.thumbnail = Some(thumbnail.as_ref().clone());
     self
   }

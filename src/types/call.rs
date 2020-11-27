@@ -1,6 +1,7 @@
 
 use crate::types::*;
 use crate::errors::*;
+use uuid::Uuid;
 
 
 
@@ -11,14 +12,15 @@ pub struct Call {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// Call identifier, not persistent
   id: i64,
   /// Peer user identifier
   user_id: i64,
   /// True, if the call is outgoing
   is_outgoing: bool,
-  /// True, if the call is a video call
-  is_video: bool,
   /// Call state
   state: CallState,
   
@@ -26,6 +28,7 @@ pub struct Call {
 
 impl RObject for Call {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "call" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -36,6 +39,7 @@ impl Call {
   pub fn builder() -> RTDCallBuilder {
     let mut inner = Call::default();
     inner.td_name = "call".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDCallBuilder { inner }
   }
 
@@ -44,8 +48,6 @@ impl Call {
   pub fn user_id(&self) -> i64 { self.user_id }
 
   pub fn is_outgoing(&self) -> bool { self.is_outgoing }
-
-  pub fn is_video(&self) -> bool { self.is_video }
 
   pub fn state(&self) -> &CallState { &self.state }
 
@@ -74,12 +76,6 @@ impl RTDCallBuilder {
    
   pub fn is_outgoing(&mut self, is_outgoing: bool) -> &mut Self {
     self.inner.is_outgoing = is_outgoing;
-    self
-  }
-
-   
-  pub fn is_video(&mut self, is_video: bool) -> &mut Self {
-    self.inner.is_video = is_video;
     self
   }
 

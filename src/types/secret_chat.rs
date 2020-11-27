@@ -1,6 +1,7 @@
 
 use crate::types::*;
 use crate::errors::*;
+use uuid::Uuid;
 
 
 
@@ -11,6 +12,9 @@ pub struct SecretChat {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// Secret chat identifier
   id: i64,
   /// Identifier of the chat partner
@@ -23,13 +27,14 @@ pub struct SecretChat {
   ttl: i64,
   /// Hash of the currently used key for comparison with the hash of the chat partner's key. This is a string of 36 little-endian bytes, which must be split into groups of 2 bits, each denoting a pixel of one of 4 colors FFFFFF, D5E6F3, 2D5775, and 2F99C9. The pixels must be used to make a 12x12 square image filled from left to right, top to bottom. Alternatively, the first 32 bytes of the hash can be converted to the hexadecimal format and printed as 32 2-digit hex numbers
   key_hash: String,
-  /// Secret chat layer; determines features supported by the chat partner's application. Video notes are supported if the layer >= 66; nested text entities and underline and strikethrough entities are supported if the layer >= 101
+  /// Secret chat layer; determines features supported by the other client. Video notes are supported if the layer >= 66; nested text entities and underline and strikethrough entities are supported if the layer >= 101
   layer: i64,
   
 }
 
 impl RObject for SecretChat {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "secretChat" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -40,6 +45,7 @@ impl SecretChat {
   pub fn builder() -> RTDSecretChatBuilder {
     let mut inner = SecretChat::default();
     inner.td_name = "secretChat".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDSecretChatBuilder { inner }
   }
 

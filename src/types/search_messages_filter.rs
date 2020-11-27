@@ -1,6 +1,7 @@
 
 use crate::types::*;
 use crate::errors::*;
+use uuid::Uuid;
 
 
 
@@ -30,8 +31,6 @@ pub enum SearchMessagesFilter {
   Document(SearchMessagesFilterDocument),
   /// Returns all found messages, no filter is applied
   Empty(SearchMessagesFilterEmpty),
-  /// Returns only failed to send messages. This filter can be used only if the message database is used
-  FailedToSend(SearchMessagesFilterFailedToSend),
   /// Returns only messages with mentions of the current user, or messages that are replies to their messages
   Mention(SearchMessagesFilterMention),
   /// Returns only incoming call messages with missed/declined discard reasons
@@ -70,7 +69,6 @@ impl<'de> Deserialize<'de> for SearchMessagesFilter {
       (searchMessagesFilterChatPhoto, ChatPhoto);
       (searchMessagesFilterDocument, Document);
       (searchMessagesFilterEmpty, Empty);
-      (searchMessagesFilterFailedToSend, FailedToSend);
       (searchMessagesFilterMention, Mention);
       (searchMessagesFilterMissedCall, MissedCall);
       (searchMessagesFilterPhoto, Photo);
@@ -95,7 +93,6 @@ impl RObject for SearchMessagesFilter {
       SearchMessagesFilter::ChatPhoto(t) => t.td_name(),
       SearchMessagesFilter::Document(t) => t.td_name(),
       SearchMessagesFilter::Empty(t) => t.td_name(),
-      SearchMessagesFilter::FailedToSend(t) => t.td_name(),
       SearchMessagesFilter::Mention(t) => t.td_name(),
       SearchMessagesFilter::MissedCall(t) => t.td_name(),
       SearchMessagesFilter::Photo(t) => t.td_name(),
@@ -108,6 +105,28 @@ impl RObject for SearchMessagesFilter {
       SearchMessagesFilter::VoiceNote(t) => t.td_name(),
 
       _ => "-1",
+    }
+  }
+  #[doc(hidden)] fn extra(&self) -> Option<String> {
+    match self {
+      SearchMessagesFilter::Animation(t) => t.extra(),
+      SearchMessagesFilter::Audio(t) => t.extra(),
+      SearchMessagesFilter::Call(t) => t.extra(),
+      SearchMessagesFilter::ChatPhoto(t) => t.extra(),
+      SearchMessagesFilter::Document(t) => t.extra(),
+      SearchMessagesFilter::Empty(t) => t.extra(),
+      SearchMessagesFilter::Mention(t) => t.extra(),
+      SearchMessagesFilter::MissedCall(t) => t.extra(),
+      SearchMessagesFilter::Photo(t) => t.extra(),
+      SearchMessagesFilter::PhotoAndVideo(t) => t.extra(),
+      SearchMessagesFilter::UnreadMention(t) => t.extra(),
+      SearchMessagesFilter::Url(t) => t.extra(),
+      SearchMessagesFilter::Video(t) => t.extra(),
+      SearchMessagesFilter::VideoNote(t) => t.extra(),
+      SearchMessagesFilter::VoiceAndVideoNote(t) => t.extra(),
+      SearchMessagesFilter::VoiceNote(t) => t.extra(),
+
+      _ => None,
     }
   }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
@@ -123,7 +142,6 @@ impl SearchMessagesFilter {
   pub fn is_chat_photo(&self) -> bool { if let SearchMessagesFilter::ChatPhoto(_) = self { true } else { false } }
   pub fn is_document(&self) -> bool { if let SearchMessagesFilter::Document(_) = self { true } else { false } }
   pub fn is_empty(&self) -> bool { if let SearchMessagesFilter::Empty(_) = self { true } else { false } }
-  pub fn is_failed_to_send(&self) -> bool { if let SearchMessagesFilter::FailedToSend(_) = self { true } else { false } }
   pub fn is_mention(&self) -> bool { if let SearchMessagesFilter::Mention(_) = self { true } else { false } }
   pub fn is_missed_call(&self) -> bool { if let SearchMessagesFilter::MissedCall(_) = self { true } else { false } }
   pub fn is_photo(&self) -> bool { if let SearchMessagesFilter::Photo(_) = self { true } else { false } }
@@ -141,7 +159,6 @@ impl SearchMessagesFilter {
   pub fn on_chat_photo<F: FnOnce(&SearchMessagesFilterChatPhoto)>(&self, fnc: F) -> &Self { if let SearchMessagesFilter::ChatPhoto(t) = self { fnc(t) }; self }
   pub fn on_document<F: FnOnce(&SearchMessagesFilterDocument)>(&self, fnc: F) -> &Self { if let SearchMessagesFilter::Document(t) = self { fnc(t) }; self }
   pub fn on_empty<F: FnOnce(&SearchMessagesFilterEmpty)>(&self, fnc: F) -> &Self { if let SearchMessagesFilter::Empty(t) = self { fnc(t) }; self }
-  pub fn on_failed_to_send<F: FnOnce(&SearchMessagesFilterFailedToSend)>(&self, fnc: F) -> &Self { if let SearchMessagesFilter::FailedToSend(t) = self { fnc(t) }; self }
   pub fn on_mention<F: FnOnce(&SearchMessagesFilterMention)>(&self, fnc: F) -> &Self { if let SearchMessagesFilter::Mention(t) = self { fnc(t) }; self }
   pub fn on_missed_call<F: FnOnce(&SearchMessagesFilterMissedCall)>(&self, fnc: F) -> &Self { if let SearchMessagesFilter::MissedCall(t) = self { fnc(t) }; self }
   pub fn on_photo<F: FnOnce(&SearchMessagesFilterPhoto)>(&self, fnc: F) -> &Self { if let SearchMessagesFilter::Photo(t) = self { fnc(t) }; self }
@@ -159,7 +176,6 @@ impl SearchMessagesFilter {
   pub fn as_chat_photo(&self) -> Option<&SearchMessagesFilterChatPhoto> { if let SearchMessagesFilter::ChatPhoto(t) = self { return Some(t) } None }
   pub fn as_document(&self) -> Option<&SearchMessagesFilterDocument> { if let SearchMessagesFilter::Document(t) = self { return Some(t) } None }
   pub fn as_empty(&self) -> Option<&SearchMessagesFilterEmpty> { if let SearchMessagesFilter::Empty(t) = self { return Some(t) } None }
-  pub fn as_failed_to_send(&self) -> Option<&SearchMessagesFilterFailedToSend> { if let SearchMessagesFilter::FailedToSend(t) = self { return Some(t) } None }
   pub fn as_mention(&self) -> Option<&SearchMessagesFilterMention> { if let SearchMessagesFilter::Mention(t) = self { return Some(t) } None }
   pub fn as_missed_call(&self) -> Option<&SearchMessagesFilterMissedCall> { if let SearchMessagesFilter::MissedCall(t) = self { return Some(t) } None }
   pub fn as_photo(&self) -> Option<&SearchMessagesFilterPhoto> { if let SearchMessagesFilter::Photo(t) = self { return Some(t) } None }
@@ -184,8 +200,6 @@ impl SearchMessagesFilter {
   pub fn document<T: AsRef<SearchMessagesFilterDocument>>(t: T) -> Self { SearchMessagesFilter::Document(t.as_ref().clone()) }
 
   pub fn empty<T: AsRef<SearchMessagesFilterEmpty>>(t: T) -> Self { SearchMessagesFilter::Empty(t.as_ref().clone()) }
-
-  pub fn failed_to_send<T: AsRef<SearchMessagesFilterFailedToSend>>(t: T) -> Self { SearchMessagesFilter::FailedToSend(t.as_ref().clone()) }
 
   pub fn mention<T: AsRef<SearchMessagesFilterMention>>(t: T) -> Self { SearchMessagesFilter::Mention(t.as_ref().clone()) }
 
@@ -225,11 +239,15 @@ pub struct SearchMessagesFilterAnimation {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   
 }
 
 impl RObject for SearchMessagesFilterAnimation {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "searchMessagesFilterAnimation" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -243,6 +261,7 @@ impl SearchMessagesFilterAnimation {
   pub fn builder() -> RTDSearchMessagesFilterAnimationBuilder {
     let mut inner = SearchMessagesFilterAnimation::default();
     inner.td_name = "searchMessagesFilterAnimation".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDSearchMessagesFilterAnimationBuilder { inner }
   }
 
@@ -278,11 +297,15 @@ pub struct SearchMessagesFilterAudio {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   
 }
 
 impl RObject for SearchMessagesFilterAudio {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "searchMessagesFilterAudio" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -296,6 +319,7 @@ impl SearchMessagesFilterAudio {
   pub fn builder() -> RTDSearchMessagesFilterAudioBuilder {
     let mut inner = SearchMessagesFilterAudio::default();
     inner.td_name = "searchMessagesFilterAudio".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDSearchMessagesFilterAudioBuilder { inner }
   }
 
@@ -331,11 +355,15 @@ pub struct SearchMessagesFilterCall {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   
 }
 
 impl RObject for SearchMessagesFilterCall {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "searchMessagesFilterCall" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -349,6 +377,7 @@ impl SearchMessagesFilterCall {
   pub fn builder() -> RTDSearchMessagesFilterCallBuilder {
     let mut inner = SearchMessagesFilterCall::default();
     inner.td_name = "searchMessagesFilterCall".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDSearchMessagesFilterCallBuilder { inner }
   }
 
@@ -384,11 +413,15 @@ pub struct SearchMessagesFilterChatPhoto {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   
 }
 
 impl RObject for SearchMessagesFilterChatPhoto {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "searchMessagesFilterChatPhoto" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -402,6 +435,7 @@ impl SearchMessagesFilterChatPhoto {
   pub fn builder() -> RTDSearchMessagesFilterChatPhotoBuilder {
     let mut inner = SearchMessagesFilterChatPhoto::default();
     inner.td_name = "searchMessagesFilterChatPhoto".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDSearchMessagesFilterChatPhotoBuilder { inner }
   }
 
@@ -437,11 +471,15 @@ pub struct SearchMessagesFilterDocument {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   
 }
 
 impl RObject for SearchMessagesFilterDocument {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "searchMessagesFilterDocument" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -455,6 +493,7 @@ impl SearchMessagesFilterDocument {
   pub fn builder() -> RTDSearchMessagesFilterDocumentBuilder {
     let mut inner = SearchMessagesFilterDocument::default();
     inner.td_name = "searchMessagesFilterDocument".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDSearchMessagesFilterDocumentBuilder { inner }
   }
 
@@ -490,11 +529,15 @@ pub struct SearchMessagesFilterEmpty {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   
 }
 
 impl RObject for SearchMessagesFilterEmpty {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "searchMessagesFilterEmpty" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -508,6 +551,7 @@ impl SearchMessagesFilterEmpty {
   pub fn builder() -> RTDSearchMessagesFilterEmptyBuilder {
     let mut inner = SearchMessagesFilterEmpty::default();
     inner.td_name = "searchMessagesFilterEmpty".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDSearchMessagesFilterEmptyBuilder { inner }
   }
 
@@ -537,70 +581,21 @@ impl AsRef<SearchMessagesFilterEmpty> for RTDSearchMessagesFilterEmptyBuilder {
 
 
 
-/// Returns only failed to send messages. This filter can be used only if the message database is used
-#[derive(Debug, Clone, Default, Serialize, Deserialize)]
-pub struct SearchMessagesFilterFailedToSend {
-  #[doc(hidden)]
-  #[serde(rename(serialize = "@type", deserialize = "@type"))]
-  td_name: String,
-  
-}
-
-impl RObject for SearchMessagesFilterFailedToSend {
-  #[doc(hidden)] fn td_name(&self) -> &'static str { "searchMessagesFilterFailedToSend" }
-  fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
-}
-
-
-impl TDSearchMessagesFilter for SearchMessagesFilterFailedToSend {}
-
-
-
-impl SearchMessagesFilterFailedToSend {
-  pub fn from_json<S: AsRef<str>>(json: S) -> RTDResult<Self> { Ok(serde_json::from_str(json.as_ref())?) }
-  pub fn builder() -> RTDSearchMessagesFilterFailedToSendBuilder {
-    let mut inner = SearchMessagesFilterFailedToSend::default();
-    inner.td_name = "searchMessagesFilterFailedToSend".to_string();
-    RTDSearchMessagesFilterFailedToSendBuilder { inner }
-  }
-
-}
-
-#[doc(hidden)]
-pub struct RTDSearchMessagesFilterFailedToSendBuilder {
-  inner: SearchMessagesFilterFailedToSend
-}
-
-impl RTDSearchMessagesFilterFailedToSendBuilder {
-  pub fn build(&self) -> SearchMessagesFilterFailedToSend { self.inner.clone() }
-
-}
-
-impl AsRef<SearchMessagesFilterFailedToSend> for SearchMessagesFilterFailedToSend {
-  fn as_ref(&self) -> &SearchMessagesFilterFailedToSend { self }
-}
-
-impl AsRef<SearchMessagesFilterFailedToSend> for RTDSearchMessagesFilterFailedToSendBuilder {
-  fn as_ref(&self) -> &SearchMessagesFilterFailedToSend { &self.inner }
-}
-
-
-
-
-
-
-
 /// Returns only messages with mentions of the current user, or messages that are replies to their messages
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct SearchMessagesFilterMention {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   
 }
 
 impl RObject for SearchMessagesFilterMention {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "searchMessagesFilterMention" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -614,6 +609,7 @@ impl SearchMessagesFilterMention {
   pub fn builder() -> RTDSearchMessagesFilterMentionBuilder {
     let mut inner = SearchMessagesFilterMention::default();
     inner.td_name = "searchMessagesFilterMention".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDSearchMessagesFilterMentionBuilder { inner }
   }
 
@@ -649,11 +645,15 @@ pub struct SearchMessagesFilterMissedCall {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   
 }
 
 impl RObject for SearchMessagesFilterMissedCall {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "searchMessagesFilterMissedCall" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -667,6 +667,7 @@ impl SearchMessagesFilterMissedCall {
   pub fn builder() -> RTDSearchMessagesFilterMissedCallBuilder {
     let mut inner = SearchMessagesFilterMissedCall::default();
     inner.td_name = "searchMessagesFilterMissedCall".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDSearchMessagesFilterMissedCallBuilder { inner }
   }
 
@@ -702,11 +703,15 @@ pub struct SearchMessagesFilterPhoto {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   
 }
 
 impl RObject for SearchMessagesFilterPhoto {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "searchMessagesFilterPhoto" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -720,6 +725,7 @@ impl SearchMessagesFilterPhoto {
   pub fn builder() -> RTDSearchMessagesFilterPhotoBuilder {
     let mut inner = SearchMessagesFilterPhoto::default();
     inner.td_name = "searchMessagesFilterPhoto".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDSearchMessagesFilterPhotoBuilder { inner }
   }
 
@@ -755,11 +761,15 @@ pub struct SearchMessagesFilterPhotoAndVideo {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   
 }
 
 impl RObject for SearchMessagesFilterPhotoAndVideo {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "searchMessagesFilterPhotoAndVideo" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -773,6 +783,7 @@ impl SearchMessagesFilterPhotoAndVideo {
   pub fn builder() -> RTDSearchMessagesFilterPhotoAndVideoBuilder {
     let mut inner = SearchMessagesFilterPhotoAndVideo::default();
     inner.td_name = "searchMessagesFilterPhotoAndVideo".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDSearchMessagesFilterPhotoAndVideoBuilder { inner }
   }
 
@@ -808,11 +819,15 @@ pub struct SearchMessagesFilterUnreadMention {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   
 }
 
 impl RObject for SearchMessagesFilterUnreadMention {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "searchMessagesFilterUnreadMention" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -826,6 +841,7 @@ impl SearchMessagesFilterUnreadMention {
   pub fn builder() -> RTDSearchMessagesFilterUnreadMentionBuilder {
     let mut inner = SearchMessagesFilterUnreadMention::default();
     inner.td_name = "searchMessagesFilterUnreadMention".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDSearchMessagesFilterUnreadMentionBuilder { inner }
   }
 
@@ -861,11 +877,15 @@ pub struct SearchMessagesFilterUrl {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   
 }
 
 impl RObject for SearchMessagesFilterUrl {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "searchMessagesFilterUrl" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -879,6 +899,7 @@ impl SearchMessagesFilterUrl {
   pub fn builder() -> RTDSearchMessagesFilterUrlBuilder {
     let mut inner = SearchMessagesFilterUrl::default();
     inner.td_name = "searchMessagesFilterUrl".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDSearchMessagesFilterUrlBuilder { inner }
   }
 
@@ -914,11 +935,15 @@ pub struct SearchMessagesFilterVideo {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   
 }
 
 impl RObject for SearchMessagesFilterVideo {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "searchMessagesFilterVideo" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -932,6 +957,7 @@ impl SearchMessagesFilterVideo {
   pub fn builder() -> RTDSearchMessagesFilterVideoBuilder {
     let mut inner = SearchMessagesFilterVideo::default();
     inner.td_name = "searchMessagesFilterVideo".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDSearchMessagesFilterVideoBuilder { inner }
   }
 
@@ -967,11 +993,15 @@ pub struct SearchMessagesFilterVideoNote {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   
 }
 
 impl RObject for SearchMessagesFilterVideoNote {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "searchMessagesFilterVideoNote" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -985,6 +1015,7 @@ impl SearchMessagesFilterVideoNote {
   pub fn builder() -> RTDSearchMessagesFilterVideoNoteBuilder {
     let mut inner = SearchMessagesFilterVideoNote::default();
     inner.td_name = "searchMessagesFilterVideoNote".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDSearchMessagesFilterVideoNoteBuilder { inner }
   }
 
@@ -1020,11 +1051,15 @@ pub struct SearchMessagesFilterVoiceAndVideoNote {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   
 }
 
 impl RObject for SearchMessagesFilterVoiceAndVideoNote {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "searchMessagesFilterVoiceAndVideoNote" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -1038,6 +1073,7 @@ impl SearchMessagesFilterVoiceAndVideoNote {
   pub fn builder() -> RTDSearchMessagesFilterVoiceAndVideoNoteBuilder {
     let mut inner = SearchMessagesFilterVoiceAndVideoNote::default();
     inner.td_name = "searchMessagesFilterVoiceAndVideoNote".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDSearchMessagesFilterVoiceAndVideoNoteBuilder { inner }
   }
 
@@ -1073,11 +1109,15 @@ pub struct SearchMessagesFilterVoiceNote {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   
 }
 
 impl RObject for SearchMessagesFilterVoiceNote {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "searchMessagesFilterVoiceNote" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -1091,6 +1131,7 @@ impl SearchMessagesFilterVoiceNote {
   pub fn builder() -> RTDSearchMessagesFilterVoiceNoteBuilder {
     let mut inner = SearchMessagesFilterVoiceNote::default();
     inner.td_name = "searchMessagesFilterVoiceNote".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDSearchMessagesFilterVoiceNoteBuilder { inner }
   }
 

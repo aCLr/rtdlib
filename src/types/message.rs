@@ -1,6 +1,7 @@
 
 use crate::types::*;
 use crate::errors::*;
+use uuid::Uuid;
 
 
 
@@ -11,6 +12,9 @@ pub struct Message {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// Message identifier, unique for the chat to which the message belongs
   id: i64,
   /// Identifier of the user who sent the message; 0 if unknown. Currently, it is unknown for channel posts and for channel posts automatically forwarded to discussion group
@@ -23,7 +27,7 @@ pub struct Message {
   scheduling_state: Option<MessageSchedulingState>,
   /// True, if the message is outgoing
   is_outgoing: bool,
-  /// True, if the message can be edited. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message by the application
+  /// True, if the message can be edited. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message by the client
   can_be_edited: bool,
   /// True, if the message can be forwarded
   can_be_forwarded: bool,
@@ -66,6 +70,7 @@ pub struct Message {
 
 impl RObject for Message {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "message" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -76,6 +81,7 @@ impl Message {
   pub fn builder() -> RTDMessageBuilder {
     let mut inner = Message::default();
     inner.td_name = "message".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDMessageBuilder { inner }
   }
 

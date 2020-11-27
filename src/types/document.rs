@@ -1,6 +1,7 @@
 
 use crate::types::*;
 use crate::errors::*;
+use uuid::Uuid;
 
 
 
@@ -11,6 +12,9 @@ pub struct Document {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// Original name of the file; as defined by the sender
   file_name: String,
   /// MIME type of the file; as defined by the sender
@@ -18,7 +22,7 @@ pub struct Document {
   /// Document minithumbnail; may be null
   minithumbnail: Option<Minithumbnail>,
   /// Document thumbnail in JPEG or PNG format (PNG will be used only for background patterns); as defined by the sender; may be null
-  thumbnail: Option<Thumbnail>,
+  thumbnail: Option<PhotoSize>,
   /// File containing the document
   document: File,
   
@@ -26,6 +30,7 @@ pub struct Document {
 
 impl RObject for Document {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "document" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -36,6 +41,7 @@ impl Document {
   pub fn builder() -> RTDDocumentBuilder {
     let mut inner = Document::default();
     inner.td_name = "document".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDDocumentBuilder { inner }
   }
 
@@ -45,7 +51,7 @@ impl Document {
 
   pub fn minithumbnail(&self) -> &Option<Minithumbnail> { &self.minithumbnail }
 
-  pub fn thumbnail(&self) -> &Option<Thumbnail> { &self.thumbnail }
+  pub fn thumbnail(&self) -> &Option<PhotoSize> { &self.thumbnail }
 
   pub fn document(&self) -> &File { &self.document }
 
@@ -78,7 +84,7 @@ impl RTDDocumentBuilder {
   }
 
    
-  pub fn thumbnail<T: AsRef<Thumbnail>>(&mut self, thumbnail: T) -> &mut Self {
+  pub fn thumbnail<T: AsRef<PhotoSize>>(&mut self, thumbnail: T) -> &mut Self {
     self.inner.thumbnail = Some(thumbnail.as_ref().clone());
     self
   }

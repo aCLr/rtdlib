@@ -1,6 +1,7 @@
 
 use crate::types::*;
 use crate::errors::*;
+use uuid::Uuid;
 
 
 
@@ -18,11 +19,11 @@ pub trait TDReplyMarkup: Debug + RObject {}
 #[serde(untagged)]
 pub enum ReplyMarkup {
   #[doc(hidden)] _Default(()),
-  /// Instructs application to force a reply to this message
+  /// Instructs clients to force a reply to this message
   ForceReply(ReplyMarkupForceReply),
   /// Contains an inline keyboard layout
   InlineKeyboard(ReplyMarkupInlineKeyboard),
-  /// Instructs application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, UpdateChatReplyMarkup with message_id == 0 will be sent
+  /// Instructs clients to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, UpdateChatReplyMarkup with message_id == 0 will be sent
   RemoveKeyboard(ReplyMarkupRemoveKeyboard),
   /// Contains a custom keyboard layout to quickly reply to bots
   ShowKeyboard(ReplyMarkupShowKeyboard),
@@ -56,6 +57,16 @@ impl RObject for ReplyMarkup {
       ReplyMarkup::ShowKeyboard(t) => t.td_name(),
 
       _ => "-1",
+    }
+  }
+  #[doc(hidden)] fn extra(&self) -> Option<String> {
+    match self {
+      ReplyMarkup::ForceReply(t) => t.extra(),
+      ReplyMarkup::InlineKeyboard(t) => t.extra(),
+      ReplyMarkup::RemoveKeyboard(t) => t.extra(),
+      ReplyMarkup::ShowKeyboard(t) => t.extra(),
+
+      _ => None,
     }
   }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
@@ -102,12 +113,15 @@ impl AsRef<ReplyMarkup> for ReplyMarkup {
 
 
 
-/// Instructs application to force a reply to this message
+/// Instructs clients to force a reply to this message
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct ReplyMarkupForceReply {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// True, if a forced reply must automatically be shown to the current user. For outgoing messages, specify true to show the forced reply only for the mentioned users and for the target user of a reply
   is_personal: bool,
   
@@ -115,6 +129,7 @@ pub struct ReplyMarkupForceReply {
 
 impl RObject for ReplyMarkupForceReply {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "replyMarkupForceReply" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -128,6 +143,7 @@ impl ReplyMarkupForceReply {
   pub fn builder() -> RTDReplyMarkupForceReplyBuilder {
     let mut inner = ReplyMarkupForceReply::default();
     inner.td_name = "replyMarkupForceReply".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDReplyMarkupForceReplyBuilder { inner }
   }
 
@@ -171,6 +187,9 @@ pub struct ReplyMarkupInlineKeyboard {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// A list of rows of inline keyboard buttons
   rows: Vec<Vec<InlineKeyboardButton>>,
   
@@ -178,6 +197,7 @@ pub struct ReplyMarkupInlineKeyboard {
 
 impl RObject for ReplyMarkupInlineKeyboard {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "replyMarkupInlineKeyboard" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -191,6 +211,7 @@ impl ReplyMarkupInlineKeyboard {
   pub fn builder() -> RTDReplyMarkupInlineKeyboardBuilder {
     let mut inner = ReplyMarkupInlineKeyboard::default();
     inner.td_name = "replyMarkupInlineKeyboard".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDReplyMarkupInlineKeyboardBuilder { inner }
   }
 
@@ -228,12 +249,15 @@ impl AsRef<ReplyMarkupInlineKeyboard> for RTDReplyMarkupInlineKeyboardBuilder {
 
 
 
-/// Instructs application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, UpdateChatReplyMarkup with message_id == 0 will be sent
+/// Instructs clients to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, UpdateChatReplyMarkup with message_id == 0 will be sent
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct ReplyMarkupRemoveKeyboard {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// True, if the keyboard is removed only for the mentioned users or the target user of a reply
   is_personal: bool,
   
@@ -241,6 +265,7 @@ pub struct ReplyMarkupRemoveKeyboard {
 
 impl RObject for ReplyMarkupRemoveKeyboard {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "replyMarkupRemoveKeyboard" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -254,6 +279,7 @@ impl ReplyMarkupRemoveKeyboard {
   pub fn builder() -> RTDReplyMarkupRemoveKeyboardBuilder {
     let mut inner = ReplyMarkupRemoveKeyboard::default();
     inner.td_name = "replyMarkupRemoveKeyboard".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDReplyMarkupRemoveKeyboardBuilder { inner }
   }
 
@@ -297,11 +323,14 @@ pub struct ReplyMarkupShowKeyboard {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// A list of rows of bot keyboard buttons
   rows: Vec<Vec<KeyboardButton>>,
-  /// True, if the application needs to resize the keyboard vertically
+  /// True, if the client needs to resize the keyboard vertically
   resize_keyboard: bool,
-  /// True, if the application needs to hide the keyboard after use
+  /// True, if the client needs to hide the keyboard after use
   one_time: bool,
   /// True, if the keyboard must automatically be shown to the current user. For outgoing messages, specify true to show the keyboard only for the mentioned users and for the target user of a reply
   is_personal: bool,
@@ -310,6 +339,7 @@ pub struct ReplyMarkupShowKeyboard {
 
 impl RObject for ReplyMarkupShowKeyboard {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "replyMarkupShowKeyboard" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -323,6 +353,7 @@ impl ReplyMarkupShowKeyboard {
   pub fn builder() -> RTDReplyMarkupShowKeyboardBuilder {
     let mut inner = ReplyMarkupShowKeyboard::default();
     inner.td_name = "replyMarkupShowKeyboard".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDReplyMarkupShowKeyboardBuilder { inner }
   }
 

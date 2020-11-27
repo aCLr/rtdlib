@@ -1,6 +1,7 @@
 
 use crate::types::*;
 use crate::errors::*;
+use uuid::Uuid;
 
 
 
@@ -11,9 +12,12 @@ pub struct Poll {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// Unique poll identifier
   #[serde(deserialize_with = "serde_aux::field_attributes::deserialize_number_from_string")] id: isize,
-  /// Poll question, 1-300 characters
+  /// Poll question, 1-255 characters
   question: String,
   /// List of poll answer options
   options: Vec<PollOption>,
@@ -25,10 +29,6 @@ pub struct Poll {
   is_anonymous: bool,
   /// Type of the poll
   #[serde(rename(serialize = "type", deserialize = "type"))] type_: PollType,
-  /// Amount of time the poll will be active after creation, in seconds
-  open_period: i64,
-  /// Point in time (Unix timestamp) when the poll will be automatically closed
-  close_date: i64,
   /// True, if the poll is closed
   is_closed: bool,
   
@@ -36,6 +36,7 @@ pub struct Poll {
 
 impl RObject for Poll {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "poll" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -46,6 +47,7 @@ impl Poll {
   pub fn builder() -> RTDPollBuilder {
     let mut inner = Poll::default();
     inner.td_name = "poll".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDPollBuilder { inner }
   }
 
@@ -62,10 +64,6 @@ impl Poll {
   pub fn is_anonymous(&self) -> bool { self.is_anonymous }
 
   pub fn type_(&self) -> &PollType { &self.type_ }
-
-  pub fn open_period(&self) -> i64 { self.open_period }
-
-  pub fn close_date(&self) -> i64 { self.close_date }
 
   pub fn is_closed(&self) -> bool { self.is_closed }
 
@@ -118,18 +116,6 @@ impl RTDPollBuilder {
    
   pub fn type_<T: AsRef<PollType>>(&mut self, type_: T) -> &mut Self {
     self.inner.type_ = type_.as_ref().clone();
-    self
-  }
-
-   
-  pub fn open_period(&mut self, open_period: i64) -> &mut Self {
-    self.inner.open_period = open_period;
-    self
-  }
-
-   
-  pub fn close_date(&mut self, close_date: i64) -> &mut Self {
-    self.inner.close_date = close_date;
     self
   }
 

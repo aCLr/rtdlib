@@ -1,6 +1,7 @@
 
 use crate::types::*;
 use crate::errors::*;
+use uuid::Uuid;
 
 
 
@@ -11,6 +12,9 @@ pub struct Supergroup {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   /// Supergroup or channel identifier
   id: i64,
   /// Username of the supergroup or channel; empty for private supergroups or channels
@@ -19,7 +23,7 @@ pub struct Supergroup {
   date: i64,
   /// Status of the current user in the supergroup or channel; custom title will be always empty
   status: ChatMemberStatus,
-  /// Number of members in the supergroup or channel; 0 if unknown. Currently it is guaranteed to be known only if the supergroup or channel was received through searchPublicChats, searchChatsNearby, getInactiveSupergroupChats, getSuitableDiscussionChats, getGroupsInCommon, or getUserPrivacySettingRules
+  /// Member count; 0 if unknown. Currently it is guaranteed to be known only if the supergroup or channel was found through SearchPublicChats
   member_count: i64,
   /// True, if the channel has a discussion group, or the supergroup is the designated discussion group for a channel
   has_linked_chat: bool,
@@ -42,6 +46,7 @@ pub struct Supergroup {
 
 impl RObject for Supergroup {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "supergroup" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -52,6 +57,7 @@ impl Supergroup {
   pub fn builder() -> RTDSupergroupBuilder {
     let mut inner = Supergroup::default();
     inner.td_name = "supergroup".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDSupergroupBuilder { inner }
   }
 

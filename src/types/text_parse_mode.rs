@@ -1,6 +1,7 @@
 
 use crate::types::*;
 use crate::errors::*;
+use uuid::Uuid;
 
 
 
@@ -18,9 +19,9 @@ pub trait TDTextParseMode: Debug + RObject {}
 #[serde(untagged)]
 pub enum TextParseMode {
   #[doc(hidden)] _Default(()),
-  /// The text uses HTML-style formatting. The same as Telegram Bot API "HTML" parse mode
+  /// The text should be parsed in HTML-style
   HTML(TextParseModeHTML),
-  /// The text uses Markdown-style formatting
+  /// The text should be parsed in markdown-style
   Markdown(TextParseModeMarkdown),
 
 }
@@ -48,6 +49,14 @@ impl RObject for TextParseMode {
       TextParseMode::Markdown(t) => t.td_name(),
 
       _ => "-1",
+    }
+  }
+  #[doc(hidden)] fn extra(&self) -> Option<String> {
+    match self {
+      TextParseMode::HTML(t) => t.extra(),
+      TextParseMode::Markdown(t) => t.extra(),
+
+      _ => None,
     }
   }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
@@ -84,17 +93,21 @@ impl AsRef<TextParseMode> for TextParseMode {
 
 
 
-/// The text uses HTML-style formatting. The same as Telegram Bot API "HTML" parse mode
+/// The text should be parsed in HTML-style
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct TextParseModeHTML {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
   
 }
 
 impl RObject for TextParseModeHTML {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "textParseModeHTML" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -108,6 +121,7 @@ impl TextParseModeHTML {
   pub fn builder() -> RTDTextParseModeHTMLBuilder {
     let mut inner = TextParseModeHTML::default();
     inner.td_name = "textParseModeHTML".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDTextParseModeHTMLBuilder { inner }
   }
 
@@ -137,19 +151,23 @@ impl AsRef<TextParseModeHTML> for RTDTextParseModeHTMLBuilder {
 
 
 
-/// The text uses Markdown-style formatting
+/// The text should be parsed in markdown-style
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct TextParseModeMarkdown {
   #[doc(hidden)]
   #[serde(rename(serialize = "@type", deserialize = "@type"))]
   td_name: String,
-  /// Version of the parser: 0 or 1  Telegram Bot API "Markdown" parse mode, 2  Telegram Bot API "MarkdownV2" parse mode
+  #[doc(hidden)]
+  #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
+  extra: Option<String>,
+  /// Version of the parser: 0 or 1  Bot API Markdown parse mode, 2  Bot API MarkdownV2 parse mode
   version: i64,
   
 }
 
 impl RObject for TextParseModeMarkdown {
   #[doc(hidden)] fn td_name(&self) -> &'static str { "textParseModeMarkdown" }
+  #[doc(hidden)] fn extra(&self) -> Option<String> { self.extra.clone() }
   fn to_json(&self) -> RTDResult<String> { Ok(serde_json::to_string(self)?) }
 }
 
@@ -163,6 +181,7 @@ impl TextParseModeMarkdown {
   pub fn builder() -> RTDTextParseModeMarkdownBuilder {
     let mut inner = TextParseModeMarkdown::default();
     inner.td_name = "textParseModeMarkdown".to_string();
+    inner.extra = Some(Uuid::new_v4().to_string());
     RTDTextParseModeMarkdownBuilder { inner }
   }
 
